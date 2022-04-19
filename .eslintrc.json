@@ -11,5 +11,10 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-    }
+        "linebreak-style": 0,
+        "no-console": 0,
+        "consistent-return": "off"
+
+    },
+    "ignorePatterns": ["server/test/*"]
 }
