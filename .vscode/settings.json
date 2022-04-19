@@ -1,0 +1,9 @@
+{
+    "files.eol": "\n",
+    "git.ignoreLimitWarning": true,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "files.autoSave": "onWindowChange"
+  }
