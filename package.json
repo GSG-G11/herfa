@@ -7,7 +7,6 @@
     "test": "jest --watchAll",
     "fix-eslint": "npm run lint -- --fix",
     "lint": "eslint server/ ",
-    
     "prepare": "npx husky install",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "dev": "cross-env NODE_ENV=development nodemon server/index.js"
@@ -30,6 +29,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "jest": "^27.5.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
   },
