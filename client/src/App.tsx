@@ -1,32 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 
 function App() {
   const { t, i18n } = useTranslation();
+  const [lang, setLang] = useState(i18n.language);
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+    document.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   return (
     <div className="container">
       {t('title')}
-      {/* مرحبا بك */}
       <form>
-        {/* {i18n.language === 'ar' && (
         <button
           type="button"
-          onClick={() => i18n.changeLanguage('ar')}
+          onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
         >
-          Ar
+          {i18n.language === 'ar' ? 'English' : 'العربية'}
         </button>
-        )}
-        {i18n.language === 'en' && (
-        <button
-          type="button"
-          onClick={() => i18n.changeLanguage('En')}
-        >
-          En
-        </button>
-        )} */}
-        <button type="button" onClick={() => i18n.changeLanguage('ar')}>Ar</button>
-        <button type="button" onClick={() => i18n.changeLanguage('En')}>En</button>
       </form>
     </div>
   );
