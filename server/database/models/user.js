@@ -27,10 +27,12 @@ const User = sequelize.define('users', {
   phone: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   whatsapp: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   location_id: {
     type: Sequelize.INTEGER,
@@ -46,10 +48,14 @@ const User = sequelize.define('users', {
     allowNull: true,
   },
   description: {
+    type: Sequelize.TEXT,
+    allowNull: true,
+  },
+  facebook_link: {
     type: Sequelize.STRING,
     allowNull: true,
   },
-  link: {
+  instagram_link: {
     type: Sequelize.STRING,
     allowNull: true,
   },
