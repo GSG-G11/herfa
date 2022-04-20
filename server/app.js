@@ -4,8 +4,6 @@ const express = require('express');
 
 const compression = require('compression');
 const router = require('./routes/index');
-const { serverError, clientError } = require('./controllers/errors');
-
 const app = express();
 app.set('port', process.env.PORT || 3030);
 
@@ -23,7 +21,5 @@ app.get('*', (req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
-app.use(clientError);
-app.use(serverError);
 
 module.exports = app;
