@@ -1,6 +1,7 @@
 const { sequelize } = require('../config');
 const { Work } = require('./work');
 const { User } = require('./user');
+const { Location } = require('./location');
 
 const user1 = {
   first_name: 'sa',

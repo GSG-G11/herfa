@@ -38,10 +38,10 @@ const User = sequelize.define('users', {
     type: Sequelize.INTEGER,
     allowNull: false,
     // Location model does not created yet, remove comment after location model created
-    // references: {
-    //   model: 'locations',
-    //   key: 'id',
-    // },
+  //   references: {
+  //   //   model: 'locations',
+  //   //   key: 'id',
+  //   // },
   },
   image: {
     type: Sequelize.STRING,
