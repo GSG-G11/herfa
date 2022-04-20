@@ -1,3 +1,9 @@
 {
-    "title":"مرحبا"
+    "title":"مرحبا",
+    "home-greeting":"الصفحة الرئيسية",
+    "profile-greeting":"صفحة المستخدم",
+    "search-greeting":"صفحة البحث",
+    "signUp-greeting":"صفحة انشاء حساب",
+    "logIn-greeting":"صفحة تسجيل الدخول",
+    "notFound":"عذراً الصفحة غير متوفرة"
 }
