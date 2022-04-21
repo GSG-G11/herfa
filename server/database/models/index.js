@@ -1,4 +1,3 @@
-const { CraftsCraftsman } = require('./craftsCraftsman');
 const { MainServices } = require('./mainServices');
 const { SubServices } = require('./subServices');
 const { User } = require('./user');
@@ -9,5 +8,4 @@ module.exports = {
   Work,
   MainServices,
   SubServices,
-  CraftsCraftsman,
 };

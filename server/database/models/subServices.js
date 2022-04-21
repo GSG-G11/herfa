@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
 const { MainServices } = require('./mainServices');
+const { User } = require('./user');
 
 const SubServices = sequelize.define('services', {
   id: {
@@ -16,5 +17,8 @@ const SubServices = sequelize.define('services', {
 
 MainServices.hasMany(SubServices);
 SubServices.belongsTo(MainServices);
+
+SubServices.belongsToMany(User, { through: 'services_user' });
+User.belongsToMany(SubServices, { through: 'services_user' });
 
 module.exports = { SubServices };
