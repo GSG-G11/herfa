@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
+const { Location } = require('./location');
 
 const User = sequelize.define('users', {
   id: {
@@ -34,15 +35,6 @@ const User = sequelize.define('users', {
     allowNull: false,
     unique: true,
   },
-  location_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    // Location model does not created yet, remove comment after location model created
-    // references: {
-    //   model: 'locations',
-    //   key: 'id',
-    // },
-  },
   image: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -60,5 +52,5 @@ const User = sequelize.define('users', {
     allowNull: true,
   },
 });
-
+User.belongsTo(Location);
 module.exports = { User };
