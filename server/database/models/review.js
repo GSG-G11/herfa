@@ -8,10 +8,6 @@ const Review = sequelize.define('review', {
     primaryKey: true,
     autoIncrement: true,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   rate: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -27,7 +23,6 @@ const Review = sequelize.define('review', {
   },
 });
 
-User.hasMany(Review);
 Review.belongsTo(User);
 
 module.exports = { Review };
