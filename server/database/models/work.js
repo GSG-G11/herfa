@@ -15,14 +15,6 @@ const Work = sequelize.define('works', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'users',
-      key: 'id',
-    },
-  },
   image: {
     type: Sequelize.STRING,
     allowNull: true,
