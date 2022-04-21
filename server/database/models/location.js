@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
-const { User } = require('./user');
 
 const Location = sequelize.define('locations', {
   id: {
