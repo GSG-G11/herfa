@@ -1,5 +1,4 @@
 const { sequelize } = require('../config');
-const { Work } = require('./work');
 const { User } = require('./user');
 
 const user1 = {
@@ -14,7 +13,6 @@ const user1 = {
   description: 'sa',
   link: 'sa',
 };
-const work1 = { title: 'saleh ti', content: 'fsdfsdf', user_id: 2 };
 sequelize.sync({ force: true });
 const user = await User.create(user1);
 console.log(user);
