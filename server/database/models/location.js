@@ -13,6 +13,4 @@ const Location = sequelize.define('locations', {
     allowNull: false,
   },
 });
-User.hasOne(Location);
-Location.belongsTo(User);
 module.exports = { Location };
