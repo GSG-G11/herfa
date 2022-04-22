@@ -1,10 +1,12 @@
 const { Work, Review } = require('../../database/models');
+const paramsValidation = require('../../utils/validation/params');
 
 const profile = async (req, res, next) => {
   try {
+    const { id } = await paramsValidation.validateAsync(req.params);
     const works = await Work.findAll({
       where: {
-        userId: +req.params.id,
+        userId: id,
       },
     });
     const user = await works[0].getUser();
@@ -12,7 +14,7 @@ const profile = async (req, res, next) => {
     const locations = await user.getLocation();
     const reviews = await Review.findAll({
       where: {
-        userId: +req.params.id,
+        userId: id,
       },
     });
     const data = {
