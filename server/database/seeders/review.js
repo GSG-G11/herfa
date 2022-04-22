@@ -131,8 +131,8 @@ const reviews = [
 
 const reviewsSeeder = async () => {
   await Promise.all(
-    reviews.map(async (work) => {
-      const done = await Review.create(work);
+    reviews.map(async (review) => {
+      const done = await Review.create(review);
       console.log(done.id, ': created');
     }),
   );
