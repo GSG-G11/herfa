@@ -10,6 +10,7 @@ const MainServices = sequelize.define('main_services', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
 });
 

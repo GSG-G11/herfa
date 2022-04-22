@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
+const { User } = require('./user');
 
 const Work = sequelize.define('works', {
   id: {
@@ -15,18 +16,11 @@ const Work = sequelize.define('works', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  user_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'users',
-      key: 'id',
-    },
-  },
   image: {
     type: Sequelize.STRING,
     allowNull: true,
   },
 });
+Work.belongsTo(User);
 
 module.exports = { Work };

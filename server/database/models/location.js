@@ -10,6 +10,7 @@ const Location = sequelize.define('locations', {
   city: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
 });
 module.exports = { Location };
