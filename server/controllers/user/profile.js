@@ -26,7 +26,7 @@ const profile = async (req, res, next) => {
     };
     res.status(200).json({ msg: "Profile user's information", data });
   } catch (error) {
-    next(error.message);
+    next(error);
   }
 };
 module.exports = profile;
