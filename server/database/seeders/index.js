@@ -5,9 +5,9 @@ const subServicesSeeder = require('./subService');
 const worksSeeder = require('./works');
 const reviewsSeeder = require('./review');
 
-reviewsSeeder();
-worksSeeder();
-servicesSeeder();
-subServicesSeeder();
 locationSeeder();
 userSeeder();
+worksSeeder();
+reviewsSeeder();
+servicesSeeder();
+subServicesSeeder();

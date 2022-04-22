@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
 const { User } = require('./user');
 
-const Review = sequelize.define('review', {
+const Review = sequelize.define('reviews', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,7 +18,7 @@ const Review = sequelize.define('review', {
   },
   phone: {
     type: Sequelize.STRING,
-    allowNulla: false,
+    allowNull: false,
     unique: true,
   },
 });

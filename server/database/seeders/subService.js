@@ -1,4 +1,4 @@
-const { MainServices } = require('../models');
+const { SubServices } = require('../models');
 
 const subServices = [
   {
@@ -122,7 +122,7 @@ const subServices = [
 const subServicesSeeder = async () => {
   await Promise.all(
     subServices.map(async (service) => {
-      const done = await MainServices.create(service);
+      const done = await SubServices.create(service);
       console.log(done.id, ': created');
     }),
   );
