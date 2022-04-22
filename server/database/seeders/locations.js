@@ -1,5 +1,3 @@
-const { Location } = require('../models');
-
 const locations = [
   {
     city: 'بيت حانون',
@@ -39,12 +37,4 @@ const locations = [
   },
 ];
 
-const locationSeeder = async () => {
-  await Promise.all(
-    locations.map(async (location) => {
-      const done = await Location.create(location);
-      console.log(done.id, ': created');
-    }),
-  );
-};
-module.exports = locationSeeder;
+module.exports = locations;

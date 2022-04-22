@@ -1,5 +1,3 @@
-const { Work } = require('../models');
-
 const works = [
   {
     title: 'باب حديد',
@@ -69,12 +67,4 @@ const works = [
   },
 ];
 
-const worksSeeder = async () => {
-  await Promise.all(
-    works.map(async (work) => {
-      const done = await Work.create(work);
-      console.log(done.id, ': created');
-    }),
-  );
-};
-module.exports = worksSeeder;
+module.exports = works;

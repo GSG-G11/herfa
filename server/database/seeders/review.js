@@ -1,5 +1,3 @@
-const { Review } = require('../models');
-
 const reviews = [
   {
     rate: 1,
@@ -129,12 +127,4 @@ const reviews = [
   },
 ];
 
-const reviewsSeeder = async () => {
-  await Promise.all(
-    reviews.map(async (review) => {
-      const done = await Review.create(review);
-      console.log(done.id, ': created');
-    }),
-  );
-};
-module.exports = reviewsSeeder;
+module.exports = reviews;

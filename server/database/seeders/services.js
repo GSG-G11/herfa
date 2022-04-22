@@ -1,5 +1,3 @@
-const { MainServices } = require('../models');
-
 const services = [
   {
     name: 'الحدادة',
@@ -33,12 +31,4 @@ const services = [
   },
 ];
 
-const servicesSeeder = async () => {
-  await Promise.all(
-    services.map(async (service) => {
-      const done = await MainServices.create(service);
-      console.log(done.id, ': created');
-    }),
-  );
-};
-module.exports = servicesSeeder;
+module.exports = services;

@@ -16,7 +16,12 @@ if (NODE_ENV === 'production') {
   throw new Error('No Database is found !');
 }
 
-const sequelize = new Sequelize(dbUrl);
+const sequelize = new Sequelize(dbUrl, {
+  logging: false,
+  dialectOptions: {
+    charset: 'utf8',
+  },
+});
 sequelize
   .authenticate()
   .then(() => {
@@ -25,5 +30,8 @@ sequelize
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
-sequelize.sync({ force: false });
+
+if (process.env.BUILD_DB) { // to ignore sync when build the fake data
+  sequelize.sync();
+}
 module.exports = { sequelize };

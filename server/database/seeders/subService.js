@@ -1,5 +1,3 @@
-const { SubServices } = require('../models');
-
 const subServices = [
   {
     name: 'الحدادة العامة',
@@ -119,12 +117,4 @@ const subServices = [
   },
 ];
 
-const subServicesSeeder = async () => {
-  await Promise.all(
-    subServices.map(async (service) => {
-      const done = await SubServices.create(service);
-      console.log(done.id, ': created');
-    }),
-  );
-};
-module.exports = subServicesSeeder;
+module.exports = subServices;
