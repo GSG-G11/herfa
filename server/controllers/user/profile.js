@@ -1,5 +1,6 @@
 const { Work, Review } = require('../../database/models');
 const paramsValidation = require('../../utils/validation/params');
+const { customError } = require('../errors');
 
 const profile = async (req, res, next) => {
   try {
@@ -26,7 +27,7 @@ const profile = async (req, res, next) => {
     };
     res.status(200).json({ msg: "Profile user's information", data });
   } catch (error) {
-    next(error);
+    next(customError(error.message, 400));
   }
 };
 module.exports = profile;

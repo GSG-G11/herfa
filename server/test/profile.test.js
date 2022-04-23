@@ -88,10 +88,10 @@ describe('Routes Tests', () => {
   test('Testing for /api/v1/providers to get 500 Internal Server Error', (done) => {
     supertest(app)
       .get('/api/v1/providers/88888888887')
-      .expect(500)
+      .expect(400)
       .end((err, res) => {
         if (err) done(err);
-        expect(res.body.status).toEqual(500);
+        expect(res.body.status).toEqual(400);
         done();
       });
   });
