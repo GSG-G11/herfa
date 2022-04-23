@@ -22,9 +22,9 @@ describe('Test GET /home', () => {
       .end((error, response) => {
         if (error) done(error)
         expect(response.type).toBe('application/json');
-        expect(response.body.hasOwnProperty('location')).toBe(true);
-        expect(response.body.hasOwnProperty('services')).toBe(true);
-        expect(response.body.hasOwnProperty('topTenReviews')).toBe(true);
+        expect(response.body.data.hasOwnProperty('location')).toBe(true);
+        expect(response.body.data.hasOwnProperty('services')).toBe(true);
+        expect(response.body.data.hasOwnProperty('topTenReviews')).toBe(true);
         done();
       })
   });
@@ -36,10 +36,11 @@ describe('Test GET /home', () => {
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
         if (error) done(error)
-        expect(response.body.location.length).toBe(12);
+        expect(response.body.data.location.length).toBe(12);
         done();
       })
   });
+
   test('Get /api/v1/home return all the top 10 reviews data => rate = 5 and length >= 10', (done) => {
     request(app)
       .get('/api/v1/home')
@@ -47,8 +48,8 @@ describe('Test GET /home', () => {
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
         if (error) done(error)
-        expect(response.body.topTenReviews.length).toBeLessThan(11);
-        expect(response.body.topTenReviews).toEqual(
+        expect(response.body.data.topTenReviews.length).toBeLessThan(11);
+        expect(response.body.data.topTenReviews).toEqual(
           expect.arrayContaining([
             expect.objectContaining({ rate: 5 }),
           ])
@@ -64,8 +65,8 @@ describe('Test GET /home', () => {
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
         if (error) done(error)
-        expect(response.body.services.length).toBe(10);
-        expect(response.body.services[0].name).toBe('الحدادة');
+        expect(response.body.data.services.length).toBe(10);
+        expect(response.body.data.services[0].name).toBe('الحدادة');
         done();
       })
   });
