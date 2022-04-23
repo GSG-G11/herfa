@@ -48,7 +48,9 @@ const build = async () => {
   } catch (err) {
     console.log(err.message, 'error when insert fake data');
   }
-  return process.exit(0);
+  if (process.env.NODE_ENV === 'test') process.exit(0);
 };
 
-build();
+if (process.env.NODE_ENV === 'test') build();
+
+module.exports = { build };

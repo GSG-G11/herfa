@@ -1,5 +1,9 @@
 const request = require('supertest');
 const app = require('../app');
+const { build } = require('../database/seeders');
+const { sequelize } = require('../database/config');
+
+beforeAll(build);
 
 describe('Test GET /home', () => {
 
@@ -8,7 +12,7 @@ describe('Test GET /home', () => {
       .get('/api/v1/home')
       .expect(200)
       .end((error, response) => {
-        if (error) done(error)
+        if (error) done(error);
         expect(response.statusCode).toBe(200);
         done();
       })
@@ -20,11 +24,13 @@ describe('Test GET /home', () => {
       .expect(200)
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
-        if (error) done(error)
+        if (error) done(error);
         expect(response.type).toBe('application/json');
-        expect(response.body.data.hasOwnProperty('location')).toBe(true);
-        expect(response.body.data.hasOwnProperty('services')).toBe(true);
-        expect(response.body.data.hasOwnProperty('topTenReviews')).toBe(true);
+        expect(response.body.msg).toBe('Home Data');
+        const receivedData = response.body.data[0];
+        expect(receivedData.hasOwnProperty('location')).toBe(true);
+        expect(receivedData.hasOwnProperty('services')).toBe(true);
+        expect(receivedData.hasOwnProperty('topTenReviews')).toBe(true);
         done();
       })
   });
@@ -35,8 +41,9 @@ describe('Test GET /home', () => {
       .expect(200)
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
-        if (error) done(error)
-        expect(response.body.data.location.length).toBe(12);
+        if (error) done(error);
+        const receivedData = response.body.data[0];
+        expect(receivedData.location.length).toBe(12);
         done();
       })
   });
@@ -47,9 +54,10 @@ describe('Test GET /home', () => {
       .expect(200)
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
-        if (error) done(error)
-        expect(response.body.data.topTenReviews.length).toBeLessThan(11);
-        expect(response.body.data.topTenReviews).toEqual(
+        if (error) done(error);
+        const receivedData = response.body.data[0];
+        expect(receivedData.topTenReviews.length).toBeLessThan(11);
+        expect(receivedData.topTenReviews).toEqual(
           expect.arrayContaining([
             expect.objectContaining({ rate: 5 }),
           ])
@@ -64,12 +72,14 @@ describe('Test GET /home', () => {
       .expect(200)
       .expect('content-type', 'application/json; charset=utf-8')
       .end((error, response) => {
-        if (error) done(error)
-        expect(response.body.data.services.length).toBe(10);
-        expect(response.body.data.services[0].name).toBe('الحدادة');
+        if (error) done(error);
+        const receivedData = response.body.data[0];
+        expect(receivedData.services.length).toBe(10);
+        expect(receivedData.services[0].name).toBe('الحدادة');
         done();
       })
   });
 
 });
 
+afterAll(() => sequelize.close());
