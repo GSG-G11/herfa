@@ -1,3 +1,3 @@
-const { Home } = require('./home');
+const { getHomeData } = require('./home');
 
-module.exports = { Home };
+module.exports = { getHomeData };
