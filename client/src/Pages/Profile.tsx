@@ -25,10 +25,8 @@ function Profile() {
   };
   const act = {
     edit() {
-      console.log('edited');
     },
     setting() {
-      console.log('editedssssssss');
     },
   };
   const isAuth = {
