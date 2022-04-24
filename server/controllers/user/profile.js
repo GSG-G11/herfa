@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, col, fn } = require('sequelize');
 
 const {
   Work,
@@ -10,7 +10,7 @@ const {
 const { paramsValidation } = require('../../utils/validation');
 const { customError } = require('../errors');
 
-const profile = async (req, res, next) => {
+const getProfileInfo = async (req, res, next) => {
   try {
     const { id } = await paramsValidation.validateAsync(req.params);
     const user = await User.findByPk(id, {
@@ -39,14 +39,19 @@ const profile = async (req, res, next) => {
         },
       }),
     ]);
+    console.log(fn);
+    const totalReviews = await Review.sum('rate', { where: { userId: id } }); // 50
+    const count = await Review.count({ where: { userId: id } }); // 50
     const data = {
       user,
       reviews: reviewsAndWorks[0],
       works: reviewsAndWorks[1],
+      test: reviewsAndWorks[2],
+      totalReviews: totalReviews / count,
     };
     res.status(200).json({ msg: "Profile user's information", data });
   } catch (error) {
     next(customError(error.message, 400));
   }
 };
-module.exports = profile;
+module.exports = getProfileInfo;
