@@ -1,31 +1,36 @@
-/* style={{ width: '100vh', display: 'flex' }} */
-.work-card-container{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
-    flex-wrap: wrap;
+.work-card-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.work-card{
-    width: 49%;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    margin-bottom: 24px;
+.work-card {
+  width: 49%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  margin-bottom: 24px;
 }
-.work-card img{
-    width: 100%;
+.work-card img {
+  width: 100%;
+  max-height: 500px;
 }
-.work-card-body{
-    padding: 30px;
+.work-card-body {
+  padding: 10px 30px;
 }
-.ant-card-meta-title{
-    font-size: 1.5rem;
-    font-weight: bold;
+.ant-card-meta-title {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-.ant-card-actions{
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    width:30%;
-    padding: 10px 30px;
-    font-size: 1.5rem;
+.ant-card-meta-description {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.ant-card-actions {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  padding: 5px 30px;
+  font-size: 80px;
 }

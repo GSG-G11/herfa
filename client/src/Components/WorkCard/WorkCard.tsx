@@ -11,18 +11,25 @@ interface WorkCardProps {
     image: string;
     userId: number;
   };
+  actions: {
+    edit: () => void;
+    setting: () => void;
+  };
+  isAuth: {
+    isAuth: boolean;
+  }
 }
 
-function WorkCard({ work }: WorkCardProps) {
+function WorkCard({ work, actions, isAuth }: WorkCardProps) {
   return (
 
     <Card
       className="work-card"
       hoverable
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-      ]}
+      actions={isAuth.isAuth ? [
+        <SettingOutlined onClick={actions?.edit} key="setting" />,
+        <EditOutlined onClick={actions?.setting} key="edit" />,
+      ] : []}
       cover={<img alt="example" src={work.image} />}
     >
       <Meta
