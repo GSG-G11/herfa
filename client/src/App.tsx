@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 import './App.css';
 import {
   Home,
@@ -22,27 +23,29 @@ function App() {
   }, [lang]);
 
   return (
-    <div className="container">
-      {t('title')}
-      <form>
-        <button
-          type="button"
-          onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
-        >
-          {i18n.language === 'ar' ? 'English' : 'العربية'}
-        </button>
-      </form>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/user/:userName" element={<Profile />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
-    </div>
+    <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="container">
+        {t('title')}
+        <form>
+          <button
+            type="button"
+            onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
+          >
+            {i18n.language === 'ar' ? 'English' : 'العربية'}
+          </button>
+        </form>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user/:userName" element={<Profile />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </div>
+    </ConfigProvider>
   );
 }
 export default App;
