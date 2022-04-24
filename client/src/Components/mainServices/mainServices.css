@@ -1,0 +1,30 @@
+.main-services-card{
+  width: 17% !important;
+  width: 20px;
+  background-color: #F5F5F5;
+  text-align: center;
+  padding: 1% 0px 0px 0px!important;
+  margin: 10px;
+}
+.main-services-card:hover{
+  cursor: pointer;
+}
+.main-services-card-container{
+  display: flex;
+  justify-content: center;
+  border: none !important;
+}
+.main-services-crd-image{
+  width: 50%;
+}
+.main-services-crd-text{
+  padding-top: 1%;
+  font-weight: 500;
+  font-size: 20px;
+}
+.ant-card-contain-grid:not(.ant-card-loading) .ant-card-body{
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+}
