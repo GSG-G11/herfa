@@ -4,6 +4,7 @@
     align-items: center;
     flex-direction: row;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding-right: 10px;
 }
 .content{
     display: flex;
@@ -31,6 +32,7 @@
 .services{
     display: flex;
     flex-direction: row;
+    margin-top: 15px;
     font-size: 15px;
 }
 .services .service{
@@ -69,6 +71,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 .footer{
     display: flex;
