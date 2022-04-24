@@ -3,17 +3,17 @@ const { customError } = require('../errors');
 
 const getHomeData = async (request, response, next) => {
   try {
-    const data = await Promise.all([{
-      location: await Location.findAll(),
-      services: await MainServices.findAll(),
-      topTenReviews: await Review.findAll({
+    const receivedData = await Promise.all([
+      Location.findAll(),
+      MainServices.findAll(),
+      Review.findAll({
         limit: 10,
         where: {
           rate: 5,
         },
       }),
-    }]);
-    response.json({ msg: 'Home Data', data });
+    ]);
+    response.json({ msg: 'Home Data', data: { location: receivedData[0], services: receivedData[1], topTenReviews: receivedData[2] } });
   } catch (error) {
     next(customError('Database error', 502));
   }
