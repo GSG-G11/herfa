@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Card, Image, Rate,
 } from 'antd';
@@ -8,12 +7,10 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 import { useTranslation } from 'react-i18next';
-import 'antd/dist/antd.css';
-import '../../App.css';
 import image1 from '../../assets/profileImg.png';
-import './userInfocard.css';
+import './style.css';
 
-interface IUserInfoCardProps {
+interface UserInfoCardProps {
   userInfo: {
     name: string;
     facebook: string;
@@ -29,10 +26,11 @@ interface IUserInfoCardProps {
 
   };
 }
-function UserInfoCard({ userInfo }:IUserInfoCardProps) {
+function UserInfoCard({ userInfo }:UserInfoCardProps) {
   const {
-    name, facebook, instagram, rate, phone, email, services, description, location,
+    name, rate, phone, email, services, description, location,
   } = userInfo;
+  const { t } = useTranslation();
   return (
     <Card bordered={false}>
       <div className="card">
@@ -46,7 +44,7 @@ function UserInfoCard({ userInfo }:IUserInfoCardProps) {
             <Rate allowHalf defaultValue={rate} disabled className="rate" />
           </div>
           <p>{location}</p>
-          {useTranslation().t('servicesOffer')}
+          {t('servicesOffer')}
           <p className="services">
             {services.map((service) => (
               <span key={service} className="service">
@@ -62,21 +60,27 @@ function UserInfoCard({ userInfo }:IUserInfoCardProps) {
           <p>{email}</p>
           <p>{phone}</p>
           <div className="social">
-            <Link to={instagram}><FontAwesomeIcon style={{ color: '#AA38A5' }} icon={faInstagram} size="2x" /></Link>
-            <Link to={facebook}><FontAwesomeIcon style={{ color: '#009FD9' }} icon={faFacebook} size="2x" /></Link>
+            <a href="https://www.google.fr/">
+              {' '}
+              <FontAwesomeIcon style={{ color: '#AA38A5' }} icon={faInstagram} size="2x" />
+            </a>
+            <a href="https://www.google.ps/">
+              {' '}
+              <FontAwesomeIcon style={{ color: '#009FD9' }} icon={faFacebook} size="2x" />
+            </a>
           </div>
 
           <div className="footer">
             <span>
               <FontAwesomeIcon icon={faWhatsapp} size="2x" style={{ color: '#56A309' }} />
               {' '}
-              {useTranslation().t('contactMe')}
+              {t('contactMe')}
             </span>
             <br />
             <span>
               <FontAwesomeIcon icon={faStar} size="lg" style={{ color: '#FADB14' }} />
               {' '}
-              {useTranslation().t('review')}
+              {t('review')}
             </span>
           </div>
         </div>
@@ -84,12 +88,5 @@ function UserInfoCard({ userInfo }:IUserInfoCardProps) {
     </Card>
   );
 }
-
-// UserInfoCard.propTypes = {
-//   userInfo: PropTypes.shape({
-//     name: PropTypes.string.isRequired,
-//     city: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
 
 export default UserInfoCard;
