@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(compression());
 
 // eslint-disable-next-line no-constant-condition, no-cond-assign
-if ((process.env.NODE_ENV = 'development')) {
+if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   app.use(require('morgan')('dev'));
 }
