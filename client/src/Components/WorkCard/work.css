@@ -1,0 +1,31 @@
+/* style={{ width: '100vh', display: 'flex' }} */
+.work-card-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    flex-wrap: wrap;
+}
+.work-card{
+    width: 49%;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin-bottom: 24px;
+}
+.work-card img{
+    width: 100%;
+}
+.work-card-body{
+    padding: 30px;
+}
+.ant-card-meta-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.ant-card-actions{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width:30%;
+    padding: 10px 30px;
+    font-size: 1.5rem;
+}
