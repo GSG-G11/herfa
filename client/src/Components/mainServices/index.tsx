@@ -1,16 +1,27 @@
+/* eslint-disable max-len */
+/* eslint-disable no-console */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './mainServices.css';
+import { Card } from 'antd';
 import MainServicesCard from './MainServicesCard';
 
-function MainServices() {
+interface mainServicesProps {
+  mainServices: {
+        name:string,
+    }[]
+}
+
+function MainServices({ mainServices }: mainServicesProps) {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <>
       <h1>{t('home-main-services')}</h1>
-      <MainServicesCard />
-    </div>
+      <Card className="main-services-card-container">
+        {mainServices.map((item, index) => <MainServicesCard key={item.name} service={item.name} imgLink={index} />)}
+      </Card>
+    </>
   );
 }
 
