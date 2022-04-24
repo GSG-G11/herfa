@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import './App.css';
 import {
   Home,
   Profile,
@@ -11,6 +10,8 @@ import {
   LogIn,
   NotFound,
 } from './Pages';
+import './App.css';
+import 'antd/dist/antd.css';
 
 function App() {
   const { t, i18n } = useTranslation();
