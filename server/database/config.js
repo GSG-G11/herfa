@@ -31,7 +31,7 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-if (!process.env.BUILD_DB) { // to ignore sync when build the fake data
+if (process.env.NODE_ENV !== 'test' && !process.env.BUILD_DB) { // to ignore sync when build the fake data
   sequelize.sync();
 }
 module.exports = { sequelize };

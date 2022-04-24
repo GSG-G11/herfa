@@ -1,3 +1,3 @@
-const paramsValidation = require('./params');
+const paramsValidation = require('./requestParamsValidation');
 
 module.exports = { paramsValidation };
