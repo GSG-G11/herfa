@@ -1,4 +1,4 @@
-const { Op, col, fn } = require('sequelize');
+const { Op } = require('sequelize');
 
 const {
   Work,
@@ -23,7 +23,7 @@ const getProfileInfo = async (req, res, next) => {
       throw customError('user does not exist', 400);
     }
     const reviewsAndWorks = await Promise.all([
-      await Review.findAll({
+      Review.findAll({
         limit: 6,
         where: {
           userId: id,
@@ -32,14 +32,13 @@ const getProfileInfo = async (req, res, next) => {
           },
         },
       }),
-      await Work.findAll({
+      Work.findAll({
         limit: 10,
         where: {
           userId: id,
         },
       }),
     ]);
-    console.log(fn);
     const totalReviews = await Review.sum('rate', { where: { userId: id } }); // 50
     const count = await Review.count({ where: { userId: id } }); // 50
     const data = {

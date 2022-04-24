@@ -91,8 +91,15 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
         done();
       });
   });
-  test('should first', () => {
-    expect(1).toBe(1);
+  test('Testing for /api/v1/providers/:100 to get 404 page not found', (done) => {
+    supertest(app)
+      .get('/api/v1/providers/88888888888888888')
+      .expect(400)
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res.body.status).toEqual(400);
+        done();
+      });
   });
 });
 afterAll(() => sequelize.close());
