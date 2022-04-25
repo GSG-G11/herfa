@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Reviews from '../Components';
+import { Reviews } from '../Components';
 
 const reviews = [
   {

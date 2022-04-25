@@ -56,3 +56,14 @@ export interface OnWork {
   image: string;
   userId: number;
 }
+
+export interface OneService {
+  id: number;
+  name: string;
+  mainServiceId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface UserInfoCardProps {
+  userInfo: any
+}

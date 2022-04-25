@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import WorkCard from '../Components/WorkCard/WorkCard';
-import UserInfoCard from '../Components/UserInfoCard';
-// eslint-disable-next-line import/extensions
-import request from '../utils/axios';
+import { WorkCard, UserInfoCard } from '../Components';
 import {
-  Works, Request, AllWorks, OnWork,
-} from '../utils/types/profile';
+  Works, Request, AllWorks, OnWork, request,
+} from '../utils';
 
 function Profile() {
   const [userData, setData] = useState({});
@@ -22,11 +19,17 @@ function Profile() {
         const allWorks1: any = {
           1: [...works],
         };
+        const userInfoData = {
+          user: data.user,
+          reviews: data.reviews,
+          totalReviews: data.totalReviews,
+        };
         setIsLoading(false);
-        setData(data);
+        setData(userInfoData);
         setWorks(allWorks1);
       } catch (error1: any) {
         setError(error1?.data.msg);
+        setIsLoading(true);
       }
     };
     getData();

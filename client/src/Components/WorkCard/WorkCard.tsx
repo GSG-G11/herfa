@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import './work.css';
+import './style.css';
 import { EditOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;

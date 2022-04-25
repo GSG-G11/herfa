@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { Card, Image, Rate } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,20 +8,23 @@ import {
   faInstagram,
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
-
 import { useTranslation } from 'react-i18next';
 import './style.css';
-
-interface UserInfoCardProps {
-  userInfo: any;
-}
+import { OneService, UserInfoCardProps } from '../../utils';
 
 function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const {
     user: {
-      // eslint-disable-next-line camelcase
-      first_name, last_name, services, image, phone, email, description, location,
-    }, totalReviews,
+      first_name: firstName,
+      last_name: lastName,
+      services,
+      image,
+      phone,
+      email,
+      description,
+      location,
+    },
+    totalReviews,
   } = userInfo;
   const { t } = useTranslation();
   return (
@@ -32,20 +36,24 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
 
         <div className="content">
           <div className="name">
-            {/* eslint-disable-next-line camelcase */}
-            <h2>{first_name}</h2>
-            {/* eslint-disable-next-line camelcase */}
-            <h2>{last_name}</h2>
-            <Rate allowHalf defaultValue={totalReviews} disabled className="rate" />
+            <h2>{firstName}</h2>
+            <h2>{lastName}</h2>
+            <Rate
+              allowHalf
+              defaultValue={totalReviews}
+              disabled
+              className="rate"
+            />
           </div>
           <p>{location.city}</p>
           {t('servicesOffer')}
           <p className="services">
-            {services && services.map((service: any) => (
-              <span key={service} className="service">
-                {service}
-              </span>
-            ))}
+            {services
+              && services.map((service: OneService) => (
+                <span key={service.id} className="service">
+                  {service.name}
+                </span>
+              ))}
           </p>
           <p>{description}</p>
         </div>
