@@ -1,49 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import WorkCard from '../Components/WorkCard/WorkCard';
 import UserInfoCard from '../Components/UserInfoCard';
+import request from '../utils/axios';
 
-const work = {
-  title: 'Europe saleh  Street beat',
-  content: 'Europe saleh  Street beat Europe saleh  Street beat Europe saleh  Street beat Europe saleh  Street beat ',
-  image: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-  userId: 1,
-};
-function Profile() {
-  const userInfo = {
-    name: 'saleh',
-    facebook: 'facebook',
-    instagram: 'instagram',
-    whatsapp: 'whatsapp',
-    rate: 3.5,
-    phone: '00972592222222',
-    email: 'aaaa@asdas.asdasd',
-    services: ['midical', 'engineer', 'midical'],
-    description: 'hi, its saleh im saleh and my name is saleh so, yoy can call me saleh in',
-    location: 'gaza',
-    image: 'url',
+interface Request {
+  data: {
+    user: any;
+    reviews: any;
+    works:any;
   };
+}
+interface WorksRequest {
+  works:any
+}
+
+function Profile() {
+  const [userData, setData] = useState({ works: [] });
+  const [worksState, setWorks] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data }: Request = await request('get', '/providers/2');
+        const { works }: WorksRequest = data;
+        setIsLoading(false);
+        setData(data);
+        setWorks(works);
+      } catch (error1: any) {
+        setError(error1?.response.data.msg);
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
   const act = {
-    edit() {
-    },
-    setting() {
-    },
+    edit() {},
+    setting() {},
   };
   const isAuth = {
     isAuth: true,
   };
   return (
     <>
-      <UserInfoCard userInfo={userInfo} />
+      {isLoading ? (
+        <h1>looooooooooding</h1>
+      ) : (
+        <>
+          <UserInfoCard userInfo={userData} />
+          <div className="work-card-container">
+            {worksState.map((work: any) => (
+              <WorkCard work={work} actions={act} isAuth={isAuth} />
+            ))}
+          </div>
+        </>
+      )}
       {useTranslation().t('profile-greeting')}
-      <div className="work-card-container">
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-        <WorkCard work={work} actions={act} isAuth={isAuth} />
-      </div>
     </>
   );
 }
