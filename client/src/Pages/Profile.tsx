@@ -2,22 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import WorkCard from '../Components/WorkCard/WorkCard';
 import UserInfoCard from '../Components/UserInfoCard';
+// eslint-disable-next-line import/extensions
 import request from '../utils/axios';
-
-interface Request {
-  data: {
-    user: any;
-    reviews: any;
-    works:any;
-  };
-}
-interface WorksRequest {
-  works:any
-}
+import {
+  Works, Request, AllWorks, OnWork,
+} from '../utils/types/profile';
 
 function Profile() {
-  const [userData, setData] = useState({ works: [] });
-  const [worksState, setWorks] = useState([]);
+  const [userData, setData] = useState({});
+  const [allWorks, setWorks] = useState<AllWorks>({ 1: [] });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,13 +18,15 @@ function Profile() {
     const getData = async () => {
       try {
         const { data }: Request = await request('get', '/providers/2');
-        const { works }: WorksRequest = data;
+        const { works }: { works: Works } = data;
+        const allWorks1: any = {
+          1: [...works],
+        };
         setIsLoading(false);
         setData(data);
-        setWorks(works);
+        setWorks(allWorks1);
       } catch (error1: any) {
-        setError(error1?.response.data.msg);
-        console.log(error);
+        setError(error1?.data.msg);
       }
     };
     getData();
@@ -46,12 +41,16 @@ function Profile() {
   return (
     <>
       {isLoading ? (
-        <h1>looooooooooding</h1>
+        <h1>
+          loading
+          {' '}
+          {error}
+        </h1>
       ) : (
         <>
           <UserInfoCard userInfo={userData} />
           <div className="work-card-container">
-            {worksState.map((work: any) => (
+            {allWorks[1].map((work: OnWork) => (
               <WorkCard work={work} actions={act} isAuth={isAuth} />
             ))}
           </div>
