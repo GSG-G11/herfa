@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Reviews } from '../Components';
+import { MainServices, Reviews } from '../Components';
 
 const reviews = [
   {
@@ -29,13 +29,45 @@ const reviews = [
     userId: 2,
   },
 ];
-
+const services = [
+  {
+    name: 'الحدادة',
+  },
+  {
+    name: 'السباكة',
+  },
+  {
+    name: 'النجارة',
+  },
+  {
+    name: 'اعمال البناء',
+  },
+  {
+    name: 'ميكانيكي سيارات',
+  },
+  {
+    name: 'كهربائي',
+  },
+  {
+    name: 'اعمال الدهان والجبس',
+  },
+  {
+    name: 'اعمال التنضيف',
+  },
+  {
+    name: 'حدائق وبستنة',
+  },
+  {
+    name: 'اعمال النسيج',
+  },
+];
 function Home() {
   const { t } = useTranslation();
   return (
-    <div className="container">
+    <div>
       {t('home-greeting')}
-      {reviews && <Reviews reviews={reviews} />}
+      <MainServices mainServices={services} />
+      <Reviews reviews={reviews} />
     </div>
   );
 }
