@@ -1,6 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MainServices, Reviews, SearchByLocation } from '../Components';
+import {
+  MainServices,
+  Reviews,
+  SearchByLocation,
+  WelcomeSearch,
+} from '../Components';
 
 const reviews = [
   {
@@ -104,6 +109,7 @@ function Home() {
   return (
     <div>
       {t('home-greeting')}
+      <WelcomeSearch location={locations} />
       <MainServices mainServices={services} />
       <SearchByLocation locationArray={locations} />
       <Reviews reviews={reviews} />
