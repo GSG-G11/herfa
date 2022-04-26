@@ -24,7 +24,7 @@ const addReview = async (req, res, next) => {
     if (error.name === 'ValidationError') {
       return next(customError(error.message, 400));
     }
-    next(customError(error.message, 400));
+    next(error);
   }
 };
 
