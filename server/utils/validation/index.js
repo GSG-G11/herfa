@@ -1,3 +1,4 @@
 const paramsValidation = require('./requestParamsValidation');
+const reviewValidation = require('./reviewValidation');
 
-module.exports = { paramsValidation };
+module.exports = { paramsValidation, reviewValidation };
