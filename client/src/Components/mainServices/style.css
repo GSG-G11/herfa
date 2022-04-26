@@ -9,10 +9,14 @@
 .main-services-card:hover{
   cursor: pointer;
 }
+
 .main-services-card-container{
   display: flex;
   justify-content: center;
   border: none !important;
+}
+.main-services-card-container .ant-card-body{
+  padding: 0px;
 }
 .main-services-crd-image{
   width: 50%;

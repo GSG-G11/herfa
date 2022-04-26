@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MainServices, Reviews } from '../Components';
+import { MainServices, Reviews, SearchByLocation } from '../Components';
 
 const reviews = [
   {
@@ -61,12 +61,51 @@ const services = [
     name: 'اعمال النسيج',
   },
 ];
+const locations = [
+  {
+    city: 'بيت حانون',
+  },
+  {
+    city: 'بيت لاهيا',
+  },
+  {
+    city: 'معسكر جباليا',
+  },
+  {
+    city: 'جباليا ',
+  },
+  {
+    city: 'غزة',
+  },
+  {
+    city: 'الزهراء',
+  },
+  {
+    city: 'النصيرات',
+  },
+  {
+    city: 'دير البلح',
+  },
+  {
+    city: 'المغازي',
+  },
+  {
+    city: 'البريج',
+  },
+  {
+    city: 'خانيونس',
+  },
+  {
+    city: 'رفح',
+  },
+];
 function Home() {
   const { t } = useTranslation();
   return (
     <div>
       {t('home-greeting')}
       <MainServices mainServices={services} />
+      <SearchByLocation locationArray={locations} />
       <Reviews reviews={reviews} />
     </div>
   );
