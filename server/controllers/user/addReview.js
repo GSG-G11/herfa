@@ -18,8 +18,8 @@ const addReview = async (req, res, next) => {
     if (checkReview) {
       throw customError('You have already reviewed this user', 400);
     }
-    const review = await Review.create(result);
-    res.status(201).json({ msg: 'Review added successfully', review });
+    const data = await Review.create(result);
+    res.status(201).json({ msg: 'Review added successfully', data });
   } catch (error) {
     next(customError(error.message, 400));
   }
