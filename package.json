@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "fix-client": "cd client && npm run fix-eslint",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
     "fix-eslint": "npm run lint --fix && npm run fix-client",
     "lint": "eslint server/ ",
     "start": "cross-env NODE_ENV=production node server/index.js",
@@ -41,6 +41,7 @@
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "env2": "^2.2.2",
     "express": "^4.17.3",

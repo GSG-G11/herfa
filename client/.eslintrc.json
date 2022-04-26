@@ -33,6 +33,7 @@
          "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
          "@typescript-eslint/no-unused-vars": [
             "error"
-          ]
+          ],
+          "linebreak-style": 0
     }
 }

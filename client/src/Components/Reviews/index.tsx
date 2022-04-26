@@ -16,7 +16,7 @@ function HomeReview({ reviews }:reviewsProps) {
   const { t } = useTranslation();
   return (
     <div className="reviewsSection">
-      <h2>
+      <h2 className="headline-text">
         {t('what-they-say-about-us')}
       </h2>
       <div className="carouselContainer">

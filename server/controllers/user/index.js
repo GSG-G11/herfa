@@ -1,3 +1,4 @@
+const addReview = require('./addReview');
 const getProfileInfo = require('./profile');
 
-module.exports = { getProfileInfo };
+module.exports = { getProfileInfo, addReview };

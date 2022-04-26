@@ -2,7 +2,8 @@
 const Joi = require('joi');
 
 const workIdValidation = Joi.object({
-  id: Joi.number().integer().positive().required(),
+  userId: Joi.number().integer().positive().required(),
+  pageNum: Joi.number().integer().positive().required(),
 });
 
 module.exports = workIdValidation;
