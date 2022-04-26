@@ -69,32 +69,15 @@ export interface UserInfoCardProps {
   userInfo: any
 }
 
-export type Location = {
-  id: number;
-  city: string;
-  updatedAt: string;
-  createdAt: string;
-}[];
-
-export type MainServices = {
-  id: number;
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-}[];
 export type TopTenReviews = {
-  id: number;
   rate: string;
   content: string;
-  phone: string;
   userId: number;
-  updatedAt: string;
-  createdAt: string;
 }[];
 export interface HomeRequest {
   data: {
-    location: Location;
-    services: MainServices;
+    location: string[];
+    services: string[];
     topTenReviews: TopTenReviews
   };
 }
