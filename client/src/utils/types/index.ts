@@ -51,6 +51,7 @@ export interface AllWorks {
   1: [];
 }
 export interface OnWork {
+  id: number;
   title: string;
   content: string;
   image: string;
