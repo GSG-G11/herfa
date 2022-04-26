@@ -6,8 +6,8 @@ import {
 } from '../utils';
 
 function Profile() {
-  const [userData, setData] = useState({});
-  const [allWorks, setWorks] = useState<AllWorks>({ 1: [] });
+  const [userData, setUserData] = useState({});
+  const [worksData, setWorksData] = useState<AllWorks>({ 1: [] });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +16,7 @@ function Profile() {
       try {
         const { data }: Request = await request('get', '/providers/2');
         const { works }: { works: Works } = data;
-        const allWorks1: any = {
+        const workPage: any = {
           1: [...works],
         };
         const userInfoData = {
@@ -25,11 +25,11 @@ function Profile() {
           totalReviews: data.totalReviews,
         };
         setIsLoading(false);
-        setData(userInfoData);
-        setWorks(allWorks1);
-      } catch (error1: any) {
-        setError(error1?.data.msg);
-        setIsLoading(true);
+        setUserData(userInfoData);
+        setWorksData(workPage);
+      } catch (responseError: any) {
+        setError(responseError?.data.msg);
+        setIsLoading(false);
       }
     };
     getData();
@@ -53,8 +53,8 @@ function Profile() {
         <>
           <UserInfoCard userInfo={userData} />
           <div className="work-card-container">
-            {allWorks[1].map((work: OnWork) => (
-              <WorkCard work={work} actions={act} isAuth={isAuth} />
+            {worksData[1].map((work: OnWork) => (
+              <WorkCard key={work.toString()} work={work} actions={act} isAuth={isAuth} />
             ))}
           </div>
         </>
