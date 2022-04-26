@@ -52,7 +52,6 @@ describe('Routes Tests Post /api/v1/reviews', () => {
       .expect(201)
       .send(review)
       .end((err, res) => {
-          console.log(res.body);
         if (err) done(err);
         expect(res.body.data).toMatchObject(review);
         done();
