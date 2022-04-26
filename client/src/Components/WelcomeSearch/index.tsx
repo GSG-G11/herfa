@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Select, Input, Button, Divider,
@@ -14,6 +14,8 @@ interface ListOfLocation {
 
 function WelcomeSearch({ location } : ListOfLocation) {
   const { t } = useTranslation();
+  const [locationSearch, setLocationSearch] = useState('');
+  const [craftsmanSearch, setCraftsmanSearch] = useState('');
   const { Option } = Select;
   return (
     <div className="basic-container-welcome-home-page">
@@ -21,12 +23,12 @@ function WelcomeSearch({ location } : ListOfLocation) {
         <h2>{t('home-welcome-search')}</h2>
         <Divider className="divider-welcome-home-page" />
         <Input.Group compact>
-          <Input style={{ width: '40%' }} placeholder={t('home-search-name')} size="middle" />
-          <Select defaultValue="بيت حانون" size="middle">
+          <Input style={{ width: '40%' }} placeholder={t('home-search-name')} size="middle" onChange={(e: any) => setCraftsmanSearch(e.target.value)} />
+          <Select defaultValue="بيت حانون" size="middle" onSelect={(citySearched: string) => setLocationSearch(citySearched)}>
             {location.map((item) => <Option key={item.city} value={item.city}>{item.city}</Option>)}
           </Select>
           <Button size="middle" type="primary">
-            <Link to="/search">
+            <Link to="/search" state={{ locationSearch, craftsmanSearch }}>
               <span className="search-link">{t('home-search-word')}</span>
             </Link>
           </Button>

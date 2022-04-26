@@ -30,7 +30,7 @@ function SearchButton({ location }: SearchButtonProps) {
         )}
       </Select>
       <Button size="large" type="primary" icon={<SearchOutlined />}>
-        <Link to="/search" state={searchValueFromInput}>
+        <Link to="/search" state={{ locationSearch: searchValueFromInput }}>
           <span className="search-link">{t('home-search-word')}</span>
         </Link>
       </Button>
