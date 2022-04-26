@@ -42,7 +42,7 @@ function Profile() {
     isAuth: true,
   };
   return (
-    <>
+    <div className="container">
       {isLoading ? (
         <h1>
           loading
@@ -60,7 +60,7 @@ function Profile() {
         </>
       )}
       {useTranslation().t('profile-greeting')}
-    </>
+    </div>
   );
 }
 

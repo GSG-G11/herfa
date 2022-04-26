@@ -14,7 +14,7 @@ function SearchByLocation({ locationArray }: SearchByLocationProps) {
 
   return (
     <>
-      <h2>{t('home-search-location')}</h2>
+      <h2 className="headline-text">{t('home-search-location')}</h2>
       <div className="search-location-home-page-container">
         <SearchButton location={locationArray} />
         <img className="location-image" src="/images/searchLocation.svg" alt="map to represent location and help search by location" />

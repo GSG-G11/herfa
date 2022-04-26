@@ -18,6 +18,9 @@ const en = {
   'home-welcome-search': 'Search for the most suitable craftsman to get everything you need done.',
   city: 'City',
   'home-search-name': 'Search for the name of craftsman',
+  'home-join-us': 'Join the world of craftsmen now',
+  'home-join-us-description': 'Register now and become a member of our community and offer your services to business owners',
+  'home-join-us-button': 'Register Now',
 };
 
 export default en;

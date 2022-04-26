@@ -18,6 +18,9 @@ const ar = {
   'home-welcome-search': 'ابحث عن الحرفي الأنسب لانجاز كل ما تحتاج.',
   city: 'المدينة',
   'home-search-name': 'ابحث عن اسم الحرفي',
+  'home-join-us': 'انضم الى عالم الحرفيين الان',
+  'home-join-us-description': 'سجل الان واحصل على عضوية في مجتمعنا وقم بعرض خدماتك على اصحاب الاعمال',
+  'home-join-us-button': 'سجل الآن',
 };
 
 export default ar;

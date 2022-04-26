@@ -15,7 +15,7 @@ function MainServices({ mainServices }: mainServicesProps) {
 
   return (
     <>
-      <h1>{t('home-main-services')}</h1>
+      <h2 className="headline-text">{t('home-main-services')}</h2>
       <Card className="main-services-card-container">
         {mainServices.map(
           (item, index) => <MainServicesCard key={item.name} service={item.name} imgLink={index} />,

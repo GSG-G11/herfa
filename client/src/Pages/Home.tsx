@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Divider } from 'antd';
 import {
   MainServices,
   Reviews,
   SearchByLocation,
+  JoinUs,
   WelcomeSearch,
 } from '../Components';
 
@@ -108,11 +110,18 @@ function Home() {
   const { t } = useTranslation();
   return (
     <div>
-      {t('home-greeting')}
-      <WelcomeSearch location={locations} />
-      <MainServices mainServices={services} />
-      <SearchByLocation locationArray={locations} />
-      <Reviews reviews={reviews} />
+      <div className="container">
+        {t('home-greeting')}
+        <WelcomeSearch location={locations} />
+        <Divider />
+        <MainServices mainServices={services} />
+        <Divider />
+        <SearchByLocation locationArray={locations} />
+      </div>
+      <JoinUs />
+      <div className="container">
+        <Reviews reviews={reviews} />
+      </div>
     </div>
   );
 }
