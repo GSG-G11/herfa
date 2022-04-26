@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
-// eslint-disable-next-line react/no-unstable-nested-components
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -23,8 +21,8 @@ function WelcomeSearch({ location } : ListOfLocation) {
         <h2>{t('home-welcome-search')}</h2>
         <Divider className="divider-welcome-home-page" />
         <Input.Group compact>
-          <Input style={{ width: '50%' }} placeholder="what to search for" size="middle" />
-          <Select defaultValue={t('city')} size="middle" style={{ width: '20%' }}>
+          <Input style={{ width: '40%' }} placeholder={t('home-search-name')} size="middle" />
+          <Select defaultValue="بيت حانون" size="middle">
             {location.map((item) => <Option key={item.city} value={item.city}>{item.city}</Option>)}
           </Select>
           <Button size="middle" type="primary">
