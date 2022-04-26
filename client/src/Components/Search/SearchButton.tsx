@@ -26,7 +26,7 @@ function SearchButton({ location }: SearchButtonProps) {
         optionFilterProp="children"
       >
         {location.map(
-          (item) => <Option value={item.city} key={item.city}>{item.city}</Option>,
+          (item, index) => <Option value={index} key={item.city}>{item.city}</Option>,
         )}
       </Select>
       <Button size="large" type="primary" icon={<SearchOutlined />}>

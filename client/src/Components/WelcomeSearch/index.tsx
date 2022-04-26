@@ -14,7 +14,7 @@ interface ListOfLocation {
 
 function WelcomeSearch({ location } : ListOfLocation) {
   const { t } = useTranslation();
-  const [locationSearch, setLocationSearch] = useState('');
+  const [locationSearch, setLocationSearch] = useState(0);
   const [craftsmanSearch, setCraftsmanSearch] = useState('');
   const { Option } = Select;
   return (
@@ -24,8 +24,12 @@ function WelcomeSearch({ location } : ListOfLocation) {
         <Divider className="divider-welcome-home-page" />
         <Input.Group compact>
           <Input style={{ width: '40%' }} placeholder={t('home-search-name')} size="middle" onChange={(e: any) => setCraftsmanSearch(e.target.value)} />
-          <Select defaultValue="بيت حانون" size="middle" onSelect={(citySearched: string) => setLocationSearch(citySearched)}>
-            {location.map((item) => <Option key={item.city} value={item.city}>{item.city}</Option>)}
+          <Select defaultValue="بيت حانون" size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
+            {location.map((item, index) => (
+              <Option key={item.city} value={index}>
+                {item.city}
+              </Option>
+            ))}
           </Select>
           <Button size="middle" type="primary">
             <Link to="/search" state={{ locationSearch, craftsmanSearch }}>
