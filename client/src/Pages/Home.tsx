@@ -6,6 +6,7 @@ import {
   Reviews,
   SearchByLocation,
   JoinUs,
+  WelcomeSearch,
 } from '../Components';
 
 const reviews = [
@@ -109,13 +110,18 @@ function Home() {
   const { t } = useTranslation();
   return (
     <div>
-      {t('home-greeting')}
-      <Divider />
-      <MainServices mainServices={services} />
-      <Divider />
-      <SearchByLocation locationArray={locations} />
+      <div className="container">
+        {t('home-greeting')}
+        <WelcomeSearch location={locations} />
+        <Divider />
+        <MainServices mainServices={services} />
+        <Divider />
+        <SearchByLocation locationArray={locations} />
+      </div>
       <JoinUs />
-      <Reviews reviews={reviews} />
+      <div className="container">
+        <Reviews reviews={reviews} />
+      </div>
     </div>
   );
 }

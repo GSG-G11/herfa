@@ -5,14 +5,21 @@
 .inner-text{
   font-size: 18px;
   font-weight: 400;
-  width: 80%;
+  width: 90%;
 }
 .join-container{
   background-color: #F5F5F5;
+}
+.join-inner-container{
   display: flex;
-  padding: 6% 2%;
-  margin-bottom: 3%;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 3% 0;
 }
 .join-us-image{
   width: 30%
+}
+.join-right-section{
+  text-align: center;
 }

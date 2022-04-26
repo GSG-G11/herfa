@@ -1,60 +1,61 @@
+/* eslint-disable camelcase */
 import React from 'react';
-import {
-  Card, Image, Rate,
-} from 'antd';
+import { Card, Image, Rate } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-
+import {
+  faFacebook,
+  faInstagram,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
-import image1 from '../../assets/profileImg.png';
 import './style.css';
+import { OneService, UserInfoCardProps } from '../../utils';
 
-interface UserInfoCardProps {
-  userInfo: {
-    name: string;
-    facebook: string;
-    instagram: string;
-    whatsapp: string;
-    rate: number;
-    phone: string;
-    email: string;
-    services: string[];
-    description: string;
-    location: string;
-    image: string;
-
-  };
-}
-function UserInfoCard({ userInfo }:UserInfoCardProps) {
+function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const {
-    name, rate, phone, email, services, description, location,
+    user: {
+      first_name: firstName,
+      last_name: lastName,
+      services,
+      image,
+      phone,
+      email,
+      description,
+      location,
+    },
+    totalReviews,
   } = userInfo;
   const { t } = useTranslation();
   return (
     <Card bordered={false}>
       <div className="card">
         <div className="image">
-          <Image width={100} src={image1} />
+          <Image width={100} src={image} />
         </div>
 
         <div className="content">
           <div className="name">
-            <h2>{name}</h2>
-            <Rate allowHalf defaultValue={rate} disabled className="rate" />
+            <h2>{firstName}</h2>
+            <h2>{lastName}</h2>
+            <Rate
+              allowHalf
+              defaultValue={totalReviews}
+              disabled
+              className="rate"
+            />
           </div>
-          <p>{location}</p>
+          <p>{location.city}</p>
           {t('servicesOffer')}
           <p className="services">
-            {services.map((service) => (
-              <span key={service} className="service">
-                {service}
-              </span>
-            ))}
+            {services
+              && services.map((service: OneService) => (
+                <span key={service.id} className="service">
+                  {service.name}
+                </span>
+              ))}
           </p>
-          <p>
-            {description}
-          </p>
+          <p>{description}</p>
         </div>
         <div className="contact">
           <p>{email}</p>
@@ -62,23 +63,39 @@ function UserInfoCard({ userInfo }:UserInfoCardProps) {
           <div className="social">
             <a href="https://www.google.fr/">
               {' '}
-              <FontAwesomeIcon style={{ color: '#AA38A5' }} icon={faInstagram} size="2x" />
+              <FontAwesomeIcon
+                style={{ color: '#AA38A5' }}
+                icon={faInstagram}
+                size="2x"
+              />
             </a>
             <a href="https://www.google.ps/">
               {' '}
-              <FontAwesomeIcon style={{ color: '#009FD9' }} icon={faFacebook} size="2x" />
+              <FontAwesomeIcon
+                style={{ color: '#009FD9' }}
+                icon={faFacebook}
+                size="2x"
+              />
             </a>
           </div>
 
           <div className="footer">
             <span>
-              <FontAwesomeIcon icon={faWhatsapp} size="2x" style={{ color: '#56A309' }} />
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                size="2x"
+                style={{ color: '#56A309' }}
+              />
               {' '}
               {t('contactMe')}
             </span>
             <br />
             <span>
-              <FontAwesomeIcon icon={faStar} size="lg" style={{ color: '#FADB14' }} />
+              <FontAwesomeIcon
+                icon={faStar}
+                size="lg"
+                style={{ color: '#FADB14' }}
+              />
               {' '}
               {t('review')}
             </span>
