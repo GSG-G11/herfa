@@ -39,12 +39,10 @@ function Home() {
     <div>
       {isLoading
         ? (
-          <>
-            (
-            <Spin indicator={<LoadingOutlined style={{ fontSize: 200, color: '#c5c6ff' }} spin />} />
+          <div className="spinier-loading">
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 300, color: '#c5c6ff' }} spin />} />
             <h2>{error}</h2>
-            )
-          </>
+          </div>
         )
         : (
           <>
