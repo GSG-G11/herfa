@@ -5,6 +5,7 @@ import MainServices from './mainServices';
 import SearchByLocation from './Search';
 import JoinUs from './JoinUs';
 import WelcomeSearch from './WelcomeSearch';
+import UserCard from './UserCard';
 
 export {
   Reviews,
@@ -14,4 +15,5 @@ export {
   WelcomeSearch,
   WorkCard,
   UserInfoCard,
+  UserCard,
 };

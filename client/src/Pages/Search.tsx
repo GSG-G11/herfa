@@ -1,15 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { UserCard } from '../Components';
 
 function Search() {
-  const location = useLocation();
-  const searchLocation = location.state;
-
   return (
-    <div className="container">
-      {useTranslation().t('search-greeting')}
-      <h1>{`${searchLocation}`}</h1>
+    <div className="search-results-container">
+      <div className="search-side">
+        <h1>saleh</h1>
+      </div>
+      <div className="user-cards-container">
+        <h1 className="page-header">{useTranslation().t('search-greeting')}</h1>
+        <UserCard />
+        <UserCard />
+        <UserCard />
+      </div>
     </div>
   );
 }
