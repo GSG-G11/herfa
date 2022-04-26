@@ -3,10 +3,10 @@ import {
   Card, Image, Rate,
 } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 import { useTranslation } from 'react-i18next';
+import ModalRating from '../ModalRating';
 import image1 from '../../assets/profileImg.png';
 import './style.css';
 
@@ -76,12 +76,7 @@ function UserInfoCard({ userInfo }:UserInfoCardProps) {
               {' '}
               {t('contactMe')}
             </span>
-            <br />
-            <span>
-              <FontAwesomeIcon icon={faStar} size="lg" style={{ color: '#FADB14' }} />
-              {' '}
-              {t('review')}
-            </span>
+            <ModalRating />
           </div>
         </div>
       </div>

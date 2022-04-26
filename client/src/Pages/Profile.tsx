@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import UserInfoCard from '../Components/UserInfoCard';
+import ModalRating from '../Components/ModalRating';
 
 function Profile() {
   const userInfo = {
@@ -20,6 +21,7 @@ function Profile() {
     <div className="container">
       {useTranslation().t('profile-greeting')}
       <UserInfoCard userInfo={userInfo} />
+      <ModalRating />
     </div>
   );
 }
