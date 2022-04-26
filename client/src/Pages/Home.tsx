@@ -1,6 +1,7 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Divider } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Divider, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { request, HomeRequest } from '../utils';
 import {
   MainServices,
   Reviews,
@@ -9,119 +10,57 @@ import {
   WelcomeSearch,
 } from '../Components';
 
-const reviews = [
-  {
-    rate: 1,
-    content: 'يعمل بشكل جيد ولكن من الممكن ان يكون اضل',
-    userId: 1,
-  },
-  {
-    rate: 5,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 5,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 3,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 4.9,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-];
-const services = [
-  {
-    name: 'الحدادة',
-  },
-  {
-    name: 'السباكة',
-  },
-  {
-    name: 'النجارة',
-  },
-  {
-    name: 'اعمال البناء',
-  },
-  {
-    name: 'ميكانيكي سيارات',
-  },
-  {
-    name: 'كهربائي',
-  },
-  {
-    name: 'اعمال الدهان والجبس',
-  },
-  {
-    name: 'اعمال التنضيف',
-  },
-  {
-    name: 'حدائق وبستنة',
-  },
-  {
-    name: 'اعمال النسيج',
-  },
-];
-const locations = [
-  {
-    city: 'بيت حانون',
-  },
-  {
-    city: 'بيت لاهيا',
-  },
-  {
-    city: 'معسكر جباليا',
-  },
-  {
-    city: 'جباليا ',
-  },
-  {
-    city: 'غزة',
-  },
-  {
-    city: 'الزهراء',
-  },
-  {
-    city: 'النصيرات',
-  },
-  {
-    city: 'دير البلح',
-  },
-  {
-    city: 'المغازي',
-  },
-  {
-    city: 'البريج',
-  },
-  {
-    city: 'خانيونس',
-  },
-  {
-    city: 'رفح',
-  },
-];
 function Home() {
-  const { t } = useTranslation();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [locations, setLocations] = useState([]);
+  const [services, setServices] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    const dataFromDB = async () => {
+      try {
+        const { data } : HomeRequest = await request('get', '/');
+        setIsLoading(false);
+        const locationCity: any = data.location;
+        setLocations(locationCity);
+        const dataServices: any = data.services;
+        setServices(dataServices);
+        const dataTopReviews: any = data.topTenReviews;
+        setReviews(dataTopReviews);
+      } catch (responseError: any) {
+        setError(responseError?.data.msg);
+        setIsLoading(false);
+      }
+    };
+    dataFromDB();
+  }, []);
   return (
     <div>
-      <div className="container">
-        {t('home-greeting')}
-        <WelcomeSearch location={locations} />
-        <Divider />
-        <MainServices mainServices={services} />
-        <Divider />
-        <SearchByLocation locationArray={locations} />
-      </div>
-      <JoinUs />
-      <div className="container">
-        <Reviews reviews={reviews} />
-      </div>
+      {isLoading
+        ? (
+          <>
+            (
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 200, color: '#c5c6ff' }} spin />} />
+            <h2>{error}</h2>
+            )
+          </>
+        )
+        : (
+          <>
+            <div className="container">
+              <WelcomeSearch location={locations} />
+              <Divider />
+              <MainServices mainServices={services} />
+              <Divider />
+              <SearchByLocation locationArray={locations} />
+            </div>
+            <JoinUs />
+            <div className="container">
+              <Reviews reviews={reviews} />
+            </div>
+          </>
+        )}
     </div>
   );
 }
