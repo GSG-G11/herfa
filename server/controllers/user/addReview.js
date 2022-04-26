@@ -21,6 +21,9 @@ const addReview = async (req, res, next) => {
     const data = await Review.create(result);
     res.status(201).json({ msg: 'Review added successfully', data });
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      return next(customError(error.message, 400));
+    }
     next(customError(error.message, 400));
   }
 };
