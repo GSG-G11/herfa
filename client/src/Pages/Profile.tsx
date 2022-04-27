@@ -1,26 +1,63 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import UserInfoCard from '../Components/UserInfoCard';
-import ModalRating from '../Components/ModalRating';
+import React, { useEffect, useState } from 'react';
+import { WorkCard, UserInfoCard, ModalRating } from '../Components';
+import {
+  Works, Request, AllWorks, OnWork, request,
+} from '../utils';
 
 function Profile() {
-  const userInfo = {
-    name: 'saleh',
-    facebook: 'facebook',
-    instagram: 'instagram',
-    whatsapp: 'whatsapp',
-    rate: 3.5,
-    phone: '00972592222222',
-    email: 'aaaa@asdas.asdasd',
-    services: ['midical', 'engineer', 'midical'],
-    description: 'hi, its saleh im saleh and my name is saleh so, yoy can call me saleh in',
-    location: 'gaza',
-    image: 'url',
+  const [userData, setUserData] = useState({});
+  const [worksData, setWorksData] = useState<AllWorks>({ 1: [] });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data }: Request = await request('get', '/providers/2');
+        const { works }: { works: Works } = data;
+        const workPage: any = {
+          1: [...works],
+        };
+        const userInfoData = {
+          user: data.user,
+          reviews: data.reviews,
+          totalReviews: data.totalReviews,
+        };
+        setIsLoading(false);
+        setUserData(userInfoData);
+        setWorksData(workPage);
+      } catch (responseError: any) {
+        setError(responseError?.data.msg);
+        setIsLoading(false);
+      }
+    };
+    getData();
+  }, []);
+  const act = {
+    edit() {},
+    setting() {},
+  };
+  const isAuth = {
+    isAuth: true,
   };
   return (
     <div className="container">
-      {useTranslation().t('profile-greeting')}
-      <UserInfoCard userInfo={userInfo} />
+      {isLoading ? (
+        <h1>
+          loading
+          {' '}
+          {error}
+        </h1>
+      ) : (
+        <>
+          <UserInfoCard userInfo={userData} />
+          <div className="work-card-container">
+            {worksData[1].map((work: OnWork) => (
+              <WorkCard key={work.id} work={work} actions={act} isAuth={isAuth} />
+            ))}
+          </div>
+        </>
+      )}
       <ModalRating />
     </div>
   );

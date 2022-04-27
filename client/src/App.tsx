@@ -25,7 +25,7 @@ function App() {
 
   return (
     <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="container">
+      <div>
         {t('title')}
         <form>
           <button
