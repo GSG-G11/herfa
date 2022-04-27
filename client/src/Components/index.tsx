@@ -7,6 +7,7 @@ import JoinUs from './JoinUs';
 import WelcomeSearch from './WelcomeSearch';
 import SpinierComponent from './Spinier';
 import ErrorComponent from './Error';
+import UserCard from './UserCard';
 
 export {
   Reviews,
@@ -18,4 +19,5 @@ export {
   UserInfoCard,
   SpinierComponent,
   ErrorComponent,
+  UserCard,
 };

@@ -11,6 +11,7 @@ import {
   locationObject,
   serviceObject,
   TopTenReviews,
+  OneUserType,
 } from './types';
 
 export {
@@ -28,4 +29,5 @@ export type {
   locationObject,
   serviceObject,
   TopTenReviews,
+  OneUserType,
 };

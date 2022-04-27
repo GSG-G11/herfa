@@ -33,7 +33,7 @@ const getProfileInfo = async (req, res, next) => {
         },
       }),
       Work.findAll({
-        limit: 10,
+        limit: 4,
         where: {
           userId: id,
         },
@@ -50,7 +50,10 @@ const getProfileInfo = async (req, res, next) => {
     };
     res.status(200).json({ msg: "Profile user's information", data });
   } catch (error) {
-    next(customError(error.message, 400));
+    if (error.name === 'ValidationError') {
+      return next(customError(error.message, 400));
+    }
+    next(error);
   }
 };
 module.exports = getProfileInfo;

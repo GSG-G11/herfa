@@ -89,3 +89,14 @@ export interface HomeRequest {
     topTenReviews: TopTenReviews[];
   };
 }
+export interface OneUserType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  description: string;
+  image: string;
+  totalReview: number;
+  subServices: {}[];
+}
