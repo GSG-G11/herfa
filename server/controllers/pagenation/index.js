@@ -17,9 +17,8 @@ const getPageData = async (req, res, next) => {
       offset: (pageNum - 1) * 4,
       where: { userId }, // conditions
     });
-    console.log(pageData);
     if (!pageData.count) {
-      throw customError('Page not found', 404);
+      throw customError('There Is No Works', 400);
     }
     res.json({ msg: 'work page', data: pageData });
   } catch (error) {
