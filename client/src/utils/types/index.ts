@@ -72,10 +72,10 @@ export interface OneUserType {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
   phone: string;
   whatsapp: string;
   description: string;
   image: string;
   totalReview: number;
+  subServices: {}[];
 }
