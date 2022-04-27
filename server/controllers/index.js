@@ -1,4 +1,4 @@
 const { getHomeData } = require('./home');
-const { getPageData } = require('./pagenation');
+const { getWorkPerPage } = require('./work');
 
-module.exports = { getHomeData, getPageData };
+module.exports = { getHomeData, getWorkPerPage };
