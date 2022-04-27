@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { getProfileInfo, addReview } = require('../controllers/user');
 
-const { getHomeData, getWorkPerPage } = require('../controllers');
+const {
+  getHomeData, getWorkPerPage, getProfileInfo, addReview,
+} = require('../controllers');
 
 router.get('/providers/:id', getProfileInfo);
 
