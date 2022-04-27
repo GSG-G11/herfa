@@ -16,11 +16,12 @@ const ar = {
   'home-search-word': 'ابحث',
   'home-search-specific-location': 'مثال : بيت حانون',
   'home-welcome-search': 'ابحث عن الحرفي الأنسب لانجاز كل ما تحتاج.',
-  city: 'المدينة',
+  city: 'اختر المدينة',
   'home-search-name': 'ابحث عن اسم الحرفي',
   'home-join-us': 'انضم الى عالم الحرفيين الان',
   'home-join-us-description': 'سجل الان واحصل على عضوية في مجتمعنا وقم بعرض خدماتك على اصحاب الاعمال',
   'home-join-us-button': 'سجل الآن',
+  'error-heading': 'لقد حدث خطأ ما',
 };
 
 export default ar;

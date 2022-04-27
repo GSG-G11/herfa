@@ -9,8 +9,7 @@
   width: 80%;
   margin: 0 auto;
 }
-
-@media screen and (max-width: 1440px) {
+@media screen and (min-width: 1440px) {
   .container{
     width: 980px;
     margin: 0 auto;
