@@ -33,7 +33,7 @@ const getProfileInfo = async (req, res, next) => {
         },
       }),
       Work.findAll({
-        limit: 10,
+        limit: 4,
         where: {
           userId: id,
         },
