@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import { Card, Image, Rate } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +25,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     },
     totalReviews,
   } = userInfo;
+
   const { t } = useTranslation();
   return (
     <Card bordered={false}>

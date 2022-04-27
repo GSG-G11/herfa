@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { WorkCard, UserInfoCard, ModalRating } from '../Components';
+import { WorkCard, UserInfoCard } from '../Components';
 import {
   Works, Request, AllWorks, OnWork, request,
 } from '../utils';
@@ -58,7 +58,6 @@ function Profile() {
           </div>
         </>
       )}
-      <ModalRating />
     </div>
   );
 }
