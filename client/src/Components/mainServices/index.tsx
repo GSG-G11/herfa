@@ -7,6 +7,7 @@ import MainServicesCard from './MainServicesCard';
 interface mainServicesProps {
   mainServices: {
         name:string,
+        id: number,
     }[]
 }
 
@@ -18,7 +19,7 @@ function MainServices({ mainServices }: mainServicesProps) {
       <h2 className="headline-text">{t('home-main-services')}</h2>
       <Card className="main-services-card-container">
         {mainServices.map(
-          (item, index) => <MainServicesCard key={item.name} service={item.name} imgLink={index} />,
+          (item) => <MainServicesCard key={item.name} service={item.name} imgLink={item.id} />,
         )}
       </Card>
     </>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Divider, Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Divider } from 'antd';
 import { request, HomeRequest } from '../utils';
 import {
   MainServices,
@@ -8,6 +7,7 @@ import {
   SearchByLocation,
   JoinUs,
   WelcomeSearch,
+  SpinierComponent,
 } from '../Components';
 
 function Home() {
@@ -40,7 +40,7 @@ function Home() {
       {isLoading
         ? (
           <div className="spinier-loading">
-            <Spin indicator={<LoadingOutlined style={{ fontSize: 300, color: '#c5c6ff' }} spin />} />
+            <SpinierComponent />
             <h2>{error}</h2>
           </div>
         )

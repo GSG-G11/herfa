@@ -8,6 +8,7 @@ import './style.css';
 interface SearchButtonProps {
   location: {
         city:string,
+        id: number,
     }[]
 }
 
@@ -21,12 +22,12 @@ function SearchButton({ location }: SearchButtonProps) {
         size="large"
         showSearch
         onSelect={(citySearched: string) => setSearchValueFromInput(citySearched)}
-        style={{ width: 200 }}
+        className="select-location-home-page"
         placeholder={t('home-search-specific-location')}
         optionFilterProp="children"
       >
         {location.map(
-          (item, index) => <Option value={index} key={item.city}>{item.city}</Option>,
+          (item) => <Option value={item.id} key={item.city}>{item.city}</Option>,
         )}
       </Select>
       <Button size="large" type="primary" icon={<SearchOutlined />}>

@@ -4,8 +4,8 @@ const { customError } = require('../errors');
 const getHomeData = async (request, response, next) => {
   try {
     const receivedData = await Promise.all([
-      Location.findAll({ attributes: ['city'] }),
-      MainServices.findAll({ attributes: ['name'] }),
+      Location.findAll({ attributes: ['city', 'id'] }),
+      MainServices.findAll({ attributes: ['name', 'id'] }),
       Review.findAll({
         limit: 10,
         where: {

@@ -6,6 +6,7 @@ import './style.css';
 interface SearchByLocationProps {
   locationArray: {
         city:string,
+        id: number,
     }[]
 }
 
