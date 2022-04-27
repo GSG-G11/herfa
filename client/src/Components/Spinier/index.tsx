@@ -5,7 +5,9 @@ import './style.css';
 
 function SpinierComponent() {
   return (
-    <Spin indicator={<LoadingOutlined className="spinier" spin />} />
+    <div className="spinier-loading">
+      <Spin indicator={<LoadingOutlined className="spinier" spin />} />
+    </div>
   );
 }
 

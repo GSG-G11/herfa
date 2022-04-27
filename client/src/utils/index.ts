@@ -1,10 +1,31 @@
 import request from './axios.js';
 import {
-  Works, Request, AllWorks, OnWork, User, OneService, UserInfoCardProps, HomeRequest,
+  Works,
+  Request,
+  AllWorks,
+  OnWork,
+  User,
+  OneService,
+  UserInfoCardProps,
+  HomeRequest,
+  locationObject,
+  serviceObject,
+  TopTenReviews,
 } from './types';
 
 export {
   request,
-}; export type {
-  Works, Request, AllWorks, OnWork, User, OneService, UserInfoCardProps, HomeRequest,
+};
+export type {
+  Works,
+  Request,
+  AllWorks,
+  OnWork,
+  User,
+  OneService,
+  UserInfoCardProps,
+  HomeRequest,
+  locationObject,
+  serviceObject,
+  TopTenReviews,
 };

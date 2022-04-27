@@ -70,14 +70,22 @@ export interface UserInfoCardProps {
 }
 
 export type TopTenReviews = {
-  rate: string;
+  rate: number;
   content: string;
   userId: number;
-}[];
+};
+export interface locationObject {
+  city:string,
+  id: number,
+}
+export interface serviceObject {
+  name:string,
+  id: number,
+}
 export interface HomeRequest {
   data: {
-    location: string[];
-    services: string[];
-    topTenReviews: TopTenReviews
+    location: locationObject[];
+    services: serviceObject[];
+    topTenReviews: TopTenReviews[];
   };
 }

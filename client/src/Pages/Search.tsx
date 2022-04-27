@@ -5,12 +5,14 @@ import { useLocation } from 'react-router-dom';
 function Search() {
   const location = useLocation();
   const search : any = location.state;
+  const { serviceSearch, locationSearch, craftsmanSearch } = search;
 
   return (
     <div className="container">
       {useTranslation().t('search-greeting')}
-      <h1>{`data from home page location => ${search.locationSearch}`}</h1>
-      <h1>{`data from home page craftsman => ${search.craftsmanSearch}`}</h1>
+      <h1>{`data from home page location => ${locationSearch}`}</h1>
+      <h1>{`data from home page craftsman => ${craftsmanSearch}`}</h1>
+      <h1>{`data from home page service => ${serviceSearch}`}</h1>
     </div>
   );
 }

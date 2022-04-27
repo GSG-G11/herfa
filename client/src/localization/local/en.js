@@ -21,6 +21,7 @@ const en = {
   'home-join-us': 'Join the world of craftsmen now',
   'home-join-us-description': 'Register now and become a member of our community and offer your services to business owners',
   'home-join-us-button': 'Register Now',
+  'error-heading': 'There is ERROR occurred',
 };
 
 export default en;

@@ -21,6 +21,7 @@ const ar = {
   'home-join-us': 'انضم الى عالم الحرفيين الان',
   'home-join-us-description': 'سجل الان واحصل على عضوية في مجتمعنا وقم بعرض خدماتك على اصحاب الاعمال',
   'home-join-us-button': 'سجل الآن',
+  'error-heading': 'لقد حدث خطأ ما',
 };
 
 export default ar;

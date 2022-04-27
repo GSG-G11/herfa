@@ -5,12 +5,11 @@ import {
 } from 'antd';
 import { Link } from 'react-router-dom';
 import './style.css';
+import { locationObject } from '../../utils';
 
 interface ListOfLocation {
-  location: {
-        city:string,
-        id: number,
-    }[],
+  location:
+  locationObject [],
 }
 
 function WelcomeSearch({ location } : ListOfLocation) {
@@ -26,7 +25,7 @@ function WelcomeSearch({ location } : ListOfLocation) {
         <Input.Group compact>
           <Input className="search-craftsman-name" placeholder={t('home-search-name')} size="middle" onChange={(e: any) => setCraftsmanSearch(e.target.value)} />
           <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
-            {location.map((item) => (
+            {location.map((item: locationObject) => (
               <Option key={item.id} value={item.id}>
                 {item.city}
               </Option>

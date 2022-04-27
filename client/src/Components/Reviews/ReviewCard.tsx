@@ -1,13 +1,10 @@
 import React from 'react';
 import { Rate } from 'antd';
 import 'antd/dist/antd.css';
+import { TopTenReviews } from '../../utils';
 
 interface cardProps {
-  review: {
-    rate:number,
-  content:string,
-  }
-
+  review: TopTenReviews
 }
 function ReviewCard({ review } : cardProps) {
   return (
