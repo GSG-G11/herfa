@@ -28,16 +28,6 @@ describe('Routes Tests GET /api/v1/work/:providerId', () => {
       });
   });
 
-  test('Testing for /api/v1/work/4 and get status 404', (done) => {
-    supertest(app)
-      .get('/api/v1/work/4?page=5')
-      .expect(404)
-      .end((err, res) => {
-        if (err) done(err);
-        expect(res.statusCode).toBe(404);
-        done();
-      });
-  });
 
 });
 
