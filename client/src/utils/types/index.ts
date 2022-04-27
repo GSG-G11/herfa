@@ -68,3 +68,14 @@ export interface OneService {
 export interface UserInfoCardProps {
   userInfo: any
 }
+export interface OneUserType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone: string;
+  whatsapp: string;
+  description: string;
+  image: string;
+  totalReview: number;
+}
