@@ -9,9 +9,6 @@
   width: 80%;
   margin: 0 auto;
 }
-.spinier-loading{
-  text-align: center;
-}
 @media screen and (min-width: 1440px) {
   .container{
     width: 980px;
