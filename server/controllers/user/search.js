@@ -1,45 +1,33 @@
-const { Op } = require('sequelize');
+const { fn, col } = require('sequelize');
 
-const { Location, SubServices, User } = require('../../database/models');
-const { searchRequestValidation } = require('../../utils/validation');
-const { customError } = require('../errors');
+const { User, Review, Location } = require('../../database/models');
+// const { searchRequestValidation } = require('../../utils/validation');
+// const { customError } = require('../errors');
 
-const getSearchResult = async (req, res, next) => {
+const getUsersWithReviews = async (req, res, next) => {
   try {
-    const {
-      name, location, page,
-    } = await searchRequestValidation.validateAsync(req.query);
-    console.log(req.query);
-    const users = await User.findAll({
-      where: {
-        [Op.or]: [
-          {
-            first_name: {
-              [Op.iLike]: `%${name}%`,
-            },
+    const users = await Review.findAll({
+      attributes: [[fn('AVG', col('reviews.rate')), 'avgRating']],
+      include: {
+        model: User,
+        where: { first_name: 'صباح' },
+        include: {
+          model: Location,
+          where: {
+            id: 1,
           },
-          {
-            locationId: +location,
-          },
-        ],
+        },
       },
-      include: [{ model: Location }, { model: SubServices }],
-      attributes: {
-        exclude: ['password', 'createdAt', 'updatedAt'],
-      },
-      limit: 10,
-      offset: (page - 1) * 10,
+      group: ['reviews.userId', 'user.id'],
     });
-    if (!users) {
-      throw customError('user does not exist', 400);
-    }
-    res.status(200).json({ msg: 'Search result', data: users });
+    return res.status(200).json({
+      success: true,
+      users,
+    });
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      return next(customError(error.message, 400));
-    }
-    next(error);
+    console.log(error);
+    return next(error);
   }
 };
 
-module.exports = getSearchResult;
+module.exports = getUsersWithReviews;

@@ -5,6 +5,6 @@ router.get('/providers/:id', getProfileInfo);
 const { getHomeData } = require('../controllers');
 
 router.get('/', getHomeData);
-router.get('/providers', getSearchResult);
+router.get('/provider', getSearchResult);
 router.post('/reviews', addReview);
 module.exports = router;
