@@ -38,7 +38,7 @@ describe('Routes Tests GET /api/v1/subservices/:mainServiceId', () => {
       .get('/api/v1/subservices/string')
       .end((error, response) => {
         if (error) done(error);
-        expect(response.statusCode).toBe(403);
+        expect(response.statusCode).toBe(400);
         const {msg, status} = response.body;
         expect(msg).toBe('"id" must be a number');
         done();
@@ -52,7 +52,7 @@ describe('Routes Tests GET /api/v1/subservices/:mainServiceId', () => {
         if (error) done(error);
         const {msg, status} = response.body;
         expect(msg).toBe('This Main Service does not exist');
-        expect(status).toBe(404);
+        expect(status).toBe(400);
         done();
       });
   });
