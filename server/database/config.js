@@ -6,8 +6,12 @@ const {
 } = process.env;
 
 let dbUrl = '';
+let ssl = false;
 if (NODE_ENV === 'production') {
   dbUrl = DATABASE_URL;
+  ssl = {
+    rejectUnauthorized: false,
+  };
 } else if (NODE_ENV === 'development') {
   dbUrl = DEV_DB_URL;
 } else if (NODE_ENV === 'test') {
@@ -20,6 +24,7 @@ const sequelize = new Sequelize(dbUrl, {
   logging: false,
   dialectOptions: {
     charset: 'utf8',
+    ssl,
   },
 });
 sequelize
