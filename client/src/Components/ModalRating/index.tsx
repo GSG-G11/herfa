@@ -1,63 +1,3 @@
-// import React, { useState } from 'react';
-// import {
-//   Modal, Button, Rate, Input, Form,
-// } from 'antd';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faStar } from '@fortawesome/free-solid-svg-icons';
-// import { useTranslation } from 'react-i18next';
-
-// const { TextArea } = Input;
-
-// interface Values {
-//   title: string;
-//   description: string;
-//   modifier: string;
-// }
-
-// interface CollectionCreateFormProps {
-//   visible: boolean;
-//   onCreate: (values: Values) => void;
-//   onCancel: () => void;
-// }
-// function ModalRating() {
-//   const { t } = useTranslation();
-//   const [rate, setRate] = useState(0);
-//   const [comment, setComment] = useState('');
-//   const [isModalVisible, setIsModalVisible] = useState(false);
-//   const showModal = () => {
-//     setIsModalVisible(true);
-//   };
-
-//   const handleOk = () => {
-//     setIsModalVisible(false);
-//     axios({
-//       method: 'post',
-//       url: '/api/v1/reviews',
-//       data: {
-//         rate,
-//         comment,
-//       },
-//     }).then((res) => console.log(res)).catch((err) => console.log(err));
-//   };
-
-//   const handleCancel = () => {
-//     setIsModalVisible(false);
-//   };
-//   return (
-//     <div>
-//       <Button type="text" icon={<FontAwesomeIcon icon={faStar}
-//  size="lg" style={{ color: '#FADB14' }} />} onClick={showModal} />
-//       {t('review')}
-//       <Modal title="Rating me" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-//         <form>
-//           <Rate allowHalf defaultValue={2.5} onChange={(e:any) => setRate(e.target.value)} />
-//           <TextArea rows={4} onChange={(e:any) => setComment(e.target.value)} />
-//         </form>
-//       </Modal>
-//     </div>
-//   );
-// }
-
 // export default ModalRating;
 import React, { useState } from 'react';
 import {
@@ -71,8 +11,9 @@ import axios from 'axios';
 const { TextArea } = Input;
 
 interface Values {
+    userId:number,
     rate: number;
-    comment: string;
+    content: string;
     phone:number;
 }
 
@@ -80,12 +21,14 @@ interface FormProps {
   visible: boolean;
   onCreate: (values: Values) => void;
   onCancel: () => void;
+  userId:number;
 }
 // eslint-disable-next-line react/function-component-definition
 const ReviewForm: React.FC<FormProps> = ({
   visible,
   onCreate,
   onCancel,
+  userId,
 }) => {
   const [form] = Form.useForm();
   return (
@@ -111,12 +54,15 @@ const ReviewForm: React.FC<FormProps> = ({
         layout="vertical"
         name="form_in_modal"
         form={form}
-        initialValues={{ rate: 5 }}
+        initialValues={{ rate: 3.5 }}
       >
+        <Form.Item name="userId">
+          <Input name="userId" value={userId} type="hidden" />
+        </Form.Item>
         <Form.Item name="rate">
           <Rate allowHalf defaultValue={2.5} />
         </Form.Item>
-        <Form.Item name="comment" label="Description">
+        <Form.Item name="content" label="Description">
           <TextArea />
         </Form.Item>
         <Form.Item name="phone" label="Phone Number">
@@ -127,14 +73,16 @@ const ReviewForm: React.FC<FormProps> = ({
   );
 };
 
-function CollectionsPage() {
+function CollectionsPage({ userId }: any) {
   const [visible, setVisible] = useState(false);
   const onCreate = async (values: any) => {
     try {
-      await axios.post('/api/v1/reviews', values);
       setVisible(false);
-    } catch (error) {
-      console.log(error);
+      const request = { ...values, userId };
+      const response = await axios.post('/api/v1/reviews', request);
+      console.log(response);
+    } catch (error:any) {
+      console.log(error.response);
     }
   };
 
@@ -159,12 +107,13 @@ function CollectionsPage() {
         onCancel={() => {
           setVisible(false);
         }}
+        userId={userId}
       >
         <div />
       </ReviewForm>
     </div>
   );
 }
-export default function () {
-  return <CollectionsPage />;
+export default function ({ userId }:any) {
+  return <CollectionsPage userId={userId} />;
 }

@@ -14,6 +14,7 @@ import ModalRating from '../ModalRating';
 function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const {
     user: {
+      id,
       first_name: firstName,
       last_name: lastName,
       services,
@@ -89,7 +90,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
               {' '}
               {t('contactMe')}
             </span>
-            <ModalRating />
+            <ModalRating userId={id} />
           </div>
         </div>
       </div>
