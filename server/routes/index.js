@@ -1,10 +1,13 @@
 const router = require('express').Router();
-const { getProfileInfo, addReview, getSearchResult } = require('../controllers/user');
+const {
+  getProfileInfo, addReview, getSearchResult, getWorkPerPage, getHomeData,
+} = require('../controllers');
 
 router.get('/providers/:id', getProfileInfo);
-const { getHomeData } = require('../controllers');
 
 router.get('/', getHomeData);
 router.get('/provider', getSearchResult);
+router.get('/work/:providerId', getWorkPerPage);
+
 router.post('/reviews', addReview);
 module.exports = router;

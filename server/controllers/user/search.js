@@ -38,7 +38,7 @@ const {
   Review,
 } = require('../../database/models');
 
-const getUsersWithReviews = async (req, res, next) => {
+const getSearchResult = async (req, res, next) => {
   try {
     const { name, location } = await searchRequestValidation.validateAsync(
       req.query,
@@ -97,4 +97,4 @@ const getUsersWithReviews = async (req, res, next) => {
   }
 };
 
-module.exports = getUsersWithReviews;
+module.exports = getSearchResult;

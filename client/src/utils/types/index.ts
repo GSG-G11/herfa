@@ -68,3 +68,35 @@ export interface OneService {
 export interface UserInfoCardProps {
   userInfo: any
 }
+
+export type TopTenReviews = {
+  rate: number;
+  content: string;
+  userId: number;
+};
+export interface locationObject {
+  city:string,
+  id: number,
+}
+export interface serviceObject {
+  name:string,
+  id: number,
+}
+export interface HomeRequest {
+  data: {
+    location: locationObject[];
+    services: serviceObject[];
+    topTenReviews: TopTenReviews[];
+  };
+}
+export interface OneUserType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  description: string;
+  image: string;
+  totalReview: number;
+  subServices: {}[];
+}
