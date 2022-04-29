@@ -8,12 +8,12 @@ import { ServiceLocation } from '../../Context/ServiceLocationContext';
 
 function MainServices() {
   const { t } = useTranslation();
-  const data = useContext(ServiceLocation);
+  const { data: { services } } = useContext(ServiceLocation);
   return (
     <>
       <h2 className="headline-text">{t('home-main-services')}</h2>
       <Card className="main-services-card-container">
-        {data.services.map(
+        {services.map(
           (item :serviceObject) => (
             <MainServicesCard key={item.name} service={item.name} id={item.id} />),
         )}

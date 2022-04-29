@@ -8,7 +8,7 @@ import './style.css';
 
 function HomeReview() {
   const { t } = useTranslation();
-  const { topTenReviews } = useContext(ServiceLocation);
+  const { data: { topTenReviews } } = useContext(ServiceLocation);
   return (
     <div className="reviewsSection">
       <h2 className="headline-text">

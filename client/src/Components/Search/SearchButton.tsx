@@ -8,7 +8,7 @@ import './style.css';
 
 function SearchButton() {
   const { t } = useTranslation();
-  const { location } = useContext(ServiceLocation);
+  const { data: { location } } = useContext(ServiceLocation);
   const { Option } = Select;
   const [searchValueFromInput, setSearchValueFromInput] = useState('');
 

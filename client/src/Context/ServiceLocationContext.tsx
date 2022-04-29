@@ -1,17 +1,21 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useEffect, useState, createContext } from 'react';
+import React, {
+  useEffect, useState, createContext, useMemo,
+} from 'react';
 import {
   request, HomeRequest, locationObject, serviceObject, TopTenReviews, Context,
 } from '../utils';
 
 const contextDefault : Context = {
-  location: [{ city: '', id: 0 }],
-  services: [{ name: '', id: 0 }],
-  topTenReviews: [{ rate: 0, content: '', userId: 0 }],
-  error: '',
-  errorExist: false,
-  isLoading: true,
+  data: {
+    location: [{ city: '', id: 0 }],
+    services: [{ name: '', id: 0 }],
+    topTenReviews: [{ rate: 0, content: '', userId: 0 }],
+  },
+  checks: {
+    error: '',
+    errorExist: false,
+    isLoading: true,
+  },
 };
 
 export const ServiceLocation = createContext<Context>(contextDefault);
@@ -41,22 +45,22 @@ function ServiceLocationContext(props:any) {
     };
     dataFromDB();
   }, []);
+
+  const dataMemo = useMemo(() => ({
+    location: locationsArray,
+    services: service,
+    topTenReviews: reviews,
+  }), [locationsArray, service, reviews]);
+  const checksMemo = useMemo(() => ({
+    error,
+    errorExist,
+    isLoading,
+  }), [error, errorExist, isLoading]);
+  const values = useMemo(() => ({ data: dataMemo, checks: checksMemo }), [dataMemo, checksMemo]);
+
   const { children } = props;
-  // const {
-  //   location, services, topTenReviews, error, errorExist, isLoading,
-  // } = useMemo(() => ({
-  //   location: locationsArray, services: service, topTenReviews: reviews, error: errorCon, errorExist: errorExistCon, isLoading: isLoadingCon,
-  // }), []);
   return (
-    <ServiceLocation.Provider value={{
-      location: locationsArray,
-      services: service,
-      topTenReviews: reviews,
-      error,
-      errorExist,
-      isLoading,
-    }}
-    >
+    <ServiceLocation.Provider value={values}>
       {children}
     </ServiceLocation.Provider>
   );

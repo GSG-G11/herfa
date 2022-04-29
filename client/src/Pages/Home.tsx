@@ -12,7 +12,7 @@ import {
 import { ServiceLocation } from '../Context/ServiceLocationContext';
 
 function Home() {
-  const { error, isLoading, errorExist } = useContext(ServiceLocation);
+  const { checks: { error, isLoading, errorExist } } = useContext(ServiceLocation);
   const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
   return (
     <div>

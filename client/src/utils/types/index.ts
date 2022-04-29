@@ -101,10 +101,14 @@ export interface OneUserType {
   subServices: {}[];
 }
 export type Context = {
-  location: locationObject[];
-  services: serviceObject[];
-  topTenReviews: TopTenReviews[];
-  error: string;
-  errorExist: Boolean,
-  isLoading: Boolean,
+  data: {
+    location: locationObject[];
+    services: serviceObject[];
+    topTenReviews: TopTenReviews[];
+  },
+  checks: {
+    error: string;
+    errorExist: Boolean,
+    isLoading: Boolean,
+  },
 }

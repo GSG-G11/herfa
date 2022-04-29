@@ -13,7 +13,7 @@ function WelcomeSearch() {
   const [locationSearch, setLocationSearch] = useState(0);
   const [craftsmanSearch, setCraftsmanSearch] = useState('');
   const { Option } = Select;
-  const { location } = useContext(ServiceLocation);
+  const { data: { location } } = useContext(ServiceLocation);
 
   return (
     <div className="basic-container-welcome-home-page">
