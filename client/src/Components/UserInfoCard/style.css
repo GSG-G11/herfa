@@ -1,3 +1,4 @@
+
 .card {
     display: flex;
     justify-content: space-between;
@@ -77,7 +78,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 10px;
+    padding: 10px;
+    /* 
     margin: 0 10px;
     min-width: 280px;
     min-height: 150px; */
@@ -91,5 +93,13 @@
     border: #388DED solid 1px;
     min-height: 50px;
    min-width: 125px;
+   margin: 0px 10px;
 
+
+}
+.btn-content{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    
 }

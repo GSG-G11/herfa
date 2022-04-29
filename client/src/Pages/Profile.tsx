@@ -13,7 +13,7 @@ function Profile() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data }: Request = await request('get', '/providers/1');
+        const { data }: Request = await request('get', '/providers/2');
         const { works }: { works: Works } = data;
         const workPage: any = {
           1: [...works],

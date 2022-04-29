@@ -5,6 +5,7 @@ import {
 
 export {
   request,
-}; export type {
+};
+export type {
   Works, Request, AllWorks, OnWork, User, OneService, UserInfoCardProps,
 };
