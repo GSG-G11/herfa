@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
   getHomeData, getWorkPerPage, getProfileInfo, addReview, subServices,
 } = require('../controllers');
-// const checkAuth = require('../utils');
+// const { checkAuth } = require('../utils');
 
 // router.use(checkAuth);
 router.get('/providers/:id', getProfileInfo);

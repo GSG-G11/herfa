@@ -1,7 +1,7 @@
 const { customError } = require('../controllers/errors');
 const verifyToken = require('./jwt/verifyToken');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const { token } = req.cookies;
   try {
     if (!token) throw customError('Unauthorized', 401);
