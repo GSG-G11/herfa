@@ -100,3 +100,11 @@ export interface OneUserType {
   totalReview: number;
   subServices: {}[];
 }
+export type Context = {
+  location: locationObject[];
+  services: serviceObject[];
+  topTenReviews: TopTenReviews[];
+  error: string;
+  errorExist: Boolean,
+  isLoading: Boolean,
+}

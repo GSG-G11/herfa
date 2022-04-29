@@ -12,6 +12,7 @@ import {
 } from './Pages';
 import './App.css';
 import 'antd/dist/antd.css';
+import ServiceLocationContext from './Context/ServiceLocationContext';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -37,7 +38,7 @@ function App() {
         </form>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
             <Route path="/user/:userName" element={<Profile />} />
             <Route path="/search" element={<Search />} />
             <Route path="/signup" element={<SignUp />} />
