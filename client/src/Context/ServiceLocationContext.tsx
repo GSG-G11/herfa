@@ -46,17 +46,18 @@ function ServiceLocationContext(props:any) {
     dataFromDB();
   }, []);
 
-  const dataMemo = useMemo(() => ({
-    location: locationsArray,
-    services: service,
-    topTenReviews: reviews,
-  }), [locationsArray, service, reviews]);
-  const checksMemo = useMemo(() => ({
-    error,
-    errorExist,
-    isLoading,
-  }), [error, errorExist, isLoading]);
-  const values = useMemo(() => ({ data: dataMemo, checks: checksMemo }), [dataMemo, checksMemo]);
+  const values = useMemo(() => ({
+    data: {
+      location: locationsArray,
+      services: service,
+      topTenReviews: reviews,
+    },
+    checks: {
+      error,
+      errorExist,
+      isLoading,
+    },
+  }), [error, errorExist, isLoading, locationsArray, service, reviews]);
 
   const { children } = props;
   return (
