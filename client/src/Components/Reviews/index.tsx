@@ -2,14 +2,11 @@ import React from 'react';
 import { Carousel } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ReviewCard from './ReviewCard';
+import { TopTenReviews } from '../../utils';
 import './style.css';
 
 interface reviewsProps {
-reviews: {
-      rate:number,
-      content:string,
-      userId:number,
-  }[]
+  reviews: TopTenReviews[],
 }
 
 function HomeReview({ reviews }:reviewsProps) {
@@ -21,7 +18,7 @@ function HomeReview({ reviews }:reviewsProps) {
       </h2>
       <div className="carouselContainer">
         <Carousel autoplay arrows className="reviewSlider">
-          {reviews.map((item) => <ReviewCard key={item.userId} review={item} />)}
+          {reviews.map((item: TopTenReviews) => <ReviewCard key={item.userId} review={item} />)}
         </Carousel>
       </div>
     </div>

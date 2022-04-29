@@ -1,127 +1,70 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+/* eslint-disable no-nested-ternary */
+import React, { useEffect, useState } from 'react';
 import { Divider } from 'antd';
+import {
+  request, HomeRequest, locationObject, serviceObject, TopTenReviews,
+} from '../utils';
 import {
   MainServices,
   Reviews,
   SearchByLocation,
   JoinUs,
   WelcomeSearch,
+  SpinierComponent,
+  ErrorComponent,
 } from '../Components';
 
-const reviews = [
-  {
-    rate: 1,
-    content: 'يعمل بشكل جيد ولكن من الممكن ان يكون اضل',
-    userId: 1,
-  },
-  {
-    rate: 5,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 5,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 3,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-  {
-    rate: 4.9,
-    content: 'مريح في العمل دقيق بالمواعيد ويعمل بمهارة',
-    userId: 2,
-  },
-];
-const services = [
-  {
-    name: 'الحدادة',
-  },
-  {
-    name: 'السباكة',
-  },
-  {
-    name: 'النجارة',
-  },
-  {
-    name: 'اعمال البناء',
-  },
-  {
-    name: 'ميكانيكي سيارات',
-  },
-  {
-    name: 'كهربائي',
-  },
-  {
-    name: 'اعمال الدهان والجبس',
-  },
-  {
-    name: 'اعمال التنضيف',
-  },
-  {
-    name: 'حدائق وبستنة',
-  },
-  {
-    name: 'اعمال النسيج',
-  },
-];
-const locations = [
-  {
-    city: 'بيت حانون',
-  },
-  {
-    city: 'بيت لاهيا',
-  },
-  {
-    city: 'معسكر جباليا',
-  },
-  {
-    city: 'جباليا ',
-  },
-  {
-    city: 'غزة',
-  },
-  {
-    city: 'الزهراء',
-  },
-  {
-    city: 'النصيرات',
-  },
-  {
-    city: 'دير البلح',
-  },
-  {
-    city: 'المغازي',
-  },
-  {
-    city: 'البريج',
-  },
-  {
-    city: 'خانيونس',
-  },
-  {
-    city: 'رفح',
-  },
-];
+export interface DataFromDB {
+  location: locationObject[];
+  services: serviceObject[];
+  topTenReviews: TopTenReviews[];
+}
+
 function Home() {
-  const { t } = useTranslation();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorExist, setErrorExist] = useState(false);
+  const [locations, setLocations] = useState<locationObject[]>([]);
+  const [service, setServices] = useState<serviceObject[]>([]);
+  const [reviews, setReviews] = useState<TopTenReviews[]>([]);
+
+  useEffect(() => {
+    const dataFromDB = async () => {
+      try {
+        const { data } : HomeRequest = await request('get', '/');
+        setIsLoading(false);
+        const { location, services, topTenReviews } = data;
+        setLocations(location);
+        setServices(services);
+        setReviews(topTenReviews);
+      } catch (responseError: any) {
+        setError(responseError?.data.msg);
+        setErrorExist(true);
+        setIsLoading(false);
+      }
+    };
+    dataFromDB();
+  }, []);
   return (
     <div>
-      <div className="container">
-        {t('home-greeting')}
-        <WelcomeSearch location={locations} />
-        <Divider />
-        <MainServices mainServices={services} />
-        <Divider />
-        <SearchByLocation locationArray={locations} />
-      </div>
-      <JoinUs />
-      <div className="container">
-        <Reviews reviews={reviews} />
-      </div>
+      {errorExist ? <ErrorComponent errorMessage={error} />
+        : isLoading
+          ? <SpinierComponent />
+          : (
+            <>
+              <div className="container">
+                <WelcomeSearch location={locations} />
+                <Divider />
+                <MainServices mainServices={service} />
+                <Divider />
+                <SearchByLocation locationArray={locations} />
+              </div>
+              <JoinUs />
+              <div className="container">
+                <Reviews reviews={reviews} />
+              </div>
+            </>
+          )}
     </div>
   );
 }

@@ -40,12 +40,12 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
       const formData = { ...values, userId: id };
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post('/api/v1/reviews', formData);
-      message.success(t('review-message'));
+      message.success(t('review-message'), 5);
     } catch (error:any) {
       if (error.response.status === 400) {
-        message.error(t('review-exists'));
+        message.error(t('review-exists'), 5);
       } else if (error.response.status === 500) {
-        message.error(t('server-error'));
+        message.error(t('server-error'), 5);
       }
     }
   };

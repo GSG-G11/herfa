@@ -6,6 +6,9 @@ import SearchByLocation from './Search';
 import JoinUs from './JoinUs';
 import WelcomeSearch from './WelcomeSearch';
 import ModalRating from './ModalRating';
+import SpinierComponent from './Spinier';
+import ErrorComponent from './Error';
+import UserCard from './UserCard';
 
 export {
   Reviews,
@@ -16,4 +19,7 @@ export {
   WorkCard,
   UserInfoCard,
   ModalRating,
+  SpinierComponent,
+  ErrorComponent,
+  UserCard,
 };

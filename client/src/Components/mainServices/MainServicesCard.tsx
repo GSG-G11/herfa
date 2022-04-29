@@ -1,18 +1,21 @@
 import React from 'react';
 import { Card } from 'antd';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 interface serviceProps {
   service: string,
-  imgLink: number,
+  id: number,
 }
 
-function MainServicesCard({ service, imgLink }: serviceProps) {
+function MainServicesCard({ service, id }: serviceProps) {
   return (
-    <Card.Grid className="main-services-card">
-      <img src={`/images/${imgLink + 1}.png`} alt="main service we provide" className="main-services-crd-image" />
-      <p className="main-services-crd-text">{service}</p>
-    </Card.Grid>
+    <Link to="/search" state={{ serviceSearch: id }}>
+      <Card.Grid className="main-services-card">
+        <img src={`/images/${id}.png`} alt="main service we provide" className="main-services-crd-image" />
+        <p className="main-services-crd-text">{service}</p>
+      </Card.Grid>
+    </Link>
   );
 }
 

@@ -28,11 +28,12 @@ const en = {
   'home-search-word': 'Search',
   'home-search-specific-location': 'Example: بيت حانون',
   'home-welcome-search': 'Search for the most suitable craftsman to get everything you need done.',
-  city: 'City',
+  city: 'choose the city',
   'home-search-name': 'Search for the name of craftsman',
   'home-join-us': 'Join the world of craftsmen now',
   'home-join-us-description': 'Register now and become a member of our community and offer your services to business owners',
   'home-join-us-button': 'Register Now',
+  'error-heading': 'There is ERROR occurred',
 };
 
 export default en;
