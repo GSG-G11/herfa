@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
   Card, Image, Rate, Button, message,
@@ -37,18 +38,14 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     try {
       setVisible(false);
       const formData = { ...values, userId: id };
-      console.log(formData);
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post('/api/v1/reviews', formData);
       message.success(t('review-message'));
-      console.log(response);
     } catch (error:any) {
       if (error.response.status === 400) {
-        setVisible(true);
-        message.error(t('review-error'));
-        console.log(error.response.data.msg);
+        message.error(t('review-exists'));
       } else if (error.response.status === 500) {
-        setVisible(true);
-        message.error(t('review-error'));
+        message.error(t('server-error'));
       }
     }
   };

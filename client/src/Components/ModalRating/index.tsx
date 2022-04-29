@@ -34,8 +34,8 @@ const ReviewFormModal: React.FC<FormProps> = ({
     <Modal
       visible={visible}
       title={t('review')}
-      okText="ok"
-      cancelText="Cancel"
+      okText={t('ok')}
+      cancelText={t('Cancel')}
       onCancel={onCancel}
       onOk={() => {
         form
@@ -43,7 +43,6 @@ const ReviewFormModal: React.FC<FormProps> = ({
           .then((values) => {
             form.resetFields();
             onCreate(values);
-            console.log(form);
           })
           .catch((info) => {
             console.log('Validate Failed:', info);
@@ -73,28 +72,4 @@ const ReviewFormModal: React.FC<FormProps> = ({
   );
 };
 
-// function CollectionsPage({ userId }: any) {
-//   // const [visible, setVisible] = useState(false);
-//   // const onCreate = async (values: any) => {
-//   //   try {
-//   //     setVisible(false);
-//   //     const request = { ...values, userId };
-//   //     const response = await axios.post('/api/v1/reviews', request);
-//   //     console.log(response);
-//   //   } catch (error:any) {
-//   //     console.log(error.response);
-//   //   }
-//   // };
-
-//   return (
-//     <div>
-//       {/* <ReviewForm>
-//         <div />
-//       </ReviewForm> */}
-//     </div>
-//   );
-// }
-// export default function () {
-//   return <ReviewFormModal userId={userId} />;
-// }
 export default ReviewFormModal;
