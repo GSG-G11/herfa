@@ -81,16 +81,7 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
         done();
       });
   });
-  test('Testing for /api/v1/providers to get 404 page not found', (done) => {
-    supertest(app)
-      .get('/api/v1/providers')
-      .expect(404)
-      .end((err, res) => {
-        if (err) done(err);
-        expect(res.body.status).toEqual(404);
-        done();
-      });
-  });
+  
   test('Testing for /api/v1/providers/:100 to get 404 page not found', (done) => {
     supertest(app)
       .get('/api/v1/providers/88888888888888888')
