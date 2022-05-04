@@ -1,17 +1,15 @@
 const { customError } = require('../controllers/errors');
-const verifyToken = require('./jwt/verifyToken');
+const verifyToken = require('../controllers/middleware');
 
 module.exports = async (req, res, next) => {
-  const { token } = req.cookies;
+  const { token } = await req.cookies;
   try {
     if (!token) throw customError('Unauthorized', 401);
-    verifyToken(token)
-      .then(({ providerID }) => {
-        req.providerID = providerID;
-        next();
-      })
-      .catch(() => { next(customError('Unauthorized', 401)); });
+    const verifyed = await verifyToken(token);
+    req.providerID = verifyed.providerID;
+    next();
   } catch (err) {
-    next(err);
+    if (err.name === 'JsonWebTokenError') next(customError('Unauthorized', 401));
+    return next(err);
   }
 };
