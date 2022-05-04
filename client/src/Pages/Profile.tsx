@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { WorkCard, UserInfoCard } from '../Components';
 import {
   Works, Request, AllWorks, OnWork, request,
@@ -59,7 +58,6 @@ function Profile() {
           </div>
         </>
       )}
-      {useTranslation().t('profile-greeting')}
     </div>
   );
 }
