@@ -9,6 +9,7 @@ import ModalRating from './ModalRating';
 import SpinierComponent from './Spinier';
 import ErrorComponent from './Error';
 import UserCard from './UserCard';
+import FilterSection from './FilterSection';
 
 export {
   Reviews,
@@ -22,4 +23,5 @@ export {
   SpinierComponent,
   ErrorComponent,
   UserCard,
+  FilterSection,
 };
