@@ -28,6 +28,17 @@ describe('Routes Tests GET /api/v1/work/:providerId', () => {
       });
   });
 
+  test('Testing for delete work /api/v1/work/1 and get status 200', (done) => {
+    supertest(app)
+      .delete('/api/v1/work/1')
+      .set('Cookie', [`token= ${process.env.token}`])
+      .expect(200)
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res.statusCode).toBe(200);
+        done();
+      });
+  });
 
 });
 
