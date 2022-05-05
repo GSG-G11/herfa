@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Carousel } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ReviewCard from './ReviewCard';
 import { TopTenReviews } from '../../utils';
+import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import './style.css';
 
-interface reviewsProps {
-  reviews: TopTenReviews[],
-}
-
-function HomeReview({ reviews }:reviewsProps) {
+function HomeReview() {
   const { t } = useTranslation();
+  const { data: { topTenReviews } } = useContext(ServiceLocation);
   return (
     <div className="reviewsSection">
       <h2 className="headline-text">
@@ -18,7 +16,9 @@ function HomeReview({ reviews }:reviewsProps) {
       </h2>
       <div className="carouselContainer">
         <Carousel autoplay arrows className="reviewSlider">
-          {reviews.map((item: TopTenReviews) => <ReviewCard key={item.userId} review={item} />)}
+          {topTenReviews.map(
+            (item: TopTenReviews) => <ReviewCard key={item.userId} review={item} />,
+          )}
         </Carousel>
       </div>
     </div>

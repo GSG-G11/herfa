@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Select, Input, Button, Divider,
@@ -6,17 +6,15 @@ import {
 import { Link } from 'react-router-dom';
 import './style.css';
 import { locationObject } from '../../utils';
+import { ServiceLocation } from '../../Context/ServiceLocationContext';
 
-interface ListOfLocation {
-  location:
-  locationObject [],
-}
-
-function WelcomeSearch({ location } : ListOfLocation) {
+function WelcomeSearch() {
   const { t } = useTranslation();
   const [locationSearch, setLocationSearch] = useState(0);
   const [craftsmanSearch, setCraftsmanSearch] = useState('');
   const { Option } = Select;
+  const { data: { location } } = useContext(ServiceLocation);
+
   return (
     <div className="basic-container-welcome-home-page">
       <div className="welcome-search-home-right">
@@ -26,7 +24,7 @@ function WelcomeSearch({ location } : ListOfLocation) {
           <Input className="search-craftsman-name" placeholder={t('home-search-name')} size="middle" onChange={(e: any) => setCraftsmanSearch(e.target.value)} />
           <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
             {location.map((item: locationObject) => (
-              <Option key={item.id} value={item.id}>
+              <Option key={item.city} value={item.id}>
                 {item.city}
               </Option>
             ))}
