@@ -1,20 +1,26 @@
-/* eslint-disable camelcase */
-import React from 'react';
-import { Card, Image, Rate } from 'antd';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
+import {
+  Card, Image, Rate, Button, message,
+} from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebook,
   faInstagram,
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 import { useTranslation } from 'react-i18next';
 import './style.css';
+import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
+import ReviewFormModal from '../ModalRating';
 
 function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const {
     user: {
+      id,
       first_name: firstName,
       last_name: lastName,
       services,
@@ -27,6 +33,22 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     totalReviews,
   } = userInfo;
   const { t } = useTranslation();
+  const [visible, setVisible] = useState(false);
+  const onCreate = async (values: any) => {
+    try {
+      setVisible(false);
+      const formData = { ...values, userId: id };
+      // eslint-disable-next-line no-unused-vars
+      const response = await axios.post('/api/v1/reviews', formData);
+      message.success(t('review-message'), 5);
+    } catch (error:any) {
+      if (error.response.status === 400) {
+        message.error(t('review-exists'), 5);
+      } else if (error.response.status === 500) {
+        message.error(t('server-error'), 5);
+      }
+    }
+  };
   return (
     <Card bordered={false}>
       <div className="card">
@@ -89,16 +111,31 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
               {' '}
               {t('contactMe')}
             </span>
-            <br />
             <span>
-              <FontAwesomeIcon
-                icon={faStar}
-                size="lg"
-                style={{ color: '#FADB14' }}
-              />
-              {' '}
-              {t('review')}
+              <Button
+                type="text"
+                onClick={() => {
+                  setVisible(true);
+                }}
+              >
+                <div>
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    size="lg"
+                    style={{ color: '#FADB14' }}
+                  />
+                  {t('review')}
+                </div>
+              </Button>
             </span>
+            <ReviewFormModal
+              visible={visible}
+              onCreate={onCreate}
+              onCancel={() => {
+                setVisible(false);
+              }}
+              userId={id}
+            />
           </div>
         </div>
       </div>

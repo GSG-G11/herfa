@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import './style.css';
 
-interface SearchButtonProps {
-  location: {
-        city:string,
-        id: number,
-    }[]
-}
-
-function SearchButton({ location }: SearchButtonProps) {
+function SearchButton() {
   const { t } = useTranslation();
+  const { data: { location } } = useContext(ServiceLocation);
   const { Option } = Select;
   const [searchValueFromInput, setSearchValueFromInput] = useState('');
+
   return (
     <div>
       <Select

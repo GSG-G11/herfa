@@ -12,6 +12,7 @@ import {
   serviceObject,
   TopTenReviews,
   OneUserType,
+  Context,
 } from './types';
 
 export {
@@ -30,4 +31,5 @@ export type {
   serviceObject,
   TopTenReviews,
   OneUserType,
+  Context,
 };
