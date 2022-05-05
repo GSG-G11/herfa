@@ -7,4 +7,4 @@ const verifyToken = (token) => new Promise((resolve, reject) => {
   });
 });
 
-module.exports = verifyToken;
+module.exports = { verifyToken };

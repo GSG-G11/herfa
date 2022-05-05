@@ -1,5 +1,5 @@
+const { verifyToken } = require('../utils');
 const { customError } = require('./errors/custom');
-const verifyToken = require('../utils/jwt');
 
 const checkAuth = async (req, res, next) => {
   const { token } = await req.cookies;

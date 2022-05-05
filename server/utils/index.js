@@ -1,3 +1,3 @@
-const checkAuth = require('../controllers/middleware');
+const { verifyToken } = require('./jwt');
 
-module.exports = { checkAuth };
+module.exports = { verifyToken };

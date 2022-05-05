@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const {
   getHomeData, getWorkPerPage, getProfileInfo, addReview, subServices,
+  // checkAuth,
 } = require('../controllers');
-// const checkAuth = require('../controllers/middleware');
 
 // router.use(checkAuth);
 router.get('/providers/:id', getProfileInfo);
