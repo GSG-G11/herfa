@@ -20,7 +20,7 @@ function WelcomeSearch() {
       <div className="welcome-search-home-right">
         <h2>{t('home-welcome-search')}</h2>
         <Divider className="divider-welcome-home-page" />
-        <Input.Group compact>
+        <Input.Group compact className="inputs-group-home-page">
           <Input className="search-craftsman-name" placeholder={t('home-search-name')} size="middle" onChange={(e: any) => setCraftsmanSearch(e.target.value)} />
           <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
             {location.map((item: locationObject) => (
