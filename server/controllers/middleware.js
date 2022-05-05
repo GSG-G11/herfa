@@ -1,10 +1,17 @@
-const { verify } = require('jsonwebtoken');
+const { customError } = require('./errors/custom');
+const verifyToken = require('../utils/jwt');
 
-const verifyToken = (token) => new Promise((resolve, reject) => {
-  verify(token, process.env.SECRET_KEY, (err, match) => {
-    if (err) return reject(err);
-    return resolve(match);
-  });
-});
+const checkAuth = async (req, res, next) => {
+  const { token } = await req.cookies;
+  try {
+    if (!token) throw customError('Unauthorized', 401);
+    const verified = await verifyToken(token);
+    req.providerID = verified.providerID;
+    next();
+  } catch (err) {
+    if (err.name === 'JsonWebTokenError') next(customError('Unauthorized', 401));
+    return next(err);
+  }
+};
 
-module.exports = verifyToken;
+module.exports = checkAuth;

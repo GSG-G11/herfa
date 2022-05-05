@@ -1,3 +1,3 @@
-const checkAuth = require('./checkAuth');
+const checkAuth = require('../controllers/middleware');
 
 module.exports = { checkAuth };
