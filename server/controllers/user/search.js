@@ -72,7 +72,6 @@ const getSearchResult = async (req, res, next) => {
       data: usersWithReviews,
     });
   } catch (error) {
-    console.log(error);
     if (error.name === 'ValidationError') {
       next(customError(error.message, 400));
     } else {
