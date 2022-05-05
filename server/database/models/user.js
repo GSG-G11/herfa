@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
 const { Location } = require('./location');
+const { MainServices } = require('./mainServices');
 
 const User = sequelize.define('users', {
   id: {
@@ -53,4 +54,5 @@ const User = sequelize.define('users', {
   },
 });
 User.belongsTo(Location);
+User.belongsTo(MainServices);
 module.exports = { User };
