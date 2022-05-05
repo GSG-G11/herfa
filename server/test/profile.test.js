@@ -9,7 +9,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 and get status 200', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -20,7 +19,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to make sure that the requested user is the same as the user in the response   ', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -31,7 +29,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to ensure that the response contains user data ', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -44,7 +41,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to ensure that the response contains works data relates to userId:1', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -55,7 +51,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to ensure that the response contains locations data relates to userId:1', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -69,7 +64,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to ensure that the response contains reviews data relates to userId:1', (done) => {
     supertest(app)
       .get('/api/v1/providers/1')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(200)
       .end((err, res) => {
         if (err) done(err);
@@ -80,7 +74,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/1 to get 400 for bad request id params with message validation error', (done) => {
     supertest(app)
       .get('/api/v1/providers/f')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(400)
       .end((err, res) => {
         if (err) done(err);
@@ -92,7 +85,6 @@ describe('Routes Tests GET /api/v1/providers/:id', () => {
   test('Testing for /api/v1/providers/:100 to get 404 page not found', (done) => {
     supertest(app)
       .get('/api/v1/providers/88888888888888888')
-      .set('Cookie', [`token= ${process.env.token}`])
       .expect(400)
       .end((err, res) => {
         if (err) done(err);

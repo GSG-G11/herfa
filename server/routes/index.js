@@ -5,7 +5,7 @@ const {
 } = require('../controllers');
 
 // router.use(checkAuth);
-router.get('/providers/:id', checkAuth, getProfileInfo);
+router.get('/providers/:id', getProfileInfo);
 router.get('/', getHomeData);
 router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
