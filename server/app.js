@@ -3,6 +3,7 @@ require('env2')('.env');
 const express = require('express');
 const cors = require('cors');
 
+const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const router = require('./routes/index');
 const { serverError, clientError } = require('./controllers/errors');
@@ -11,6 +12,7 @@ const { NODE_ENV, PORT } = process.env;
 const app = express();
 app.set('port', PORT || 3030);
 
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
