@@ -14,7 +14,7 @@ const {
 const getSearchResult = async (req, res, next) => {
   try {
     const {
-      name, location, service, subservice, page,
+      name, location, service, subservice, page = 1,
     } = await searchRequestValidation.validateAsync(req.query);
     const where = {};
     if (name) {
@@ -51,6 +51,13 @@ const getSearchResult = async (req, res, next) => {
         { model: MainServices },
       ],
     });
+    if (!rows.length) {
+      return res.status(200).json({
+        msg: 'search result',
+        count,
+        data: rows,
+      });
+    }
     const reviews = await Promise.all(
       rows.map(async (user) => {
         const reviewAvg = await Review.findAll({
@@ -59,19 +66,17 @@ const getSearchResult = async (req, res, next) => {
           raw: true,
           group: ['reviews.userId'],
         });
-        return reviewAvg;
+        const tempUser = { ...user.dataValues, avgRating: reviewAvg[0].avgRating };
+        return tempUser;
       }),
     );
-    const usersWithReviews = rows.map((user, index) => ({
-      ...user.dataValues,
-      avgRating: reviews[index][0].avgRating,
-    }));
     return res.status(200).json({
       msg: 'search result',
       count,
-      data: usersWithReviews,
+      data: reviews,
     });
   } catch (error) {
+    console.log(error);
     if (error.name === 'ValidationError') {
       next(customError(error.message, 400));
     } else {
