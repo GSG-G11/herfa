@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {
-  getProfileInfo, addReview, getSearchResult, getHomeData, getWorkPerPage, subServices,
+  getProfileInfo, addReview, getSearchResult, getHomeData, getWorkPerPage, subServices, checkAuth,
+  editWork,
 } = require('../controllers');
 
 // router.use(checkAuth);
@@ -12,4 +13,7 @@ router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 
 router.post('/reviews', addReview);
+// router.route('/work/:id').delete(checkAuth, deleteWork).patch(checkAuth, editWork);
+// router.delete('/work/:id', checkAuth, deleteWork);
+router.patch('/work/:id', checkAuth, editWork);
 module.exports = router;
