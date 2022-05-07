@@ -13,9 +13,10 @@ const {
 
 const getSearchResult = async (req, res, next) => {
   try {
+    const subServiceArray = req.query.subservice?.split(',');
     const {
       name, location, service, subservice, page = 1,
-    } = await searchRequestValidation.validateAsync(req.query);
+    } = await searchRequestValidation.validateAsync({ ...req.query, subservice: subServiceArray });
     const where = {};
     if (name) {
       where[Op.or] = [
@@ -34,20 +35,23 @@ const getSearchResult = async (req, res, next) => {
     if (location) {
       where.locationId = location;
     }
-    if (subservice) {
-      const subServiceArray = subservice?.split(',');
-      where['$services.id$'] = subServiceArray;
+    if (req.query.subservice) {
+      where['$services.id$'] = subservice;
     }
     if (service) {
       where.mainServiceId = +service;
     }
+    console.log(where);
     const { count, rows } = await User.findAndCountAll({
       limit: 6,
       offset: (page - 1) * 6,
       where,
+      attributes: {
+        exclude: ['password', 'createdAt', 'updatedAt'],
+      },
       include: [
         { model: Location },
-        { model: SubServices },
+        { model: SubServices, duplicating: false },
         { model: MainServices },
       ],
     });
