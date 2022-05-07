@@ -4,7 +4,6 @@ const { User } = require('./user');
 const { Work } = require('./work');
 const { Location } = require('./location');
 const { Review } = require('./review');
-const getEmail = require('./getDataUsingEmail');
 
 module.exports = {
   User,
@@ -13,5 +12,4 @@ module.exports = {
   SubServices,
   Location,
   Review,
-  getEmail,
 };

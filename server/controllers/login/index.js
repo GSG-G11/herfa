@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+
 const { compare } = require('bcrypt');
 const { User } = require('../../database/models');
 const { signToken } = require('../../utils');
@@ -7,16 +8,18 @@ const { customError } = require('../errors');
 
 const loginHandler = async (req, res, next) => {
   try {
-    const validatedValues = await loginValidation(req.body);
-    const emailData = await User.findOne({ where: { email: validatedValues.email } });
-    if (!emailData) {
+    const { email: userEmail, password: hashedPassword } = await loginValidation(req.body);
+    const userData = await User.findOne({
+      where: { email: userEmail },
+    });
+    if (!userData) {
       throw customError('incorrect password or email ...', 401);
     }
     const {
       id, password, first_name, last_name,
-    } = emailData;
+    } = userData;
     const providerName = `${first_name} ${last_name}`;
-    const checkedPassword = await compare(validatedValues.password, password);
+    const checkedPassword = await compare(hashedPassword, password);
     if (!checkedPassword) {
       throw customError('incorrect password or email ...', 401);
     }
@@ -24,6 +27,7 @@ const loginHandler = async (req, res, next) => {
     res.cookie('userToken', signTokenCookie);
     res.json({ msg: 'logged in successfully ..', data: { id, providerName } });
   } catch (err) {
+    console.log(err);
     if (err.name === 'ValidationError') {
       next(customError(err.message, 400));
     }

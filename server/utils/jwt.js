@@ -1,5 +1,4 @@
-const { verify } = require('jsonwebtoken');
-const { sign } = require('jsonwebtoken');
+const { verify, sign } = require('jsonwebtoken');
 
 const verifyToken = (token) => new Promise((resolve, reject) => {
   verify(token, process.env.SECRET_KEY, (err, match) => {
@@ -15,5 +14,5 @@ const signToken = (providerName, userId) => new Promise((resolve, reject) => {
     return resolve(token);
   });
 });
-// module.exports = signToken;
+
 module.exports = { verifyToken, signToken };
