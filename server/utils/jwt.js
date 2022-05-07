@@ -7,7 +7,7 @@ const verifyToken = (token) => new Promise((resolve, reject) => {
   });
 });
 const signToken = (providerName, userId) => new Promise((resolve, reject) => {
-  sign({ providerName, providerID: userId, role: 'provider' }, process.env.SECRET_KEY, (err, token) => {
+  sign({ providerName, providerID: userId }, process.env.SECRET_KEY, (err, token) => {
     if (err) {
       return reject(err);
     }
