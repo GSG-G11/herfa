@@ -1,16 +1,22 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config');
 
-const Location = sequelize.define('locations', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const Location = sequelize.define(
+  'locations',
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    city: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+    },
   },
-  city: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
+  {
+    timestamps: false,
   },
-});
+);
 module.exports = { Location };
