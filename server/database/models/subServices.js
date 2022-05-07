@@ -3,17 +3,23 @@ const { sequelize } = require('../config');
 const { MainServices } = require('./mainServices');
 const { User } = require('./user');
 
-const SubServices = sequelize.define('services', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+const SubServices = sequelize.define(
+  'services',
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
+  {
+    timestamps: false,
   },
-});
+);
 
 MainServices.hasMany(SubServices);
 SubServices.belongsTo(MainServices);
