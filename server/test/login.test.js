@@ -19,26 +19,26 @@ describe('Test POST api/v1/login', () => {
         done();
       })
   });
-  test('Post /api/v1/login return with status code equal 401 with invalid eamil ', (done) => {
+  test('Post /api/v1/login return with status code equal 400 with invalid email ', (done) => {
     request(app)
       .post('/api/v1/login')
-      .expect(401)
+      .expect(400)
       .send({email: 'abdallah897107gmail.com', password: '12345678'})
       .end((error, response) => {
         if (error) done(error);
-        expect(response.statusCode).toBe(401);
+        expect(response.statusCode).toBe(400);
         expect(response.body.msg).toBe('\"email\" must be a valid email');
         done();
       })
   });
-  test('Post /api/v1/login return with status code equal 401 with invalid password ', (done) => {
+  test('Post /api/v1/login return with status code equal 400 with invalid password ', (done) => {
     request(app)
       .post('/api/v1/login')
-      .expect(401)
+      .expect(400)
       .send({email: 'abdallah897107@gmail.com', password: '1234'})
       .end((error, response) => {
         if (error) done(error);
-        expect(response.statusCode).toBe(401);
+        expect(response.statusCode).toBe(400)
         expect(response.body.msg).toBe("\"password\" with value \"1234\" fails to match the required pattern: /^[a-zA-Z0-9]{8,30}$/");
         done();
       })
