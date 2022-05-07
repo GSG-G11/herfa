@@ -41,7 +41,6 @@ const getSearchResult = async (req, res, next) => {
     if (service) {
       where.mainServiceId = +service;
     }
-    console.log(where);
     const { count, rows } = await User.findAndCountAll({
       limit: 6,
       offset: (page - 1) * 6,
@@ -74,13 +73,12 @@ const getSearchResult = async (req, res, next) => {
         return tempUser;
       }),
     );
-    return res.status(200).json({
+    return res.json({
       msg: 'search result',
       count,
       data: reviews,
     });
   } catch (error) {
-    console.log(error);
     if (error.name === 'ValidationError') {
       next(customError(error.message, 400));
     } else {
