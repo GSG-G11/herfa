@@ -1,12 +1,13 @@
-const { Work } = require('../../database/models');
+const { Work, User } = require('../../database/models');
 const { customError } = require('../errors');
 const { paramsValidation } = require('../../utils/validation');
 
 const deleteWork = async (req, res, next) => {
   try {
     const { userId } = req.body;
+    const user = await User.findByPk(userId);
     const { providerID } = req;
-    if (userId !== providerID) {
+    if (user.id !== +providerID) {
       throw customError('Unauthorized', 401);
     } else {
       const { id } = await paramsValidation.validateAsync(req.params);
