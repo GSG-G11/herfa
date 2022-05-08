@@ -28,11 +28,17 @@ const ar = {
   'home-search-specific-location': 'مثال : بيت حانون',
   'home-welcome-search': 'ابحث عن الحرفي الأنسب لانجاز كل ما تحتاج.',
   city: 'اختر المدينة',
-  'home-search-name': 'ابحث عن اسم الحرفي',
+  'home-search-name': 'ابحث عن الاسم',
   'home-join-us': 'انضم الى عالم الحرفيين الان',
   'home-join-us-description': 'سجل الان واحصل على عضوية في مجتمعنا وقم بعرض خدماتك على اصحاب الاعمال',
   'home-join-us-button': 'سجل الآن',
   'error-heading': 'لقد حدث خطأ ما',
+  'filter-heading': 'فلترة البحث',
+  'search-by-main-service': 'الخدمة الأساسية',
+  'search-by-sub-service': 'الخدمة الفرعية',
+  service: 'مثال: الحدادة',
+  subService: 'مثال: حدادة أبواب',
+  'search-name': 'مثال: محمد أحمد',
 };
 
 export default ar;

@@ -33,3 +33,16 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+@media screen and (max-width: 600px) {
+  .headline-text{
+    font-size: 20px;
+  }
+  .main-services-crd-text{
+    font-size: 14px;
+  }
+  .main-services-card{
+    width: 41% !important;
+    width: 40px;
+    margin: 10px;
+  }
+}

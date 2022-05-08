@@ -13,6 +13,7 @@ import {
 import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
+import LoggedUserInfoProvider from './Context/LoggedUserContext';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -25,29 +26,31 @@ function App() {
   }, [lang]);
 
   return (
-    <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
-      <div>
-        {t('title')}
-        <form>
-          <button
-            type="button"
-            onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
-          >
-            {i18n.language === 'ar' ? 'English' : 'العربية'}
-          </button>
-        </form>
-        <Router>
-          <Routes>
-            <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
-            <Route path="/user/:userName" element={<Profile />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-      </div>
-    </ConfigProvider>
+    <LoggedUserInfoProvider>
+      <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
+        <div>
+          {t('title')}
+          <form>
+            <button
+              type="button"
+              onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
+            >
+              {i18n.language === 'ar' ? 'English' : 'العربية'}
+            </button>
+          </form>
+          <Router>
+            <Routes>
+              <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
+              <Route path="/user/:userName" element={<Profile />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<LogIn />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </div>
+      </ConfigProvider>
+    </LoggedUserInfoProvider>
   );
 }
 export default App;

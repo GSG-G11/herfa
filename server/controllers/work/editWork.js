@@ -13,7 +13,6 @@ const editWork = async (req, res, next) => {
     if (work.userId !== +providerID) {
       throw customError('Unauthorized', 401);
     }
-    console.log(req.body);
     await work.update(req.body);
     res.json({ msg: 'work updated successfully' });
   } catch (error) {

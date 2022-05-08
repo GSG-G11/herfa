@@ -13,6 +13,7 @@ import {
   TopTenReviews,
   OneUserType,
   Context,
+  LoggedUser,
 } from './types';
 
 export {
@@ -32,4 +33,5 @@ export type {
   TopTenReviews,
   OneUserType,
   Context,
+  LoggedUser,
 };

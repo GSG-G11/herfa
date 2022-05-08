@@ -1,3 +1,3 @@
-const { verifyToken } = require('./jwt');
+const { verifyToken, signToken } = require('./jwt');
 
-module.exports = { verifyToken };
+module.exports = { verifyToken, signToken };
