@@ -39,6 +39,7 @@ const ar = {
   service: 'مثال: الحدادة',
   subService: 'مثال: حدادة أبواب',
   'search-name': 'مثال: محمد أحمد',
+  'no-data': 'لا يوجد بيانات',
 };
 
 export default ar;
