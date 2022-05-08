@@ -2,6 +2,8 @@ const { join } = require('path');
 require('env2')('.env');
 const express = require('express');
 const cors = require('cors');
+
+const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const { parse } = require('express-form-data');
 
@@ -13,6 +15,7 @@ const app = express();
 app.set('port', PORT || 3030);
 
 app.use(parse());
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -1,7 +1,9 @@
 const { getHomeData } = require('./home');
-const { getWorkPerPage } = require('./work');
-const { getProfileInfo, addReview } = require('./user');
+const { getWorkPerPage, deleteWork } = require('./work');
+const { getProfileInfo, addReview, getSearchResult } = require('./user');
 const { subServices } = require('./search');
+const loginHandler = require('./login');
+const checkAuth = require('./middleware');
 
 module.exports = {
   getHomeData,
@@ -9,4 +11,8 @@ module.exports = {
   getProfileInfo,
   addReview,
   subServices,
+  loginHandler,
+  checkAuth,
+  deleteWork,
+  getSearchResult,
 };

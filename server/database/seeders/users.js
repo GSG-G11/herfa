@@ -12,6 +12,7 @@ const users = [
     description: 'صالح معروف خريج هندسة الحاسوب من الجامعة الإسلامية بغزة',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 1,
   },
   {
     first_name: 'عبد الله',
@@ -27,6 +28,7 @@ const users = [
       'عبد لله رباح احد منتسبي برنامج التسريع المهني الدفعة ال11',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
   {
     first_name: 'عبد الرحمن',
@@ -35,12 +37,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '05928068989729222',
     whatsapp: '059807474',
-    locationId: 1,
+    locationId: 3,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'انا صبحي اعيش في غزة لدي 5 من الابناء واعيش سعيدا',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 3,
   },
   {
     first_name: 'صباح',
@@ -49,12 +52,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '05928069997292222',
     whatsapp: '059544545',
-    locationId: 1,
+    locationId: 3,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'اعمل في مهنة الخياطة منذ 20 سنه وقمت  بتفصيل ازياء للمشاهير',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 3,
   },
   {
     first_name: 'علي',
@@ -69,6 +73,7 @@ const users = [
     description: ' عمري 33 سنة واعيش في مدينة غزة حياتي تسير بشكل عادي',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 3,
   },
   {
     first_name: 'محمود',
@@ -77,12 +82,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '0097280654321',
     whatsapp: '0599999999',
-    locationId: 1,
+    locationId: 2,
     image:
       'sahttps://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'خيرة الاباء في ايدي الابناء ',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
   {
     first_name: 'ثروت',
@@ -91,12 +97,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '0592548067292222222',
     whatsapp: '0598789012',
-    locationId: 1,
+    locationId: 4,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'لسنا الوحيدون ولكننا الافضل',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
   {
     first_name: 'عزيز',
@@ -105,12 +112,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '05928063472922222222',
     whatsapp: '05900022250',
-    locationId: 1,
+    locationId: 3,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: '20 عاما في الخدمة ',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
   {
     first_name: 'سالم',
@@ -119,12 +127,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '059280er6729222222222',
     whatsapp: '05981475693',
-    locationId: 1,
+    locationId: 2,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'الاخذ شيء جميل والعطاء شيء اجمل',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
   {
     first_name: 'عبد العليم',
@@ -133,12 +142,13 @@ const users = [
     password: '$2a$10$2DcYGTGfR06hcepi48.RCubqrqMrKyW1yD2RCZN1YU1UeNU/SC3bq',
     phone: '009725807878887',
     whatsapp: '0592804030',
-    locationId: 1,
+    locationId: 5,
     image:
       'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
     description: 'اعمل نجارا في شركة التمليك لتجارة الاخشاب',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
+    mainServiceId: 2,
   },
 ];
 
