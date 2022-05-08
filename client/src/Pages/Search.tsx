@@ -15,7 +15,7 @@ function Search() {
     totalReview: 5,
     subServices: [],
   };
-  const ArrayOfUsers = [userInfo, userInfo, userInfo, userInfo];
+  const ArrayOfUsers = [userInfo];
 
   return (
     <div className="container">

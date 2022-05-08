@@ -5,45 +5,47 @@ import { useTranslation } from 'react-i18next';
 import './style.css';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import { locationObject, serviceObject, request } from '../../utils';
+import ErrorComponent from '../Error';
 
 function FilterSection() {
   const { t } = useTranslation();
   const locationData = useLocation();
   const search : any = locationData.state;
-  const { serviceSearch, locationSearch, craftsmanSearch } = search;
+  const { serviceSearch, locationSearch } = search;
 
-  const [selectMainService, setMainService] = useState(true);
   const [mainServiceId, setMainServiceId] = useState(0);
+  const [subService, setSubService] = useState<number[]>([]);
   const [error, setError] = useState('');
-  const [errorExist, setErrorExist] = useState(false);
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
+
   const { data: { location, services } } = useContext(ServiceLocation);
   const { Option } = Select;
+
   useEffect(() => {
-    if (serviceSearch) setMainService(false);
     const getSubServicesData = async () => {
       try {
-        const { data } : any = await request('get', `/subservices/${mainServiceId || serviceSearch}`);
+        setError('');
+        const { data } : any = await request('get', `/subservices/${+mainServiceId || serviceSearch}`);
         setSubServices(data);
       } catch (responseError: any) {
-        setError(responseError?.data.msg);
-        setErrorExist(true);
+        setError(responseError.data.msg);
       }
     };
-    getSubServicesData();
-  }, [mainServiceId]);
+    if (mainServiceId || serviceSearch) getSubServicesData();
+  }, [mainServiceId, serviceSearch]);
+
   const handelSelectMainService = async (service: number) => {
+    setSubService([]);
     setMainServiceId(service);
-    setSubServices([]);
   };
 
   return (
     <div className="filter-container">
-      {console.log(error, errorExist)}
+      {error && <ErrorComponent errorMessage={error} />}
       <h2 className="filter-main-text">{t('filter-heading')}</h2>
       <div className="filter-options">
         <span className="filter-input-text">{t('home-search-name')}</span>
-        <Input placeholder={t('search-name')} className="filter-inputs" defaultValue={craftsmanSearch} />
+        <Input placeholder={t('search-name')} className="filter-inputs" />
 
         <span className="filter-input-text">{t('search-by-main-service')}</span>
         <Select
@@ -65,7 +67,9 @@ function FilterSection() {
           allowClear
           className="filter-inputs"
           placeholder={t('subService')}
-          disabled={selectMainService}
+          disabled={!mainServiceId}
+          value={subService}
+          onChange={(data : number[]) => setSubService(data)}
         >
           {subServices.map((item: serviceObject) => (
             <Option key={item.name} value={item.id}>
