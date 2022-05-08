@@ -1,30 +1,42 @@
-import React from 'react';
-import { FilterSection, UserCard } from '../Components';
+import React, { useState } from 'react';
+import { Empty } from 'antd';
+import { useTranslation } from 'react-i18next';
+import {
+  FilterSection, UserCard, SpinierComponent, ErrorComponent,
+} from '../Components';
 import ServiceLocationContext from '../Context/ServiceLocationContext';
+import { UserData } from '../utils';
 
 function Search() {
-  const userInfo = {
-    firstName: 'صباح',
-    lastName: 'الرابي',
-    email: 'stm1009#hotmail.com',
-    phone: '05928069997292222',
-    whatsapp: '059544545',
-    description: 'اعمل في مهنة الخياطة منذ 20 سنه وقمت  بتفصيل ازياء للمشاهير',
-    image:
-        'https://cdn.pixabay.com/photo/2020/06/01/22/23/eye-5248678__340.jpg',
-    totalReview: 5,
-    subServices: [],
-  };
-  const ArrayOfUsers = [userInfo];
+  const [users, setUsers] = useState<UserData[]>([]);
+  const [searchError, setSearchError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [resultCount, setResultCount] = useState<number>(1);
+  const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
+  const { t } = useTranslation();
 
   return (
     <div className="container">
       <div className="search-results-container">
         <ServiceLocationContext>
-          <FilterSection />
+          <FilterSection
+            setUsers={setUsers}
+            setSearchError={setSearchError}
+            setIsLoading={setIsLoading}
+            setResultCount={setResultCount}
+          />
         </ServiceLocationContext>
         <div className="user-cards-container">
-          {ArrayOfUsers.map((user) => <UserCard key={user.email} user={user} />)}
+          {isLoading ? <SpinierComponent /> : iff(
+            !searchError,
+            users.length ? (
+              users.map((user: UserData) => <UserCard key={user.id} user={user} />)
+            ) : (
+              <Empty description={(<span>{t('no-data')}</span>)} />
+            ),
+            <ErrorComponent errorMessage={searchError} />,
+          )}
+          {console.log(resultCount)}
         </div>
       </div>
     </div>
