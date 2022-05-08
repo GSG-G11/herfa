@@ -1,6 +1,5 @@
 const { getWorkPerPage } = require('./workPerPage');
-
-module.exports = { getWorkPerPage };
+const { deleteWork } = require('./deleteWork');
 const { editWork } = require('./editWork');
 
-module.exports = { getWorkPerPage, editWork };
+module.exports = { getWorkPerPage, editWork, deleteWork };
