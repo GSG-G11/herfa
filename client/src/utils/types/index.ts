@@ -112,3 +112,8 @@ export type Context = {
     isLoading: Boolean,
   },
 }
+export type LoggedUser = {
+  providerID: number;
+  providerName: string;
+  sub: string;
+}
