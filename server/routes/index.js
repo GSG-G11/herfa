@@ -7,7 +7,8 @@ const {
   loginHandler,
   getSearchResult,
   subServices,
-  // checkAuth,
+  deleteWork,
+  checkAuth,
 } = require('../controllers');
 
 // router.use(checkAuth);
@@ -18,6 +19,6 @@ router.get('/provider', getSearchResult);
 router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
-
 router.post('/reviews', addReview);
+router.delete('/work/:id', checkAuth, deleteWork);
 module.exports = router;
