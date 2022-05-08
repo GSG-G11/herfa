@@ -3,7 +3,7 @@ const app = require('../app');
 const { build } = require('../database/seeders');
 const { sequelize } = require('../database/config');
 
-beforeAll(() => build());
+beforeEach(() => build());
 
 describe('Test GET /', () => {
 
