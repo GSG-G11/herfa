@@ -10,8 +10,8 @@ import { ServiceLocation } from '../../Context/ServiceLocationContext';
 
 function WelcomeSearch() {
   const { t } = useTranslation();
-  const [locationSearch, setLocationSearch] = useState(0);
-  const [craftsmanSearch, setCraftsmanSearch] = useState('');
+  const [locationSearch, setLocationSearch] = useState();
+  const [craftsmanSearch, setCraftsmanSearch] = useState();
   const { Option } = Select;
   const { data: { location } } = useContext(ServiceLocation);
 

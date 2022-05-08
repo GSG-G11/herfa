@@ -1,11 +1,10 @@
 .filter-container{
-  width: 35%;
+  width: 40%;
   height: 100vh;
-  margin-top: 80px;
   box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.308);
   background-color: white;
   border: 0.5px solid #E6E6E6;
-  padding: 10px;
+  padding: 2%;
 }
 .filter-inputs{
   width: 80%;
@@ -17,4 +16,7 @@
   padding: 2% 0px;
   font-weight: 500;
   display: block;
+}
+.filter-options{
+  padding-right: 6%;
 }
