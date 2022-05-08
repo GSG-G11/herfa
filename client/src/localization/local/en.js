@@ -29,11 +29,17 @@ const en = {
   'home-search-specific-location': 'Example: بيت حانون',
   'home-welcome-search': 'Search for the most suitable craftsman to get everything you need done.',
   city: 'choose the city',
-  'home-search-name': 'Search for the name of craftsman',
+  'home-search-name': 'Search for by name',
   'home-join-us': 'Join the world of craftsmen now',
   'home-join-us-description': 'Register now and become a member of our community and offer your services to business owners',
   'home-join-us-button': 'Register Now',
   'error-heading': 'There is ERROR occurred',
+  'filter-heading': 'Search Filter',
+  'search-by-main-service': 'Main Service',
+  'search-by-sub-service': 'Sub Services',
+  service: 'Example: الحدادة',
+  subService: 'Example: حدادة أبواب',
+  'search-name': 'Example: محمد أحمد',
 };
 
 export default en;

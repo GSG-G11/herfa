@@ -10,14 +10,14 @@ function SearchButton() {
   const { t } = useTranslation();
   const { data: { location } } = useContext(ServiceLocation);
   const { Option } = Select;
-  const [searchValueFromInput, setSearchValueFromInput] = useState('');
+  const [searchValueFromInput, setSearchValueFromInput] = useState();
 
   return (
     <div>
       <Select
         size="large"
         showSearch
-        onSelect={(citySearched: string) => setSearchValueFromInput(citySearched)}
+        onSelect={(citySearched: any) => setSearchValueFromInput(citySearched)}
         className="select-location-home-page"
         placeholder={t('home-search-specific-location')}
         optionFilterProp="children"
