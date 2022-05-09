@@ -100,12 +100,18 @@ function FilterSection(
       <h2 className="filter-main-text">{t('filter-heading')}</h2>
       <div className="filter-options">
         <span className="filter-input-text">{t('home-search-name')}</span>
-        <Input placeholder={t('search-name')} className="filter-inputs" onChange={(e: Event) => handelNameInputChange(e)} />
+        <Input
+          placeholder={t('search-name')}
+          className="filter-inputs"
+          allowClear
+          onChange={(e: Event) => handelNameInputChange(e)}
+        />
         <span className="filter-input-text">{t('search-by-main-service')}</span>
         <Select
           placeholder={t('service')}
           className="filter-inputs"
           defaultValue={search?.serviceSearch}
+          allowClear
           onChange={(service: number) => handelSelectMainService(service)}
         >
           {services.map((item: serviceObject) => (
@@ -121,7 +127,7 @@ function FilterSection(
           allowClear
           className="filter-inputs"
           placeholder={t('subService')}
-          disabled={!mainServiceId}
+          disabled={!mainServiceId && !search?.serviceSearch}
           value={subService}
           onChange={(data : number[]) => setSubService(data)}
         >
@@ -133,7 +139,13 @@ function FilterSection(
         </Select>
 
         <span className="filter-input-text">{t('home-search-location')}</span>
-        <Select placeholder={t('city')} className="filter-inputs" onChange={(e:number) => handelLocationInput(e)} defaultValue={search?.locationSearch}>
+        <Select
+          placeholder={t('city')}
+          className="filter-inputs"
+          allowClear
+          onChange={(e:number) => handelLocationInput(e)}
+          defaultValue={search?.locationSearch}
+        >
           {location.map((item: locationObject) => (
             <Option key={item.city} value={item.id}>
               {item.city}
