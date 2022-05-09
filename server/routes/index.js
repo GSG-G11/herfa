@@ -23,9 +23,8 @@ router.post('/login', loginHandler);
 router.post('/reviews', addReview);
 // example how to upload image using S3
 router.post('/img', async (req, res) => {
-  console.log(req.files);
-  const data = await uploadImage(req.files.avatare);
-  console.log(data);
+  const { userId } = req.body;
+  const data = await uploadImage(req.files.image, userId);
   res.json({ data });
 });
 router.delete('/work/:id', checkAuth, deleteWork);
