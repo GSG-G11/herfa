@@ -39,7 +39,7 @@ function FilterSection(
   const getSubServicesData = async () => {
     try {
       setError('');
-      const { data } : any = await request('get', `/subservices/${+mainServiceId || search.serviceSearch}`);
+      const { data } : any = await request('get', `/subservices/${+mainServiceId || search?.serviceSearch}`);
       setSubServices(data);
     } catch (responseError: any) {
       setError(responseError.data.msg);
@@ -59,7 +59,6 @@ function FilterSection(
     setPage(1);
   };
   const onSuccess = (data: SearchResponse) => {
-    console.log(data);
     setSearchError('');
     setIsLoading(false);
     setResultCount(data.count);
@@ -74,8 +73,8 @@ function FilterSection(
   };
   useEffect(() => {
     let queryString = '';
-    const serviceQuery = mainServiceId || search.serviceSearch;
-    const locationQuery = locationInput || search.locationSearch;
+    const serviceQuery = mainServiceId || search?.serviceSearch;
+    const locationQuery = locationInput || search?.locationSearch;
     if (serviceQuery) {
       queryString += `&service=${serviceQuery}`;
     }
@@ -92,8 +91,8 @@ function FilterSection(
     getSearchResults(queryString, onSuccess, onFailed, isLoading);
   }, [mainServiceId, subService, locationInput, name, page]);
   useEffect(() => {
-    if (mainServiceId || search.serviceSearch) getSubServicesData();
-  }, [mainServiceId, search.serviceSearch]);
+    if (mainServiceId || search?.serviceSearch) getSubServicesData();
+  }, [mainServiceId, search?.serviceSearch]);
 
   return (
     <div className="filter-container">
@@ -106,7 +105,7 @@ function FilterSection(
         <Select
           placeholder={t('service')}
           className="filter-inputs"
-          defaultValue={search.serviceSearch}
+          defaultValue={search?.serviceSearch}
           onChange={(service: number) => handelSelectMainService(service)}
         >
           {services.map((item: serviceObject) => (
@@ -134,7 +133,7 @@ function FilterSection(
         </Select>
 
         <span className="filter-input-text">{t('home-search-location')}</span>
-        <Select placeholder={t('city')} className="filter-inputs" onChange={(e:number) => handelLocationInput(e)} defaultValue={search.locationSearch}>
+        <Select placeholder={t('city')} className="filter-inputs" onChange={(e:number) => handelLocationInput(e)} defaultValue={search?.locationSearch}>
           {location.map((item: locationObject) => (
             <Option key={item.city} value={item.id}>
               {item.city}

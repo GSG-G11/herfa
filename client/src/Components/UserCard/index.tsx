@@ -16,6 +16,7 @@ function UserCard({ user }: { user: UserData }) {
     image,
     avgRating,
     main_service: mainServices,
+    location,
   } = user;
   const { t } = useTranslation();
   return (
@@ -34,7 +35,7 @@ function UserCard({ user }: { user: UserData }) {
               <h2><Link to={`/user/${user.id}`}>{`${firstName} ${lastName}`}</Link></h2>
               <Rate allowHalf defaultValue={avgRating} disabled className="rate" />
             </div>
-            <p>gaza</p>
+            <p>{location?.city}</p>
             <div className="div-80-2 search-user-card-contact">
               <p>{email}</p>
               <p>{phone}</p>
