@@ -14,6 +14,7 @@ import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
 import LoggedUserInfoProvider from './Context/LoggedUserContext';
+import Nav from './Components/NavBar';
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -29,6 +30,7 @@ function App() {
     <LoggedUserInfoProvider>
       <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
         <div>
+          <Nav />
           {t('title')}
           <form>
             <button
