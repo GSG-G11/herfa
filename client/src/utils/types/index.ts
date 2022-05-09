@@ -158,4 +158,6 @@ export interface FilterSearchProps {
   setSearchError: (value: string) => void;
   setIsLoading: (value: boolean) => void;
   setResultCount: (value: number) => void;
+  setPage: (value: number) => void;
+  page: number;
 }
