@@ -21,7 +21,7 @@ function uploadImage(img, userId) {
   const uploadParams = {
     Bucket: bucketName,
     Body: fileStream,
-    Key: `${userId}/${uuid.v1()}`,
+    Key: `${userId}/${uuid.v1()}.png`,
   };
   return s3.upload(uploadParams).promise();
 }
