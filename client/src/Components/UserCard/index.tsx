@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Image, Rate } from 'antd';
 import { useTranslation } from 'react-i18next';
 import './style.css';
@@ -30,7 +31,7 @@ function UserCard({ user }: { user: UserData }) {
         <div className="search-user-card-body">
           <div className="search-user-card-info">
             <div className="div-80-2 search-user-name">
-              <h2>{`${firstName} ${lastName}`}</h2>
+              <h2><Link to={`/user/${user.id}`}>{`${firstName} ${lastName}`}</Link></h2>
               <Rate allowHalf defaultValue={avgRating} disabled className="rate" />
             </div>
             <p>gaza</p>
