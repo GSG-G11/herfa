@@ -10,7 +10,7 @@ import { UserData } from '../utils';
 function Search() {
   const [users, setUsers] = useState<UserData[]>([]);
   const [searchError, setSearchError] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [resultCount, setResultCount] = useState<number>(1);
   const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
