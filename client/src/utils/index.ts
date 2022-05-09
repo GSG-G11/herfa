@@ -14,6 +14,7 @@ import {
   OneUserType,
   Context,
   LoggedUser,
+  LoginFormType,
 } from './types';
 
 export {
@@ -34,4 +35,5 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
+  LoginFormType,
 };

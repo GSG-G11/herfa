@@ -117,3 +117,7 @@ export type LoggedUser = {
   providerName: string;
   sub: string;
 }
+export type LoginFormType = {
+  email: string,
+  password:string,
+}

@@ -40,6 +40,12 @@ const en = {
   service: 'Example: الحدادة',
   subService: 'Example: حدادة أبواب',
   'search-name': 'Example: محمد أحمد',
+  'login-title': 'Log In',
+  'login-email': 'Email',
+  'login-password': 'Password',
+  'login-signup-text': 'don\'t have an account?',
+  'login-to-signup': 'Sign Up',
+  'login-button': 'Submit',
 };
 
 export default en;

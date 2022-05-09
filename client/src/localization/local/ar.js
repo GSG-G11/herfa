@@ -39,6 +39,12 @@ const ar = {
   service: 'مثال: الحدادة',
   subService: 'مثال: حدادة أبواب',
   'search-name': 'مثال: محمد أحمد',
+  'login-title': 'تسجيل الدخول',
+  'login-email': 'البريد الالكتروني',
+  'login-password': 'كلمة المرور',
+  'login-signup-text': 'إذا كنت لا تمتلك حساباً؟قم',
+  'login-to-signup': 'بالتسجيل',
+  'login-button': 'تسجيل دخول',
 };
 
 export default ar;
