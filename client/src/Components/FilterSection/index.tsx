@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Input, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
-import './style.css';
+import ErrorComponent from '../Error';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
+import './style.css';
 import {
   locationObject,
   serviceObject,
@@ -12,7 +13,6 @@ import {
   SearchResponse,
   Event,
 } from '../../utils';
-import ErrorComponent from '../Error';
 
 function FilterSection(
   {
@@ -20,6 +20,8 @@ function FilterSection(
     setSearchError,
     setIsLoading,
     setResultCount,
+    setPage,
+    page,
   }: FilterSearchProps,
 ) {
   const { t } = useTranslation();
@@ -45,6 +47,43 @@ function FilterSection(
       setSearchError(responseError.data.msg);
     }
   };
+  const getSubServicesData = async () => {
+    try {
+      setError('');
+      const { data } : any = await request('get', `/subservices/${+mainServiceId || serviceSearch}`);
+      setSubServices(data);
+    } catch (responseError: any) {
+      setError(responseError.data.msg);
+    }
+  };
+  const handelSelectMainService = async (service: number) => {
+    setSubService([]);
+    setMainServiceId(service);
+    setPage(1);
+  };
+  const handelNameInputChange = async (e: Event) => {
+    setName(e.target.value);
+    setPage(1);
+  };
+  const handelLocationInput = async (e: number) => {
+    setLocationInput(e);
+    setPage(1);
+  };
+  useEffect(() => {
+    let queryString = '';
+    if (serviceSearch) {
+      queryString += `&service=${serviceSearch}`;
+    }
+    if (locationSearch) {
+      queryString += `&location=${locationSearch}`;
+    }
+    if (page !== 1) {
+      queryString += `&page=${page}`;
+    }
+    if (queryString) {
+      getSearchResults(queryString);
+    }
+  }, []);
   useEffect(() => {
     let queryString = '';
     if (mainServiceId) {
@@ -59,36 +98,16 @@ function FilterSection(
     if (locationInput) {
       queryString += `&location=${locationInput}`;
     }
+    if (page !== 1) {
+      queryString += `&page=${page}`;
+    }
     if (queryString) {
-      console.log(queryString);
       getSearchResults(queryString);
     }
-  }, [mainServiceId, subService, locationInput, name]);
+  }, [mainServiceId, subService, locationInput, name, page]);
   useEffect(() => {
-    const getSubServicesData = async () => {
-      try {
-        setError('');
-        const { data } : any = await request('get', `/subservices/${+mainServiceId || serviceSearch}`);
-        setSubServices(data);
-      } catch (responseError: any) {
-        setError(responseError.data.msg);
-      }
-    };
     if (mainServiceId || serviceSearch) getSubServicesData();
   }, [mainServiceId, serviceSearch]);
-
-  const handelSelectMainService = async (service: number) => {
-    setSubService([]);
-    setMainServiceId(service);
-  };
-
-  const handelNameInputChange = async (e: Event) => {
-    setName(e.target.value);
-  };
-  const handelLocationInput = async (e: number) => {
-    setLocationInput(e);
-    console.log(typeof e);
-  };
 
   return (
     <div className="filter-container">
@@ -97,7 +116,6 @@ function FilterSection(
       <div className="filter-options">
         <span className="filter-input-text">{t('home-search-name')}</span>
         <Input placeholder={t('search-name')} className="filter-inputs" onChange={(e: Event) => handelNameInputChange(e)} />
-
         <span className="filter-input-text">{t('search-by-main-service')}</span>
         <Select
           placeholder={t('service')}
