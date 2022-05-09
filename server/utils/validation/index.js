@@ -4,6 +4,7 @@ const reviewValidation = require('./reviewValidation');
 const searchRequestValidation = require('./searchRequestValidation');
 const mainServiceIdValidation = require('./mainServiceIdValidation');
 const loginValidation = require('./loginValidation');
+const workValidation = require('./workValidation');
 
 module.exports = {
   paramsValidation,
@@ -12,4 +13,5 @@ module.exports = {
   workIdValidation,
   mainServiceIdValidation,
   loginValidation,
+  workValidation,
 };
