@@ -42,8 +42,8 @@ const getSearchResult = async (req, res, next) => {
       where.mainServiceId = +service;
     }
     const { count, rows } = await User.findAndCountAll({
-      limit: 6,
-      offset: (page - 1) * 6,
+      limit: 5,
+      offset: (page - 1) * 5,
       where,
       attributes: {
         exclude: ['password', 'createdAt', 'updatedAt'],
