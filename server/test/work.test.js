@@ -34,7 +34,6 @@ describe('Routes Tests GET /api/v1/work/:providerId', () => {
       .set('Cookie', [`token= ${process.env.TOKEN}`])
       .expect(200)
       .end((err, res) => {
-        console.log(res)
         if (err) done(err);
         expect(res.statusCode).toBe(200);
         done();
@@ -59,7 +58,6 @@ describe('Routes Tests GET /api/v1/work/:providerId', () => {
       .set('Cookie', [`token= ${process.env.TOKEN}`])
       .expect(400)
       .end((err, res) => {
-        console.log(res)
         if (err) done(err);
         expect(res.statusCode).toBe(400);
         done();
