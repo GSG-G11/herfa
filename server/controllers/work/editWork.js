@@ -5,8 +5,9 @@ const { uploadImage, deleteImage } = require('../../utils');
 
 const editWork = async (req, res, next) => {
   try {
-    const { id } = await workEditValidation.validateAsync(req.body);
-    const { title, content } = req.body;
+    const {
+      id, title, content, image,
+    } = await workEditValidation.validateAsync(req.body);
     const { providerID } = req;
     const work = await Work.findByPk(id);
     if (!work) {
@@ -15,20 +16,26 @@ const editWork = async (req, res, next) => {
     if (work.userId !== +providerID) {
       throw customError('Unauthorized', 401);
     }
-    let imgUrl = '';
-    if (req.files) {
-      const { image } = req.files;
-      imgUrl = await uploadImage(image, work.userId);
-      deleteImage(work.image);
+    let imgUrl = image;
+    const imgArr = image.split('/').pop();
+    const key = `${work.userId}/${imgArr}.png`;
+
+    const { imageAws } = req.files;
+    if (imageAws) {
+      const imgAws = await uploadImage(imageAws, work.userId);
+      imgUrl = imgAws.Location;
+      // console.log();
+      deleteImage(key);
     }
 
     await work.update({
       title,
       content,
-      image: imgUrl.Location,
+      image: imgUrl,
     });
     res.json({ msg: 'work updated successfully', data: work });
   } catch (error) {
+    console.log(error);
     if (error.name === 'ValidationError') {
       return next(customError(error.message, 400));
     }

@@ -15,7 +15,7 @@ router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
 router.post('/reviews', addReview);
-router.patch('/work/editWork/', checkAuth, editWork);
+router.patch('/work/', checkAuth, editWork);
 router.delete('/work/:id', checkAuth, deleteWork);
 // example how to upload image using S3
 router.post('/img', async (req, res) => {
