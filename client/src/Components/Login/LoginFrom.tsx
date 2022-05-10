@@ -16,14 +16,22 @@ function LoginForm() {
   const onFinish = async (values: loginProps) => {
     try {
       const loginResult = await axios.post('/api/v1/login', values);
-      if (!loginResult) {
-        throw new Error('logged in faild');
-      }
-      console.log(loginResult.data.id);
-      const newLink = `/user/${loginResult.data.providrName}`;
+      // if (loginResult.status) {
+      //   console.log('faild');
+      //   // throw new Error('logged in faild');
+      // }
+      console.log(loginResult.data);
+      console.log(loginResult.data.data.providerName);
+      const newLink = `/user/${loginResult.data.data.providerName}`;
       navigate(newLink);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      if (err.response) {
+        if (err.response.status === 401) {
+          alert('incorrect Email or Password ..');
+        }
+      } else {
+        console.log(err);
+      }
     }
   };
   const { t } = useTranslation();
