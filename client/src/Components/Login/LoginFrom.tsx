@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
-  Form, Input, Button,
+  Form, Input, Button, message,
 } from 'antd';
 import axios from 'axios';
 import { LoginFormType } from '../../utils';
@@ -16,18 +16,13 @@ function LoginForm() {
   const onFinish = async (values: loginProps) => {
     try {
       const loginResult = await axios.post('/api/v1/login', values);
-      // if (loginResult.status) {
-      //   console.log('faild');
-      //   // throw new Error('logged in faild');
-      // }
-      console.log(loginResult.data);
-      console.log(loginResult.data.data.providerName);
       const newLink = `/user/${loginResult.data.data.providerName}`;
+      message.success(loginResult.data.msg);
       navigate(newLink);
     } catch (err: any) {
       if (err.response) {
         if (err.response.status === 401) {
-          alert('incorrect Email or Password ..');
+          message.warning('incorrect Email or Password ..');
         }
       } else {
         console.log(err);
