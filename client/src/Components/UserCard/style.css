@@ -32,6 +32,13 @@
 .user-cards-container{
     width: 100%;
 }
+.pagination{
+    width : 50%;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    align-items: center;
+}
 
 .page-header{
     font-size: 1.8rem;

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const {
-  getHomeData,
-  getWorkPerPage,
   getProfileInfo,
   addReview,
+  getHomeData,
+  getWorkPerPage,
+  editWork,
   loginHandler,
   getSearchResult,
   subServices,
@@ -22,6 +23,8 @@ router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
 router.post('/reviews', addReview);
+router.patch('/work/', checkAuth, editWork);
+router.delete('/work/:id', checkAuth, deleteWork);
 // example how to upload image using S3
 router.post('/img', async (req, res) => {
   const { userId } = req.body;

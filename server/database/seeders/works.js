@@ -57,7 +57,7 @@ const works = [
     title: 'تبليط ساحة مسجد',
     content: 'بالزخام والجرانيت تم الانتهاء من تبليط ساحة مسجد بعد عمل شاق',
     userId: 2,
-    image: 'https://herfa.s3.eu-west-2.amazonaws.com/2/f7454dc0-cf6a-11ec-a5f1-61119f11f019',
+    image: 'https://herfa.s3.eu-aaaawest-2.amazonaws.com/2/f7454dc0-cf6a-11ec-a5f1-61119f11f019',
   },
   {
     title: 'دهانات الحديد',
