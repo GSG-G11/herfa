@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import {
   Form, Input, Button, message,
 } from 'antd';
@@ -12,24 +12,35 @@ interface loginProps {
 }
 
 function LoginForm() {
+  const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const location: any = useLocation();
   const onFinish = async (values: loginProps) => {
     try {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
       const loginResult = await axios.post('/api/v1/login', values);
       const newLink = `/user/${loginResult.data.data.providerName}`;
-      message.success(loginResult.data.msg);
-      navigate(newLink);
+      message.success(t('success-login'));
+      console.log(location);
+      navigate(location.state?.from || newLink);
     } catch (err: any) {
       if (err.response) {
         if (err.response.status === 401) {
-          message.warning('incorrect Email or Password ..');
+          message.warning(t('failed-login'));
+        } else if (err.response.status === 500) {
+          console.log(err.message);
+        } else if (err.response.status === 400) {
+          console.log(err.message);
         }
       } else {
         console.log(err);
       }
     }
   };
-  const { t } = useTranslation();
   return (
     <div className="login-form">
       <h1>{t('login-title')}</h1>
@@ -40,14 +51,13 @@ function LoginForm() {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
-        onFinish={(e) => { onFinish(e); }} // console to test here ...
-        onFinishFailed={() => { console.log('faild submit...'); }} // console to test here ...
+        onFinish={(e) => { onFinish(e); }}
         autoComplete="off"
       >
         <Form.Item
           label={t('login-email')}
           name="email"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          rules={[{ required: true, message: t('required-email') }, { type: 'email', message: t('invalid-email') }]}
         >
           <Input />
         </Form.Item>
@@ -55,17 +65,16 @@ function LoginForm() {
         <Form.Item
           label={t('login-password')}
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[{ required: true, message: t('required-password') }, { min: 8, message: t('invalid-password') }]}
         >
           <Input.Password />
         </Form.Item>
-
-        <Form.Item className="login-form-text">
-          <p>{t('login-signup-text')}</p>
-          <p className="signup-text">{t('login-to-signup')}</p>
-        </Form.Item>
+        <p>
+          {`${t('login-signup-text')} `}
+          <Link className="signup-text" to="/signup">{t('login-to-signup')}</Link>
+        </p>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button className="form-button" type="primary" htmlType="submit">
+          <Button className="form-button" type="primary" htmlType="submit" loading={loading}>
             {t('login-button')}
           </Button>
         </Form.Item>

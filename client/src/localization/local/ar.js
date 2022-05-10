@@ -46,6 +46,12 @@ const ar = {
   'login-to-signup': 'بالتسجيل',
   'login-button': 'تسجيل دخول',
   'no-data': 'لا يوجد بيانات',
+  'success-login': 'تم تسجيل الدخول بنجاح ..',
+  'failed-login': 'بريد إلكتروني أو كلمة مرور خاطئة ..',
+  'required-email': 'الرجاء إدخال البريد الإلكتروني!',
+  'required-password': 'الرجاء إدخال كلمة المرور!',
+  'invalid-email': 'البريد الإلكتروني غير صحيح',
+  'invalid-password': 'يجب ألا تقل كلمة المرور عن ٨ أحرف',
 };
 
 export default ar;

@@ -47,6 +47,12 @@ const en = {
   'login-to-signup': 'Sign Up',
   'login-button': 'Submit',
   'no-data': 'No data',
+  'success-login': 'logged in successfully ..',
+  'failed-login': 'incorrect Email or Password ..',
+  'required-email': 'Please input your email!',
+  'required-password': 'Please input your password!',
+  'invalid-email': 'email is not a valid email',
+  'invalid-password': 'password must be at least 8 characters',
 };
 
 export default en;

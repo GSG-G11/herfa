@@ -7,7 +7,7 @@ function LogInPage() {
   return (
     <div className="login-container">
       <div className="img-container">
-        <img src={loginImg} alt="login img" />
+        <img className="login-img" src={loginImg} alt="login img" />
       </div>
       <LoginForm />
     </div>
