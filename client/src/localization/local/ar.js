@@ -39,6 +39,13 @@ const ar = {
   service: 'مثال: الحدادة',
   subService: 'مثال: حدادة أبواب',
   'search-name': 'مثال: محمد أحمد',
+  'delete-work-modal-header': 'حذف هذا العمل',
+  'ok-button': 'تأكيد',
+  'cancel-button': 'الغاء',
+  'delete-message-1': 'هل أنت متأكد أنك تريد حذف هذا العمل؟',
+  'delete-message-2': 'يمكنك التعديل عليه في أي وقت اذا لاحظت اي خطأ !',
+  'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
+  'successfully-delete-load': 'يتم الان الحذف ...',
 };
 
 export default ar;
