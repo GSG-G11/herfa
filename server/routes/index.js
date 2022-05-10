@@ -15,12 +15,12 @@ router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
 router.post('/reviews', addReview);
-router.route('/work/editWork/').delete(checkAuth, deleteWork).patch(checkAuth, editWork);
+router.patch('/work/editWork/', checkAuth, editWork);
+router.delete('/work/:id', checkAuth, deleteWork);
 // example how to upload image using S3
 router.post('/img', async (req, res) => {
   const { userId } = req.body;
   const data = await uploadImage(req.files.image, userId);
   res.json({ data });
 });
-// router.delete('/work/:id', checkAuth, deleteWork);
 module.exports = router;
