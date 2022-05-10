@@ -14,6 +14,11 @@ import {
   OneUserType,
   Context,
   LoggedUser,
+  UserData,
+  FilterSearchProps,
+  SearchResponse,
+  Event,
+  ServiceSearch,
 } from './types';
 
 export {
@@ -34,4 +39,9 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
+  UserData,
+  FilterSearchProps,
+  SearchResponse,
+  Event,
+  ServiceSearch,
 };

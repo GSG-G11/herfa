@@ -117,3 +117,47 @@ export type LoggedUser = {
   providerName: string;
   sub: string;
 }
+export type Location = {
+  id: number;
+  city: string;
+}
+export type MainService = {
+  id: number;
+  name: string;
+}
+export type UserData = {
+  id: number;
+  avgRating: number;
+  description: string;
+  email: string;
+  facebook_link: string;
+  instagram_link: string;
+  image: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  whatsapp: string;
+  location: Location;
+  main_service: MainService;
+  services: [];
+}
+export type SearchResponse = {
+  count: number;
+  data: UserData[];
+  msg: string;
+}
+export type Event = {
+  target: { value: string };
+}
+export type ServiceSearch = {
+  serviceSearch: number;
+  locationSearch: number;
+}
+export interface FilterSearchProps {
+  setUsers: (value: UserData[]) => void;
+  setSearchError: (value: string) => void;
+  setIsLoading: (value: boolean) => void;
+  setResultCount: (value: number) => void;
+  setPage: (value: number) => void;
+  page: number;
+}
