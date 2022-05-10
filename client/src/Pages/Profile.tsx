@@ -34,8 +34,12 @@ function Profile() {
     getData();
   }, []);
   const act = {
-    edit() {},
-    setting() {},
+    edit(id: number) {
+      console.log(' work id when click edit button', id);
+    },
+    async delete(id: number) {
+      await request('delete', `/work/${id}`);
+    },
   };
   const isAuth = {
     isAuth: true,
