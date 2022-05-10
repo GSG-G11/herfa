@@ -2,25 +2,10 @@ import React, { useState } from 'react';
 import { Card, Modal, message } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { WorkCardProps } from '../../utils';
 import './style.css';
 
 const { Meta } = Card;
-interface WorkCardProps {
-  work: {
-    title: string;
-    content: string;
-    image: string;
-    userId: number;
-    id: number,
-  };
-  actions: {
-    edit: (id: number) => void;
-    delete: (id: number) => void;
-  };
-  isAuth: {
-    isAuth: boolean;
-  }
-}
 
 function WorkCard({ work, actions, isAuth }: WorkCardProps) {
   const { t } = useTranslation();
@@ -74,9 +59,9 @@ function WorkCard({ work, actions, isAuth }: WorkCardProps) {
         <p>{t('delete-message-2')}</p>
       </Modal>
       <Modal title="Edit Work" visible={isClickEdit} onOk={() => console.log('ok is clicked edit')} onCancel={handelCancel}>
+        {/* <p>Some contents...</p>
         <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <p>Some contents...</p> */}
       </Modal>
     </>
   );

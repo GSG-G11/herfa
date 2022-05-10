@@ -19,6 +19,7 @@ import {
   SearchResponse,
   Event,
   ServiceSearch,
+  WorkCardProps,
 } from './types';
 
 export {
@@ -44,4 +45,5 @@ export type {
   SearchResponse,
   Event,
   ServiceSearch,
+  WorkCardProps,
 };

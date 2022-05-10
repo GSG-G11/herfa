@@ -161,3 +161,20 @@ export interface FilterSearchProps {
   setPage: (value: number) => void;
   page: number;
 }
+
+export interface WorkCardProps {
+  work: {
+    title: string;
+    content: string;
+    image: string;
+    userId: number;
+    id: number,
+  };
+  actions: {
+    edit: (id: number) => void;
+    delete: (id: number) => void;
+  };
+  isAuth: {
+    isAuth: boolean;
+  }
+}
