@@ -1,4 +1,5 @@
 const { getHomeData } = require('./home');
+const { editWork } = require('./work');
 const { getWorkPerPage, deleteWork } = require('./work');
 const { getProfileInfo, addReview, getSearchResult } = require('./user');
 const { subServices } = require('./search');
@@ -13,6 +14,7 @@ module.exports = {
   subServices,
   loginHandler,
   checkAuth,
+  editWork,
   deleteWork,
   getSearchResult,
 };
