@@ -1,8 +1,16 @@
 const router = require('express').Router();
 const {
-  getProfileInfo, addReview, getSearchResult, getHomeData, getWorkPerPage, subServices, checkAuth,
-  editWork, deleteWork,
+  getProfileInfo,
+  addReview,
+  getHomeData,
+  getWorkPerPage,
+  editWork,
   loginHandler,
+  getSearchResult,
+  subServices,
+  deleteWork,
+  checkAuth,
+  addWork,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
@@ -23,4 +31,7 @@ router.post('/img', async (req, res) => {
   const data = await uploadImage(req.files.image, userId);
   res.json({ data });
 });
+// router.use(checkAuth);
+router.post('/work', checkAuth, addWork);
+router.delete('/work/:id', checkAuth, deleteWork);
 module.exports = router;
