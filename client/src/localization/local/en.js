@@ -46,6 +46,7 @@ const en = {
   'login-signup-text': 'don\'t have an account?',
   'login-to-signup': 'Sign Up',
   'login-button': 'Submit',
+  'no-data': 'No data',
 };
 
 export default en;

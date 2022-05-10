@@ -45,6 +45,7 @@ const ar = {
   'login-signup-text': 'إذا كنت لا تمتلك حساباً؟قم',
   'login-to-signup': 'بالتسجيل',
   'login-button': 'تسجيل دخول',
+  'no-data': 'لا يوجد بيانات',
 };
 
 export default ar;
