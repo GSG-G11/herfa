@@ -1,4 +1,9 @@
 const en = {
+  home: 'Home',
+  search: 'Search',
+  profile: 'Profile',
+  logout: 'Logout',
+  login: 'Login',
   title: 'Hello World',
   'home-greeting': 'Home Page',
   'profile-greeting': 'Profile Page',
