@@ -1,24 +1,30 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
   Form, Input, Button,
 } from 'antd';
+import axios from 'axios';
 import { LoginFormType } from '../../utils';
 
 interface loginProps {
   values: LoginFormType,
 }
+
 function LoginForm() {
-  const onFinish = (values: loginProps) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    };
-    fetch('/api/v1/login', requestOptions)
-      .then((data) => data.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+  const navigate = useNavigate();
+  const onFinish = async (values: loginProps) => {
+    try {
+      const loginResult = await axios.post('/api/v1/login', values);
+      if (!loginResult) {
+        throw new Error('logged in faild');
+      }
+      console.log(loginResult.data.id);
+      const newLink = `/user/${loginResult.data.providrName}`;
+      navigate(newLink);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const { t } = useTranslation();
   return (
