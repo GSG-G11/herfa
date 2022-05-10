@@ -17,7 +17,7 @@ import LoggedUserInfoProvider from './Context/LoggedUserContext';
 import Nav from './Components/NavBar';
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language);
 
   useEffect(() => {
@@ -29,28 +29,17 @@ function App() {
   return (
     <LoggedUserInfoProvider>
       <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
-        <div>
-          <Nav />
-          {t('title')}
-          <form>
-            <button
-              type="button"
-              onClick={() => setLang(i18n.language === 'ar' ? 'en' : 'ar')}
-            >
-              {i18n.language === 'ar' ? 'English' : 'العربية'}
-            </button>
-          </form>
-          <Router>
-            <Routes>
-              <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
-              <Route path="/user/:userName" element={<Profile />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-        </div>
+        <Router>
+          <Nav language={lang} setLanguage={setLang} />
+          <Routes>
+            <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
+            <Route path="/user/:userName" element={<Profile />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
       </ConfigProvider>
     </LoggedUserInfoProvider>
   );
