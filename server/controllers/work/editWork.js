@@ -13,26 +13,27 @@ const editWork = async (req, res, next) => {
     if (!work) {
       throw customError('work does not exist', 400);
     }
-    if (work.userId !== +providerID) {
+    const { userId, image } = work;
+    if (userId !== +providerID) {
       throw customError('Unauthorized', 401);
     }
-    let imgUrl = work.image;
+    let imgUrl = image;
 
     const { workImg } = req.files;
     if (workImg) {
-      const imgAws = await uploadImage(workImg, work.userId);
+      const imgAws = await uploadImage(workImg, userId);
       imgUrl = imgAws.Location;
     }
     await work.update({
-      where: { id: work.id },
       title,
       content,
       image: imgUrl,
+    }, {
+      where: { id },
     });
     res.json({ msg: 'work updated successfully', data: work });
-
     if (workImg) {
-      const key = work.image.split('https://herfa.s3.eu-west-2.amazonaws.com/')[1];
+      const key = image.split('https://herfa.s3.eu-west-2.amazonaws.com/')[1];
       await deleteImage(key);
     }
   } catch (error) {
