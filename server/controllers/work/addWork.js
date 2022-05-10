@@ -19,7 +19,6 @@ const addWork = async (request, response, next) => {
     });
     response.status(201).json({ msg: 'Work is added successfully' });
   } catch (error) {
-    console.log(error);
     if (error.name === 'ValidationError') next(customError(error.message, 400));
     next(error);
   }
