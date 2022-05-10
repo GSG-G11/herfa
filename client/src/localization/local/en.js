@@ -45,6 +45,7 @@ const en = {
   service: 'Example: الحدادة',
   subService: 'Example: حدادة أبواب',
   'search-name': 'Example: محمد أحمد',
+  'no-data': 'No data',
 };
 
 export default en;

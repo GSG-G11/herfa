@@ -15,6 +15,11 @@ import {
   Context,
   LoggedUser,
   NavBarProps,
+  UserData,
+  FilterSearchProps,
+  SearchResponse,
+  Event,
+  ServiceSearch,
 } from './types';
 
 export {
@@ -36,4 +41,9 @@ export type {
   Context,
   LoggedUser,
   NavBarProps,
+  UserData,
+  FilterSearchProps,
+  SearchResponse,
+  Event,
+  ServiceSearch,
 };
