@@ -62,6 +62,17 @@ test('Testing for delete work /api/v1/work/1 and get status 200', (done) => {
       done();
     });
 });  
+  test('Testing for delete work /api/v1/work/1000 and get status 400 work not exist', (done) => {
+    supertest(app)
+      .delete('/api/v1/work/1000')
+      .set('Cookie', [`token= ${process.env.TOKEN}`])
+      .expect(400)
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res.statusCode).toBe(400);
+        done();
+      });
+  });
 
 test('Testing for delete work /api/v1/work/1 and get status 401 UnAuthorized', (done) => {
   supertest(app)
