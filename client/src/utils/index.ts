@@ -14,6 +14,7 @@ import {
   OneUserType,
   Context,
   LoggedUser,
+  NavBarProps,
 } from './types';
 
 export {
@@ -34,4 +35,5 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
+  NavBarProps,
 };
