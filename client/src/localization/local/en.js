@@ -47,7 +47,6 @@ const en = {
   'login-to-signup': 'Sign Up',
   'login-button': 'Submit',
   'no-data': 'No data',
-  'success-login': 'logged in successfully ..',
   'failed-login': 'incorrect Email or Password ..',
   'required-email': 'Please input your email!',
   'required-password': 'Please input your password!',

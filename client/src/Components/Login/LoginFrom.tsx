@@ -19,15 +19,12 @@ function LoginForm() {
   const onFinish = async (values: loginProps) => {
     try {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
       const loginResult = await axios.post('/api/v1/login', values);
+      setLoading(false);
       const newLink = `/user/${loginResult.data.data.providerName}`;
-      message.success(t('success-login'));
-      console.log(location);
       navigate(location.state?.from || newLink);
     } catch (err: any) {
+      setLoading(false);
       if (err.response) {
         if (err.response.status === 401) {
           message.warning(t('failed-login'));
