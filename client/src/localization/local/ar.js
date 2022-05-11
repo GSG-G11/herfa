@@ -1,4 +1,9 @@
 const ar = {
+  home: 'الرئيسية',
+  search: 'بحث',
+  profile: 'الملف الشخصي',
+  logout: 'تسجيل الخروج',
+  login: 'تسجيل الدخول',
   title: 'مرحبا',
   'home-greeting': 'الصفحة الرئيسية',
   'profile-greeting': 'صفحة المستخدم',
