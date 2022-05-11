@@ -41,7 +41,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
-              <Route path="/user/:userName" element={<Profile />} />
+              <Route path="/user/:id" element={<Profile />} />
               <Route path="/search" element={<Search />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<LogIn />} />
