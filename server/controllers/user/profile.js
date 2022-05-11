@@ -14,7 +14,6 @@ const { customError } = require('../errors');
 const getProfileInfo = async (req, res, next) => {
   try {
     const { id } = await paramsValidation.validateAsync(req.params);
-    const { page = 1 } = req.query;
     const user = await User.findByPk(id, {
       include: [
         { model: Location },
@@ -40,7 +39,6 @@ const getProfileInfo = async (req, res, next) => {
       }),
       Work.findAndCountAll({
         limit: 4,
-        offset: (page - 1) * 4,
         where: {
           userId: id,
         },
