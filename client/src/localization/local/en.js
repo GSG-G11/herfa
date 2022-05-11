@@ -45,7 +45,12 @@ const en = {
   service: 'Example: الحدادة',
   subService: 'Example: حدادة أبواب',
   'search-name': 'Example: محمد أحمد',
-  'no-data': 'No data',
+  'ok-button': 'Ok',
+  'cancel-button': 'Cancel',
+  'delete-message-1': 'Are you sure that you want to delete this work?',
+  'successfully-delete': 'Your work deleted successfully',
+  'successfully-delete-load': 'Delete loading',
+  'error-delete-message': 'An error ocurred.Try later',
 };
 
 export default en;
