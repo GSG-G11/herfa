@@ -52,6 +52,7 @@ const ar = {
   'required-password': 'الرجاء إدخال كلمة المرور!',
   'invalid-email': 'البريد الإلكتروني غير صحيح',
   'invalid-password': 'يجب ألا تقل كلمة المرور عن ٨ أحرف',
+  'error-message': 'حدث خطأ ما يرجى المحاولة لاحقا',
 };
 
 export default ar;

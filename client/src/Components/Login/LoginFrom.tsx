@@ -32,12 +32,12 @@ function LoginForm() {
         if (err.response.status === 401) {
           message.warning(t('failed-login'));
         } else if (err.response.status === 500) {
-          console.log(err.message);
+          message.warning(t('error-message'));
         } else if (err.response.status === 400) {
-          console.log(err.message);
+          message.warning(err.response.data.msg);
         }
       } else {
-        console.log(err);
+        message.warning(t('error-message'));
       }
     }
   };

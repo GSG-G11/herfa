@@ -53,6 +53,7 @@ const en = {
   'required-password': 'Please input your password!',
   'invalid-email': 'email is not a valid email',
   'invalid-password': 'password must be at least 8 characters',
+  'error-message': 'something went wrong try again later',
 };
 
 export default en;
