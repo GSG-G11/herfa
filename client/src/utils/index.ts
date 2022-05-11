@@ -19,6 +19,9 @@ import {
   SearchResponse,
   Event,
   ServiceSearch,
+  ProfileInfoResponse,
+  UserResponse,
+  Reviews,
 } from './types';
 
 export {
@@ -44,4 +47,7 @@ export type {
   SearchResponse,
   Event,
   ServiceSearch,
+  ProfileInfoResponse,
+  UserResponse,
+  Reviews,
 };

@@ -47,6 +47,18 @@ export interface Request {
     totalReviews: number;
   };
 }
+
+export type UserResponse = {
+    user: User;
+    reviews: any;
+    works: Works;
+    totalReviews: number;
+    count: number;
+}
+export interface ProfileInfoResponse {
+  data: any;
+  msg: string;
+}
 export interface AllWorks {
   1: [];
 }
