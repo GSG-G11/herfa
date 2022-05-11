@@ -1,28 +1,19 @@
 import React from 'react';
 import { Pagination, Empty } from 'antd';
 import WorkCard from '../WorkCard/WorkCard';
-import { OnWork } from '../../utils';
+import { OnWork, WorkListProps } from '../../utils';
 import SpinierComponent from '../Spinier';
 import ErrorComponent from '../Error';
 
 const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
-type Props = {
-  worksData: OnWork[];
-  page: number;
-  handlePageChange: (page: number) => void;
-  resultCount: number;
-  isAuth: {isAuth: boolean};
-  isLoading: boolean;
-  error: string;
-};
 const act = {
   edit() {},
   setting() {},
 };
 function WorkList({
   worksData, page, handlePageChange, resultCount, isAuth, isLoading, error,
-}:Props) {
+}:WorkListProps) {
   return (
     <div className="works-container">
       {isLoading ? <SpinierComponent /> : iff(
