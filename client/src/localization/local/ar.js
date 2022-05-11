@@ -49,6 +49,7 @@ const ar = {
   'delete-message-1': 'هل أنت متأكد أنك تريد حذف هذا العمل؟',
   'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
   'successfully-delete-load': 'يتم الان الحذف ...',
+  'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
 };
 
 export default ar;

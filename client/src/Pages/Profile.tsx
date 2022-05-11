@@ -33,14 +33,6 @@ function Profile() {
     };
     getData();
   }, []);
-  const act = {
-    edit(id: number) {
-      console.log(' work id when click edit button', id);
-    },
-    async delete(id: number) {
-      await request('delete', `/work/${id}`);
-    },
-  };
   const isAuth = {
     isAuth: true,
   };
@@ -57,7 +49,7 @@ function Profile() {
           <UserInfoCard userInfo={userData} />
           <div className="work-card-container">
             {worksData[1].map((work: OnWork) => (
-              <WorkCard key={work.id} work={work} actions={act} isAuth={isAuth} />
+              <WorkCard key={work.id} work={work} isAuth={isAuth} />
             ))}
           </div>
         </>

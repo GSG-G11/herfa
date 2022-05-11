@@ -4,26 +4,27 @@ import {
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { WorkCardProps } from '../../utils';
+import { WorkCardProps, request } from '../../utils';
 import './style.css';
 
 const { Meta } = Card;
 
-function WorkCard({ work, actions, isAuth }: WorkCardProps) {
+function WorkCard({ work, isAuth }: WorkCardProps) {
   const { t } = useTranslation();
   const [isClickEdit, setIsClickEdit] = useState(false);
 
-  const handelDelete = () => {
-    actions.delete(work.id);
-    const key = 'deleted';
-    message.loading({ content: t('successfully-delete-load'), key });
-    setTimeout(() => {
-      message.success({ content: t('successfully-delete'), key, duration: 2 });
-    }, 1000);
+  const handelDelete = async () => {
+    try {
+      const result = await request('delete', `/work/${`${work.id}`}`);
+      if (result.msg === 'work deleted successfully') message.success(t('successfully-delete'));
+    } catch (error: any) {
+      if (error) message.error(t('error-delete-message'));
+    }
   };
+
   const handelEdit = () => {
     setIsClickEdit(true);
-    actions.edit(work.id);
+    // actions.edit(work.id);
   };
   const handelCancelEdit = () => {
     setIsClickEdit(false);

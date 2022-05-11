@@ -174,10 +174,6 @@ export interface WorkCardProps {
     userId: number;
     id: number,
   };
-  actions: {
-    edit: (id: number) => void;
-    delete: (id: number) => void;
-  };
   isAuth: {
     isAuth: boolean;
   }

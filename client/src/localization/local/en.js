@@ -50,6 +50,7 @@ const en = {
   'delete-message-1': 'Are you sure that you want to delete this work?',
   'successfully-delete': 'Your work deleted successfully',
   'successfully-delete-load': 'Delete loading',
+  'error-delete-message': 'An error ocurred.Try later',
 };
 
 export default en;
