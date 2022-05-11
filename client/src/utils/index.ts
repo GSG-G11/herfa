@@ -22,6 +22,10 @@ import {
   ProfileInfoResponse,
   UserResponse,
   Reviews,
+  HomeReviewProps,
+  WorkListProps,
+  ProfileDataProps,
+  WorksProps,
 } from './types';
 
 export {
@@ -50,4 +54,8 @@ export type {
   ProfileInfoResponse,
   UserResponse,
   Reviews,
+  HomeReviewProps,
+  WorkListProps,
+  ProfileDataProps,
+  WorksProps,
 };

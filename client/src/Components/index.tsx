@@ -10,6 +10,7 @@ import SpinierComponent from './Spinier';
 import ErrorComponent from './Error';
 import UserCard from './UserCard';
 import FilterSection from './FilterSection';
+import WorkList from './WorksList';
 
 export {
   Reviews,
@@ -24,4 +25,5 @@ export {
   ErrorComponent,
   UserCard,
   FilterSection,
+  WorkList,
 };

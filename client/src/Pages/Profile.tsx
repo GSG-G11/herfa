@@ -1,95 +1,93 @@
-import React, { useEffect, useState } from 'react';
-import { Pagination, Carousel } from 'antd';
-import { WorkCard, UserInfoCard } from '../Components';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import {
-  Works, OnWork, request, ProfileInfoResponse, User, UserResponse, Reviews,
+  UserInfoCard, SpinierComponent, WorkList, Reviews, ErrorComponent,
+} from '../Components';
+import {
+  Works, User, TopTenReviews, ProfileDataProps, WorksProps,
 } from '../utils';
-import ReviewCard from '../Components/Reviews/ReviewCard';
+import { UserContext } from '../Context/LoggedUserContext';
+import getUserProfileData from '../Controllers/getProfileData';
+import getWorksData from '../Controllers/getWorks';
+
+const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
 function Profile() {
   const [userData, setUserData] = useState<User>();
   const [worksData, setWorksData] = useState<Works>([]);
-  const [reviewsArray, setReviewsArray] = useState([{}]);
+  const [reviewsArray, setReviewsArray] = useState<TopTenReviews[]>([]);
   const [reviewsAvg, setReviewsAvg] = useState<number>(0);
   const [error, setError] = useState('');
+  const [workError, setWorkError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [workLoading, setWorkLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [resultCount, setResultCount] = useState<number>(1);
-
+  const { id = 1 } = useParams();
+  const userInfo: any = useContext(UserContext);
   const handlePageChange = (PageNnm: number) => {
     setPage(PageNnm);
   };
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(false);
-        const response : ProfileInfoResponse = await request('get', `/providers/2?page=${page}`);
-        const { data } : {data: UserResponse} = response;
-        const { user } : {user: User} = data;
-        const { works }: { works: Works } = data;
-        const { reviews }: { reviews: Reviews } = data;
-        const { totalReviews }: { totalReviews: number} = data;
-        const { count } = data;
-        setReviewsArray(reviews);
-        setReviewsAvg(totalReviews);
-        setUserData(user);
-        setWorksData(works);
-        setResultCount(count);
-      } catch (responseError: any) {
-        setError(responseError?.data.msg);
-        setIsLoading(false);
-      }
-    };
-    getData();
-  }, [page]);
-  const act = {
-    edit() {},
-    setting() {},
+  const onSuccess = (
+    user:User,
+    works:Works,
+    reviews:TopTenReviews[],
+    totalReviews:number,
+    count:number,
+  ) => {
+    setReviewsArray(reviews);
+    setReviewsAvg(totalReviews);
+    setUserData(user);
+    setWorksData(works);
+    setResultCount(count);
   };
+  const onFailed = (err:any) => {
+    setError(err?.data.msg);
+  };
+  const getUserProfileDataParams: ProfileDataProps = {
+    setPage, setIsLoading, successCB: onSuccess, failedCB: onFailed, id: +id,
+  };
+  const onGetWorkSuccess = (works: Works) => {
+    setWorksData(works);
+  };
+  const onGetWorkFailed = (workErr: any) => {
+    setWorkError(workErr);
+  };
+  const getWorkDataParams: WorksProps = {
+    setWorkLoading,
+    successCB: onGetWorkSuccess,
+    failedCB: onGetWorkFailed,
+    id: +id,
+    page,
+  };
+  useEffect(() => {
+    getUserProfileData(getUserProfileDataParams);
+  }, []);
+  useEffect(() => {
+    getWorksData(getWorkDataParams);
+  }, [page]);
   const isAuth = {
-    isAuth: true,
+    isAuth: userInfo?.providerID === +id,
   };
   return (
     <div className="container">
-      { console.log(reviewsAvg)}
-      { console.log(reviewsArray)}
-      { console.log(userData)}
-      { console.log(page)}
-      {isLoading ? (
-        <h1>
-          loading
-          {error}
-        </h1>
-      ) : (
+      {isLoading ? <SpinierComponent /> : iff(
+        !error,
         <>
-          {userData && <UserInfoCard userInfo={{ user: userData, totalReviews: reviewsAvg }} />}
-          <div className="work-card-container">
-            {worksData?.map((work: OnWork) => (
-              <WorkCard key={work?.id} work={work} actions={act} isAuth={isAuth} />
-            ))}
-          </div>
-        </>
+          <UserInfoCard userInfo={{ user: userData, totalReviews: reviewsAvg }} />
+          <WorkList
+            worksData={worksData}
+            page={page}
+            handlePageChange={handlePageChange}
+            resultCount={resultCount}
+            isAuth={isAuth}
+            isLoading={workLoading}
+            error={workError}
+          />
+          <Reviews data={reviewsArray} />
+        </>,
+        <ErrorComponent errorMessage={error} />,
       )}
-      <div className="pagination">
-        <Pagination
-          defaultCurrent={1}
-          onChange={handlePageChange}
-          total={resultCount}
-          defaultPageSize={5}
-        />
-      </div>
-      <div className="reviewsSection">
-        <h2 className="headline-text">
-          what-they-say-about-us
-        </h2>
-        <div className="carouselContainer">
-          <Carousel autoplay arrows className="reviewSlider">
-            {reviewsArray?.map(
-              (item: any) => <ReviewCard key={item.userId} review={item} />,
-            )}
-          </Carousel>
-        </div>
-      </div>
     </div>
   );
 }

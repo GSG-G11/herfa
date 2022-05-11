@@ -173,3 +173,31 @@ export interface FilterSearchProps {
   setPage: (value: number) => void;
   page: number;
 }
+export type HomeReviewProps = {
+  data: TopTenReviews[];
+}
+export type WorkListProps = {
+  worksData: OnWork[];
+  page: number;
+  handlePageChange: (page: number) => void;
+  resultCount: number;
+  isAuth: {isAuth: boolean};
+  isLoading: boolean;
+  error: string;
+};
+export type ProfileDataProps = {
+  setPage: (page: number) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  successCB: (
+    user:User,
+    works: Works, reviews:TopTenReviews[], totalReviews:number, count: number) => void;
+  failedCB: (msg: string) => void;
+  id: number;
+}
+export type WorksProps = {
+  setWorkLoading: (value: boolean) => void;
+  successCB: (data: any) => void;
+  failedCB: (msg: string) => void;
+  id : number;
+  page : number;
+}
