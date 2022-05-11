@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Card, Modal, message } from 'antd';
+import {
+  Card, message, Popconfirm, Modal,
+} from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { WorkCardProps } from '../../utils';
@@ -9,12 +11,10 @@ const { Meta } = Card;
 
 function WorkCard({ work, actions, isAuth }: WorkCardProps) {
   const { t } = useTranslation();
-  const [isClickDelete, setIsClickDelete] = useState(false);
   const [isClickEdit, setIsClickEdit] = useState(false);
 
   const handelDelete = () => {
     actions.delete(work.id);
-    setIsClickDelete(false);
     const key = 'deleted';
     message.loading({ content: t('successfully-delete-load'), key });
     setTimeout(() => {
@@ -25,9 +25,8 @@ function WorkCard({ work, actions, isAuth }: WorkCardProps) {
     setIsClickEdit(true);
     actions.edit(work.id);
   };
-  const handelCancel = () => {
-    if (setIsClickDelete) setIsClickDelete(false);
-    if (setIsClickEdit) setIsClickEdit(false);
+  const handelCancelEdit = () => {
+    setIsClickEdit(false);
   };
 
   return (
@@ -36,7 +35,14 @@ function WorkCard({ work, actions, isAuth }: WorkCardProps) {
         className="work-card"
         hoverable
         actions={isAuth.isAuth ? [
-          <DeleteOutlined onClick={() => setIsClickDelete(true)} key="delete" />,
+          <Popconfirm
+            title={t('delete-message-1')}
+            onConfirm={handelDelete}
+            okText={t('ok-button')}
+            cancelText={t('cancel-button')}
+          >
+            <DeleteOutlined key="delete" />
+          </Popconfirm>,
           <EditOutlined onClick={handelEdit} key="edit" />,
         ] : []}
         cover={<img alt="example" src={work.image} />}
@@ -47,21 +53,10 @@ function WorkCard({ work, actions, isAuth }: WorkCardProps) {
           description={work.content}
         />
       </Card>
-      <Modal
-        title={t('delete-work-modal-header')}
-        visible={isClickDelete}
-        onOk={handelDelete}
-        onCancel={handelCancel}
-        okText={t('ok-button')}
-        cancelText={t('cancel-button')}
-      >
-        <p>{t('delete-message-1')}</p>
-        <p>{t('delete-message-2')}</p>
-      </Modal>
-      <Modal title="Edit Work" visible={isClickEdit} onOk={() => console.log('ok is clicked edit')} onCancel={handelCancel}>
-        {/* <p>Some contents...</p>
+      <Modal title="Edit Work" visible={isClickEdit} onOk={() => console.log('ok is clicked edit')} onCancel={handelCancelEdit}>
         <p>Some contents...</p>
-        <p>Some contents...</p> */}
+        <p>Some contents...</p>
+        <p>Some contents...</p>
       </Modal>
     </>
   );
