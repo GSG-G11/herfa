@@ -1,10 +1,10 @@
 // /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useContext } from 'react';
 import {
-  Menu, Layout, Button, Dropdown, Image,
+  Menu, Layout, Button, Dropdown, Image, MenuProps,
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserContext } from '../../Context/LoggedUserContext';
 import { NavBarProps } from '../../utils';
@@ -18,17 +18,32 @@ function Nav({ language, setLanguage }: NavBarProps) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const userData: any = useContext(UserContext);
-  const navBarItems: any = [
-    { label: <NavLink to="/"> { t('home') } </NavLink> },
-    { label: <NavLink to="/search"> { t('search') } </NavLink> },
+  const navBarItems: MenuProps['items'] = [
+    {
+      label: t('home'),
+      key: '/',
+    },
+    {
+      label: t('search'),
+      key: '/search',
+    },
   ];
-  const subMenuItems: any = [
-    { label: <NavLink to="/"> { t('profile') } </NavLink> },
-    { label: <NavLink to="/"> { t('logout') } </NavLink> },
+  const subMenuItems: MenuProps['items'] = [
+    {
+      label: t('profile'),
+      key: `/user/${userData?.providerID}`,
+    },
+    {
+      label: t('logout'),
+      key: '/logout',
+    },
   ];
   const menu = (
     <Menu
       items={subMenuItems}
+      onClick={({
+        key,
+      }) => navigate(key)}
     />
   );
 
@@ -38,7 +53,7 @@ function Nav({ language, setLanguage }: NavBarProps) {
       <Dropdown.Button
         icon={<DownOutlined />}
         overlay={menu}
-        onClick={() => navigate(`/user/${userData.providerID}`)}
+        onClick={() => navigate(`/user/${userData?.providerID}`)}
       >
         {userData?.providerName}
       </Dropdown.Button>
@@ -55,6 +70,9 @@ function Nav({ language, setLanguage }: NavBarProps) {
             mode="horizontal"
             defaultSelectedKeys={['0']}
             items={navBarItems}
+            onClick={({
+              key,
+            }) => navigate(key)}
           />
           <Button className="lang-btn" onClick={() => setLanguage(i18n.language === 'ar' ? 'en' : 'ar')}>
             {language === 'ar' ? 'En' : 'Ar'}
