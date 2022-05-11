@@ -14,13 +14,14 @@ import {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
   SearchResponse,
   Event,
   ServiceSearch,
+  WorkCardProps,
+  LoginFormType,
 } from './types';
 
 export {
@@ -41,11 +42,12 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
   SearchResponse,
   Event,
   ServiceSearch,
+  WorkCardProps,
+  LoginFormType,
 };

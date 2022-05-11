@@ -33,10 +33,6 @@ function Profile() {
     };
     getData();
   }, []);
-  const act = {
-    edit() {},
-    setting() {},
-  };
   const isAuth = {
     isAuth: true,
   };
@@ -53,7 +49,7 @@ function Profile() {
           <UserInfoCard userInfo={userData} />
           <div className="work-card-container">
             {worksData[1].map((work: OnWork) => (
-              <WorkCard key={work.id} work={work} actions={act} isAuth={isAuth} />
+              <WorkCard key={work.id} work={work} isAuth={isAuth} />
             ))}
           </div>
         </>
