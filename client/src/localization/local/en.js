@@ -53,6 +53,12 @@ const en = {
   'invalid-email': 'email is not a valid email',
   'invalid-password': 'password must be at least 8 characters',
   'error-message': 'something went wrong try again later',
+  'ok-button': 'Ok',
+  'cancel-button': 'Cancel',
+  'delete-message-1': 'Are you sure that you want to delete this work?',
+  'successfully-delete': 'Your work deleted successfully',
+  'successfully-delete-load': 'Delete loading',
+  'error-delete-message': 'An error ocurred.Try later',
 };
 
 export default en;

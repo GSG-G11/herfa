@@ -52,6 +52,12 @@ const ar = {
   'invalid-email': 'البريد الإلكتروني غير صحيح',
   'invalid-password': 'يجب ألا تقل كلمة المرور عن ٨ أحرف',
   'error-message': 'حدث خطأ ما يرجى المحاولة لاحقا',
+  'ok-button': 'تأكيد',
+  'cancel-button': 'الغاء',
+  'delete-message-1': 'هل أنت متأكد أنك تريد حذف هذا العمل؟',
+  'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
+  'successfully-delete-load': 'يتم الان الحذف ...',
+  'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
 };
 
 export default ar;
