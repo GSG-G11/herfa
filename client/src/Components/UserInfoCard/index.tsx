@@ -29,6 +29,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
       email,
       description,
       location,
+      main_service: mainService,
     },
     totalReviews,
   } = userInfo;
@@ -70,6 +71,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
           <p>{location.city}</p>
           {t('servicesOffer')}
           <p className="services">
+            {mainService.name}
             {services
               && services.map((service: OneService) => (
                 <span key={service.id} className="service">
