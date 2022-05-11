@@ -21,6 +21,7 @@ import {
   SearchResponse,
   Event,
   ServiceSearch,
+  signUpForm,
 } from './types';
 
 export {
@@ -48,4 +49,5 @@ export type {
   SearchResponse,
   Event,
   ServiceSearch,
+  signUpForm,
 };

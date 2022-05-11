@@ -58,6 +58,21 @@ const ar = {
   'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
   'successfully-delete-load': 'يتم الان الحذف ...',
   'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
+
+  'First Name': 'الاسم الاول',
+  'Last Name': 'الاسم الاخير',
+  Email: 'البريد الالكتروني',
+  Password: 'كلمة السر',
+  'Confirm Password': 'تأكيد كلمة السر',
+  'Phone Number': 'رقم الهاتف',
+  Address: 'العنوان',
+  City: 'المدينة',
+  Country: 'الدولة',
+  'Zip Code': 'الرمز البريدي',
+  'Sign Up': 'سجل',
+  Register: 'تسجيل',
+  'crate-account': 'إنشاء حساب',
+  Next: 'التالي',
 };
 
 export default ar;

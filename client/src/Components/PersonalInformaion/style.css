@@ -1,0 +1,18 @@
+.personal-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #fff;    
+}
+.name-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.name-input .firstNameInput{
+    height: 100%;
+    padding: 0 15px;
+}

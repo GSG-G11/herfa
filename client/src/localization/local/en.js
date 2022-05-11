@@ -59,6 +59,17 @@ const en = {
   'successfully-delete': 'Your work deleted successfully',
   'successfully-delete-load': 'Delete loading',
   'error-delete-message': 'An error ocurred.Try later',
+
+  'First Name': 'First Name',
+  'Last Name': 'Last Name',
+  Email: 'Email',
+  Password: 'Password',
+  'Confirm Password': 'Confirm Password',
+  'Phone Number': 'Phone Number',
+  'Sign Up': 'Sign Up',
+  Register: 'Register',
+  'crate-account': 'Create an account',
+  Next: 'Next',
 };
 
 export default en;

@@ -6,6 +6,7 @@ const { getProfileInfo, addReview, getSearchResult } = require('./user');
 const { subServices } = require('./search');
 const loginHandler = require('./login');
 const checkAuth = require('./middleware');
+const signUpHandler = require('./signUp');
 
 module.exports = {
   getHomeData,
@@ -19,4 +20,5 @@ module.exports = {
   deleteWork,
   getSearchResult,
   addWork,
+  signUpHandler,
 };

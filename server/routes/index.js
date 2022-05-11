@@ -11,6 +11,7 @@ const {
   deleteWork,
   checkAuth,
   addWork,
+  signUpHandler,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
@@ -22,6 +23,7 @@ router.get('/provider', getSearchResult);
 router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
+router.post('/signup', signUpHandler);
 router.post('/reviews', addReview);
 router.patch('/work/', checkAuth, editWork);
 router.delete('/work/:id', checkAuth, deleteWork);
