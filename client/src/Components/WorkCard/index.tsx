@@ -54,7 +54,7 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
           description={work.content}
         />
       </Card>
-      <Modal title="Edit Work" visible={isClickEdit} onOk={() => console.log('ok is clicked edit')} onCancel={handelCancelEdit}>
+      <Modal title="Edit Work" visible={isClickEdit} onOk={() => {}} onCancel={handelCancelEdit}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
