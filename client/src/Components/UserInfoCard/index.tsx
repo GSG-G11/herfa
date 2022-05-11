@@ -29,7 +29,10 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
       email,
       description,
       location,
+      whatsapp,
       main_service: mainService,
+      facebook_link: facebookLink,
+      instagram_link: instagramLink,
     },
     totalReviews,
   } = userInfo;
@@ -56,7 +59,6 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
         <div className="image">
           <Image width={100} src={image} />
         </div>
-
         <div className="content">
           <div className="name">
             <h2>{firstName}</h2>
@@ -85,7 +87,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
           <p>{email}</p>
           <p>{phone}</p>
           <div className="social">
-            <a href="https://www.google.fr/">
+            <a href={instagramLink}>
               {' '}
               <FontAwesomeIcon
                 style={{ color: '#AA38A5' }}
@@ -93,7 +95,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
                 size="2x"
               />
             </a>
-            <a href="https://www.google.ps/">
+            <a href={facebookLink}>
               {' '}
               <FontAwesomeIcon
                 style={{ color: '#009FD9' }}
@@ -104,15 +106,17 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
           </div>
 
           <div className="footer">
-            <span>
-              <FontAwesomeIcon
-                icon={faWhatsapp}
-                size="2x"
-                style={{ color: '#56A309' }}
-              />
-              {' '}
-              {t('contactMe')}
-            </span>
+            <a href={`https://wa.me/${whatsapp}`}>
+              <span>
+                <FontAwesomeIcon
+                  icon={faWhatsapp}
+                  size="2x"
+                  style={{ color: '#56A309' }}
+                />
+                {' '}
+                {t('contactMe')}
+              </span>
+            </a>
             <span>
               <Button
                 type="text"
