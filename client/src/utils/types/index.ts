@@ -121,6 +121,10 @@ export type LoginFormType = {
   email: string,
   password:string,
 }
+export type NavBarProps = {
+  language: string;
+  setLanguage: (lang: string) => void;
+};
 export type Location = {
   id: number;
   city: string;

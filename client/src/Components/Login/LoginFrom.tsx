@@ -21,7 +21,7 @@ function LoginForm() {
       setLoading(true);
       const loginResult = await axios.post('/api/v1/login', values);
       setLoading(false);
-      const newLink = `/user/${loginResult.data.data.providerName}`;
+      const newLink = `/user/${loginResult.data.data.id}`;
       navigate(location.state?.from || newLink);
     } catch (err: any) {
       setLoading(false);
