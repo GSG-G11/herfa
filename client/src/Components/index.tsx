@@ -1,5 +1,5 @@
 import Reviews from './Reviews';
-import WorkCard from './WorkCard/WorkCard';
+import WorkCard from './WorkCard';
 import UserInfoCard from './UserInfoCard';
 import MainServices from './mainServices';
 import SearchByLocation from './Search';
@@ -25,7 +25,7 @@ export {
   SpinierComponent,
   ErrorComponent,
   UserCard,
-  FilterSection,
   WorkList,
   LogInPage,
+  FilterSection,
 };

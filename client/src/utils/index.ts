@@ -14,7 +14,6 @@ import {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
@@ -28,6 +27,8 @@ import {
   WorkListProps,
   ProfileDataProps,
   WorksProps,
+  WorkCardProps,
+  LoginFormType,
 } from './types';
 
 export {
@@ -48,7 +49,6 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
@@ -62,4 +62,6 @@ export type {
   WorkListProps,
   ProfileDataProps,
   WorksProps,
+  WorkCardProps,
+  LoginFormType,
 };

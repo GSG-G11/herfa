@@ -129,10 +129,6 @@ export type LoggedUser = {
   providerName: string;
   sub: string;
 }
-export type LoginFormType = {
-  email: string,
-  password:string,
-}
 export type NavBarProps = {
   language: string;
   setLanguage: (lang: string) => void;
@@ -208,4 +204,21 @@ export type WorksProps = {
   failedCB: (msg: string) => void;
   id : number;
   page : number;
+}
+
+export interface WorkCardProps {
+  work: {
+    title: string;
+    content: string;
+    image: string;
+    userId: number;
+    id: number,
+  };
+  isAuth: {
+    isAuth: boolean;
+  }
+}
+export type LoginFormType = {
+  email: string,
+  password:string,
 }
