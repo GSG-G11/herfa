@@ -35,7 +35,6 @@
             "error"
           ],
           "linebreak-style": 0,
-          "no-console": 0,
-          "react/jsx-one-expression-per-line": "off"
+          "no-console": 0
     }
 }
