@@ -7,8 +7,7 @@ import {
   Works, User, TopTenReviews, ProfileDataProps, WorksProps,
 } from '../utils';
 import { UserContext } from '../Context/LoggedUserContext';
-import getUserProfileData from '../Controllers/getProfileData';
-import getWorksData from '../Controllers/getWorks';
+import { getUserProfileData, getWorksData } from '../Controllers';
 
 const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
