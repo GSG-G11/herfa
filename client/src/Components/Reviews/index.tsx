@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Empty } from 'antd';
+import { Carousel } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ReviewCard from './ReviewCard';
 import { TopTenReviews, HomeReviewProps } from '../../utils';
@@ -21,7 +21,7 @@ function HomeReview({ data }: HomeReviewProps) {
           </Carousel>
         </div>
       </div>
-    ) : (<Empty description={(<span>{t('no-data')}</span>)} />)
+    ) : null
   );
 }
 
