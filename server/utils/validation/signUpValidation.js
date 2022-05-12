@@ -10,8 +10,8 @@ const signUpValidation = Joi.object({
   locationId: Joi.number().required(),
   image: Joi.string().required(),
   description: Joi.string(),
-  facebook_link: Joi.string().required(),
-  instagram_link: Joi.string().required(),
+  facebook_link: Joi.string(),
+  instagram_link: Joi.string(),
   mainServiceId: Joi.number().required(),
 });
 
