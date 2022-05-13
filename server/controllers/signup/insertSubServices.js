@@ -1,7 +1,7 @@
 const { ServiceUser } = require('../../database/models');
 
 const insertSubServices = async (subservice, userId) => {
-  let subs = {};
+  let subs = [];
   subs = subservice.map((sub) => ({
     userId,
     serviceId: +sub,
