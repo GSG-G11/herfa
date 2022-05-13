@@ -4,6 +4,7 @@ const { customError } = require('../errors');
 const { checkIsUserExists } = require('./checkIsUserExists');
 const { generateToken } = require('./generateToken');
 const { getDataToInsert } = require('./dataToInsert');
+const { insertSubServices } = require('./insertSubServices');
 
 const signUp = async (req, res, next) => {
   try {
@@ -12,11 +13,12 @@ const signUp = async (req, res, next) => {
     if (message) throw customError(message, 400);
     const dataToInsert = await getDataToInsert(userData);
     const user = await User.create(dataToInsert);
+    await insertSubServices(userData, user.id);
     const { token, data } = await generateToken(user);
     res.status(201).cookie('userToken', token).json({ msg: 'logged in successfully', data });
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(customError(err.message, 400));
+      return next(customError(err.message, 400));
     }
     return next(err);
   }
