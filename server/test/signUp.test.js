@@ -10,12 +10,11 @@ const userTest = {
   phone: '0599999999',
   whatsapp: '00972599999999',
   locationId: 1,
-  image:
-    'https://lh3.googleusercontent.com/ogw/ADea4I7drtUrcE8MKpdrcG9O2ENkamqSpx_P8ItAFJcz2A',
   description: 'صالح معروف خريج هندسة الحاسوب من الجامعة الإسلامية بغزة',
   facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
   instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
   mainServiceId: 1,
+  // subservice:[1],
 };
 
 beforeAll(() => build());
@@ -28,7 +27,10 @@ describe('Test POST api/v1/signup', () => {
       .expect(201)
       .send(userTest)
       .end((error, response) => {
-        if (error) done(error);
+        if (error){
+          console.log(error);
+          return done(error);
+        } 
         expect(response.statusCode).toBe(201);
         expect(response.type).toBe('application/json');
         expect(response.body.data.providerName).toBe('صالح معروف');
