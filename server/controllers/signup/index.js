@@ -19,7 +19,6 @@ const signUp = async (req, res, next) => {
     const { token, data } = await generateToken(user);
     res.status(201).cookie('userToken', token).json({ msg: 'logged in successfully', data });
   } catch (err) {
-    console.log(err);
     if (err.name === 'ValidationError') {
       return next(customError(err.message, 400));
     }

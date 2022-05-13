@@ -14,7 +14,7 @@ const userTest = {
   facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
   instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
   mainServiceId: 1,
-  // subservice:[1],
+  subservice:[1],
 };
 
 beforeAll(() => build());
@@ -27,10 +27,7 @@ describe('Test POST api/v1/signup', () => {
       .expect(201)
       .send(userTest)
       .end((error, response) => {
-        if (error){
-          console.log(error);
-          return done(error);
-        } 
+        if (error) done(error);
         expect(response.statusCode).toBe(201);
         expect(response.type).toBe('application/json');
         expect(response.body.data.providerName).toBe('صالح معروف');
