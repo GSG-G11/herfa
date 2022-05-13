@@ -29,6 +29,7 @@ import {
   WorksProps,
   WorkCardProps,
   LoginFormType,
+  ProviderDataType,
 } from './types';
 
 export {
@@ -64,4 +65,5 @@ export type {
   WorksProps,
   WorkCardProps,
   LoginFormType,
+  ProviderDataType,
 };

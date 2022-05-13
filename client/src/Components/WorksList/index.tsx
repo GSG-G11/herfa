@@ -14,7 +14,7 @@ function WorkList({
     <div className="works-container">
       {isLoading ? <SpinierComponent /> : iff(
         !error,
-        worksData.length ? (
+        worksData?.length ? (
           <div className="work-card-container">
             { worksData?.map((work: OnWork) => (
               <WorkCard key={work?.id} work={work} isAuth={isAuth} />

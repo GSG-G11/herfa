@@ -1,5 +1,9 @@
 import {
-  ProfileInfoResponse, request, UserResponse, User, Works, TopTenReviews, ProfileDataProps,
+  ProfileInfoResponse,
+  request,
+  UserResponse,
+  ProfileDataProps,
+  ProviderDataType,
 } from '../utils';
 
 const getUserProfileData = async (
@@ -15,16 +19,14 @@ const getUserProfileData = async (
     setPage(1);
     setIsLoading(true);
     const response : ProfileInfoResponse = await request('get', `/providers/${id}`);
-    const { data } : {data: UserResponse} = response;
-    const { user } : {user: User} = data;
-    const { works }: { works: Works } = data;
-    const { reviews }: { reviews: TopTenReviews[] } = data;
-    const { totalReviews }: { totalReviews: number} = data;
-    const { count } = data;
-    successCB(user, works, reviews, totalReviews, count);
     setIsLoading(false);
+    const { data } : {data: UserResponse} = response;
+    const {
+      user, works, reviews, totalReviews, count,
+    } : ProviderDataType = data;
+    successCB(user, works, reviews, totalReviews, count);
   } catch (responseError: any) {
-    failedCB(responseError.data.msg);
+    failedCB(responseError);
     setIsLoading(false);
   }
 };

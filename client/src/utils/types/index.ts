@@ -222,3 +222,10 @@ export type LoginFormType = {
   email: string,
   password:string,
 }
+export type ProviderDataType = {
+  user: User,
+  works: Works,
+  reviews: TopTenReviews[],
+  totalReviews: number,
+  count: number,
+}

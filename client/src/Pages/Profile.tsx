@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   UserInfoCard, SpinierComponent, WorkList, Reviews, ErrorComponent,
 } from '../Components';
@@ -12,8 +12,9 @@ import { getUserProfileData, getWorksData } from '../Controllers';
 const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
 function Profile() {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<User>();
-  const [worksData, setWorksData] = useState<Works>([]);
+  const [worksData, setWorksData] = useState<any>({ });
   const [reviewsArray, setReviewsArray] = useState<TopTenReviews[]>([]);
   const [reviewsAvg, setReviewsAvg] = useState<number>(0);
   const [error, setError] = useState('');
@@ -37,17 +38,20 @@ function Profile() {
     setReviewsArray(reviews);
     setReviewsAvg(totalReviews);
     setUserData(user);
-    setWorksData(works);
+    setWorksData({ ...worksData, [page]: works });
     setResultCount(count);
   };
   const onFailed = (err:any) => {
-    setError(err?.data.msg);
+    if (err.data.msg === '"id" must be a number' || err.data.msg === 'user does not exist') {
+      navigate('/user-not-found');
+    }
+    setError(err.data.msg);
   };
   const getUserProfileDataParams: ProfileDataProps = {
     setPage, setIsLoading, successCB: onSuccess, failedCB: onFailed, id: +id,
   };
   const onGetWorkSuccess = (works: Works) => {
-    setWorksData(works);
+    setWorksData({ ...worksData, [page]: works });
   };
   const onGetWorkFailed = (workErr: any) => {
     setWorkError(workErr);
@@ -63,7 +67,9 @@ function Profile() {
     getUserProfileData(getUserProfileDataParams);
   }, []);
   useEffect(() => {
-    getWorksData(getWorkDataParams);
+    if (!worksData[page]) {
+      getWorksData(getWorkDataParams);
+    }
   }, [page]);
   const isAuth = {
     isAuth: userInfo?.providerID === +id,
@@ -75,7 +81,7 @@ function Profile() {
         <>
           <UserInfoCard userInfo={{ user: userData, totalReviews: reviewsAvg }} />
           <WorkList
-            worksData={worksData}
+            worksData={worksData[page]}
             page={page}
             handlePageChange={handlePageChange}
             resultCount={resultCount}

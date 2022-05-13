@@ -25,7 +25,7 @@ const getProfileInfo = async (req, res, next) => {
       },
     });
     if (!user) {
-      throw customError('user does not exist', 400);
+      throw customError('user does not exist', 404);
     }
     const reviewsAndWorks = await Promise.all([
       Review.findAll({

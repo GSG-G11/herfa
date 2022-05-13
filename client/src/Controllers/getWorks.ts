@@ -12,8 +12,8 @@ const getWorksData = async (
   try {
     setWorkLoading(true);
     const { data } : { data : Works[] } = await request('get', `/work/${id}?page=${page}`);
-    successCB(data);
     setWorkLoading(false);
+    successCB(data);
   } catch (responseError: any) {
     failedCB(responseError.data.msg);
     setWorkLoading(false);
