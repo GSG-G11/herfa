@@ -73,6 +73,11 @@ const ar = {
   Register: 'تسجيل',
   'crate-account': 'إنشاء حساب',
   Next: 'التالي',
+  'Email-exists': 'البريد الالكتروني مستخدم مسبقاً',
+  'notMatch-Password': 'كلمة المرور غير متطابقة',
+  'required-firstName': 'الرجاء إدخال الاسم الاول',
+  'required-lastName': 'الرجاء إدخال الاسم الاخير',
+  'required-confirmPassword': 'الرجاء تأكيد إدخال كلمة السر',
 };
 
 export default ar;

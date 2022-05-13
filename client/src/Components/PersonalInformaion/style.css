@@ -4,15 +4,21 @@
     align-items: center;
     font-size: 1.2rem;
     font-weight: 400;
-    color: #fff;    
+    color: #fff;
 }
-.name-input{
+.personal-form .name-input{
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
-.name-input .firstNameInput{
-    height: 100%;
-    padding: 0 15px;
+
+.ant-form{
+    width: 350px;
 }
+.next-btn{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+

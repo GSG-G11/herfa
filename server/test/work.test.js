@@ -3,7 +3,7 @@ const app = require('../app');
 const { build } = require('../database/seeders');
 const { sequelize } = require('../database/config');
 
-beforeAll(() => build());
+beforeEach(() => build());
 
 describe('Routes Tests GET /api/v1/work/:providerId', () => {
   test('Testing for /api/v1/work/4 and get status 200', (done) => {

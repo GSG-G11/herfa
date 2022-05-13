@@ -70,6 +70,12 @@ const en = {
   Register: 'Register',
   'crate-account': 'Create an account',
   Next: 'Next',
+  errorMsg: 'Error',
+  'Email-exists': 'Email already exists',
+  'notMatch-Password': 'Not Match Password',
+  'required-firstName': 'Please input your first name!',
+  'required-lastName': 'Please input your last name!',
+  'required-confirmPassword': 'Please input your confirm password!',
 };
 
 export default en;
