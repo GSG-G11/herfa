@@ -6,8 +6,8 @@ const { uploadImage, deleteImage } = require('../../utils');
 const editWork = async (req, res, next) => {
   try {
     const {
-      id, title, content,
-    } = await workEditValidation.validateAsync({ ...req.body, workImg: req.files.workImg });
+      id, title, content, workImg,
+    } = await workEditValidation.validateAsync(req.body);
     const { providerID } = req;
     const work = await Work.findByPk(id);
     if (!work) {
@@ -19,7 +19,7 @@ const editWork = async (req, res, next) => {
     }
     let imgUrl = image;
 
-    const { workImg } = req.files;
+    // const { workImg } = req.files;
     if (workImg) {
       const imgAws = await uploadImage(workImg, userId);
       imgUrl = imgAws.Location;

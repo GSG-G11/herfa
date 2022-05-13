@@ -61,8 +61,14 @@ const ar = {
   'cancel-button': 'الغاء',
   'delete-message-1': 'هل أنت متأكد أنك تريد حذف هذا العمل؟',
   'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
-  'successfully-delete-load': 'يتم الان الحذف ...',
   'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
+  'edit-header': 'تعديل العمل',
+  'title-of-work': 'عنوان العمل',
+  'content-of-work': 'وصف العمل',
+  'image-of-work': 'صورة العمل',
+  'upload-image-of-work': 'اختيار الصورة',
+  'successfully-edit': 'لقد تم تعديل العمل بنجاح',
+  'error-edit': 'لقد حدث خطأ ما. حاول في وقت لاحق',
 };
 
 export default ar;

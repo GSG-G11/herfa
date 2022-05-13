@@ -61,8 +61,14 @@ const en = {
   'cancel-button': 'Cancel',
   'delete-message-1': 'Are you sure that you want to delete this work?',
   'successfully-delete': 'Your work deleted successfully',
-  'successfully-delete-load': 'Delete loading',
-  'error-delete-message': 'An error ocurred.Try later',
+  'error-delete-message': 'An error ocurred.please try later',
+  'edit-header': 'Edit this work',
+  'title-of-work': 'Title of work',
+  'content-of-work': 'Description of work',
+  'image-of-work': 'Image of work',
+  'upload-image-of-work': 'Select Image',
+  'successfully-edit': 'Your work edited successfully',
+  'error-edit': 'An error ocurred.Please try later',
 };
 
 export default en;
