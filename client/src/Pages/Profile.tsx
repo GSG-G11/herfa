@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { WorkCard, UserInfoCard } from '../Components';
+import { WorkCard, UserInfoCard, AddWorkButton } from '../Components';
 import {
   Works, Request, AllWorks, OnWork, request,
 } from '../utils';
@@ -47,6 +47,8 @@ function Profile() {
       ) : (
         <>
           <UserInfoCard userInfo={userData} />
+          <AddWorkButton />
+          <br />
           <div className="work-card-container">
             {worksData[1].map((work: OnWork) => (
               <WorkCard key={work.id} work={work} isAuth={isAuth} />

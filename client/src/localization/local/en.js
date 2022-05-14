@@ -69,6 +69,14 @@ const en = {
   'upload-image-of-work': 'Select Image',
   'successfully-edit': 'Your work edited successfully',
   'error-edit': 'An error ocurred.Please try later',
+  'add-button': 'Add Work',
+  'title-required': 'Please enter title!',
+  'content-required': 'Please enter description!',
+  'image-required': 'Please select image!',
+  'text-title': 'Work title',
+  'text-content': 'Work description',
+  'successfully-added': 'The work added successfully',
+  'img-upload': 'You can only upload JPG/PNG images!',
 };
 
 export default en;

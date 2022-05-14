@@ -11,6 +11,7 @@ import ErrorComponent from './Error';
 import UserCard from './UserCard';
 import FilterSection from './FilterSection';
 import LogInPage from './Login';
+import AddWorkButton from './AddWorkButton';
 
 export {
   Reviews,
@@ -26,4 +27,5 @@ export {
   UserCard,
   LogInPage,
   FilterSection,
+  AddWorkButton,
 };

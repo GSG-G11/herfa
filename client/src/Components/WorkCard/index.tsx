@@ -52,6 +52,13 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
       url: work.image,
       thumbUrl: work.image,
     }];
+  const checkImage = (file: any) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error(t('img-upload'));
+    }
+    return false;
+  };
   return (
     <>
       <Card
@@ -76,7 +83,6 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
           description={work.content}
         />
       </Card>
-
       <Modal
         title={t('edit-header')}
         visible={isClickEdit}
@@ -105,7 +111,7 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
               name="work-image"
               listType="picture"
               maxCount={1}
-              beforeUpload={() => false}
+              beforeUpload={(file: any) => checkImage(file)}
               defaultFileList={[...fileList]}
             >
               <Button icon={<UploadOutlined />}>{t('upload-image-of-work')}</Button>

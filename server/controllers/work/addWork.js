@@ -7,7 +7,7 @@ const addWork = async (request, response, next) => {
     const {
       title, content, id, image,
     } = await workValidation.validateAsync({
-      ...request.body, id: request.providerID, image: request.files.image,
+      ...request.body, id: request.providerID,
     });
     const { Location } = await uploadImage(image, id);
     if (!Location) throw customError('problem with uploading the image', 500);

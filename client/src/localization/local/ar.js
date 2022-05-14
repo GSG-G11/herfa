@@ -69,6 +69,14 @@ const ar = {
   'upload-image-of-work': 'اختيار الصورة',
   'successfully-edit': 'لقد تم تعديل العمل بنجاح',
   'error-edit': 'لقد حدث خطأ ما. حاول في وقت لاحق',
+  'add-button': 'اضافة عمل',
+  'title-required': 'الرجاء ادخال العنوان',
+  'content-required': 'الرجاء ادخال الوصف',
+  'image-required': 'الرجاء اختيار صورة',
+  'text-title': 'عنوان العمل',
+  'text-content': 'وصف العمل ',
+  'successfully-added': 'لقد تم اضافة العمل بنجاح',
+  'img-upload': 'يمكنك فقط اختيار صورة بصيغة JPG/PNG!',
 };
 
 export default ar;
