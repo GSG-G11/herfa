@@ -14,7 +14,6 @@ import {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
@@ -22,6 +21,8 @@ import {
   Event,
   ServiceSearch,
   signUpForm,
+  WorkCardProps,
+  LoginFormType,
 } from './types';
 
 export {
@@ -42,7 +43,6 @@ export type {
   OneUserType,
   Context,
   LoggedUser,
-  LoginFormType,
   NavBarProps,
   UserData,
   FilterSearchProps,
@@ -50,4 +50,6 @@ export type {
   Event,
   ServiceSearch,
   signUpForm,
+  WorkCardProps,
+  LoginFormType,
 };

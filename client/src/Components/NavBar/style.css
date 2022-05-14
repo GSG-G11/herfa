@@ -1,0 +1,24 @@
+.nav-container{
+  margin-bottom: 100px;
+}
+.nav-container .ant-menu-overflow  {
+  width: 80%;
+  display: flex;
+  justify-content: end;
+}
+.lang-btn{
+  margin: 0 10px;
+}
+.nav-container .ant-layout-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: white !important;
+  align-items: center;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+.logo img{
+  width: 120px;
+}
+
+
+
