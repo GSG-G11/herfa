@@ -69,7 +69,7 @@ const getSearchResult = async (req, res, next) => {
           raw: true,
           group: ['reviews.userId'],
         });
-        const tempUser = { ...user.dataValues, avgRating: reviewAvg[0].avgRating };
+        const tempUser = { ...user.dataValues, avgRating: reviewAvg[0]?.avgRating };
         return tempUser;
       }),
     );

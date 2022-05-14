@@ -6,7 +6,7 @@ const mainServiceIdValidation = require('./mainServiceIdValidation');
 const loginValidation = require('./loginValidation');
 const workValidation = require('./workValidation');
 const workEditValidation = require('./workEditValidation');
-const signUpValidation = require('./signUpValidation');
+const { signUpValidation } = require('./signUpValidation');
 
 module.exports = {
   paramsValidation,
