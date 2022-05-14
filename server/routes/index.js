@@ -11,6 +11,7 @@ const {
   deleteWork,
   checkAuth,
   addWork,
+  signUp,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
@@ -31,7 +32,8 @@ router.post('/img', async (req, res) => {
   const data = await uploadImage(req.files.image, userId);
   res.json({ data });
 });
-// router.use(checkAuth);
-router.post('/work', checkAuth, addWork);
-router.delete('/work/:id', checkAuth, deleteWork);
+router.post('/signup', signUp);
+router.use(checkAuth);
+router.post('/work', addWork);
+router.delete('/work/:id', deleteWork);
 module.exports = router;

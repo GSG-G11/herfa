@@ -34,7 +34,7 @@ const User = sequelize.define('users', {
   whatsapp: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
+    unique: false,
   },
   image: {
     type: Sequelize.STRING,
