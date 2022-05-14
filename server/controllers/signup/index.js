@@ -4,7 +4,6 @@ const { customError } = require('../errors');
 const { checkIsUserExists } = require('./checkIsUserExists');
 const { generateToken } = require('./generateToken');
 const { getDataToInsert } = require('./dataToInsert');
-const { insertSubServices } = require('./insertSubServices');
 
 const signUp = async (req, res, next) => {
   try {
@@ -14,7 +13,7 @@ const signUp = async (req, res, next) => {
     const dataToInsert = await getDataToInsert(userData);
     const user = await User.create(dataToInsert);
     if (userData.subservice?.length) {
-      await insertSubServices(userData.subservice, user.id);
+      await user.addServices(userData.subservice);
     }
     const { token, data } = await generateToken(user);
     res.status(201).cookie('userToken', token).json({ msg: 'logged in successfully', data });
