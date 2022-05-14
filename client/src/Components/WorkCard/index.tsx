@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import { EditOutlined, DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import { WorkCardProps, request } from '../../utils';
 import './style.css';
 
@@ -24,50 +25,33 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
   };
 
   const handelEdit = async () => {
-    // setIsClickEdit(false);
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     form.resetFields();
-    //     setIsClickEdit(false);
-    //     console.log('Received values of form: ', values);
-    //     message.success(t('successfully-edit'));
-    //   })
-    //   .catch(() => {
-    //     message.error(t('error-edit'));
-    //   });
     try {
-      form
-        .validateFields()
-        .then(async (values) => {
-          form.resetFields();
-          const { title, content, workImg } = values;
-          const data = await request('patch', '/work/', {
-            id: work.id, title, content, workImg: workImg[0],
-          });
-          console.log(111, data);
-          setIsClickEdit(false);
-        });
+      const { title, content, workImg } = form.getFieldsValue();
+      await axios({
+        method: 'patch',
+        url: '/api/v1/work/',
+        data: {
+          id: work.id, title, content, workImg: workImg[0],
+        },
+      });
+      setIsClickEdit(false);
+      message.success(t('successfully-edit'));
     } catch (error: any) {
-      console.log(222, error);
       message.error(t('error-delete-message'));
     }
   };
-  // const data = await axios.patch(
-  //   '/work/',
-  //   {
-  //     id: work.id, title: values.title, content: values.content, workImg: values.image,
-  //   },
-  //   {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   },
-  // );
+
   const normFile = (e: any) => {
     if (Array.isArray(e)) return e;
     return e && e.fileList;
   };
+  const fileList = [
+    {
+      uid: '-1',
+      name: 'default.png',
+      url: work.image,
+      thumbUrl: work.image,
+    }];
   return (
     <>
       <Card
@@ -120,8 +104,9 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
             <Upload
               name="work-image"
               listType="picture"
-              beforeUpload={() => false}
               maxCount={1}
+              beforeUpload={() => false}
+              defaultFileList={[...fileList]}
             >
               <Button icon={<UploadOutlined />}>{t('upload-image-of-work')}</Button>
             </Upload>
