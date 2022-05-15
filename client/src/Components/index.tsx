@@ -12,6 +12,7 @@ import UserCard from './UserCard';
 import FilterSection from './FilterSection';
 import LogInPage from './Login';
 import Footer from './Footer';
+import Nav from './NavBar';
 
 export {
   Reviews,
@@ -28,4 +29,5 @@ export {
   LogInPage,
   FilterSection,
   Footer,
+  Nav,
 };

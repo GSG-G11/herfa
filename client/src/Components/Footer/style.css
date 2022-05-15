@@ -27,7 +27,7 @@
 .services {
   height: 185px !important;
 }
-.footer-content a {
+.footer-content a, .footer-content p {
   font-size: 20px;
   color: black;
   padding-bottom: 5px;
