@@ -1,30 +1,50 @@
-.login-form{
-  /* background-color: red; */
-  width: 62%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5% 5% 0 5%;
-}
 .login-container{
   width: 100%;
-  height: 89vh;
   display: flex;
-  /* background-color: black; */
 }
 .img-container{
-  width: 48%;
+  width: 50%;
+  height: 90vh;
 }
-.login-img{
+.img-container img{
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  object-fit: cover;
 }
-.signup-text{
-  color: blue;
+.login-form{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
 }
 .login-form-body{
-  width: 100%;
+  width: 100% !important;
   padding-right: 10%;
   padding-left: 10%;
 }
+.log-in-main-text{
+  text-align: center;
+}
+  .signup-text{
+    color: blue;
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+ .login-form-body .form-button{
+   margin-right: 10% ;
+  }
+  @media screen and (max-width: 600px) {
+    .img-container img{
+      visibility: hidden;
+    }
+    .login-form{
+      width: 100%;
+    }
+    .login-form-body{
+      width: 100% !important;
+    }
+    .img-container{
+      width: 0;
+    }
+  }

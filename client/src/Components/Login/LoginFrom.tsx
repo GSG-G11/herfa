@@ -40,7 +40,7 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
-      <h1>{t('login-title')}</h1>
+      <h1 className="log-in-main-text">{t('login-title')}</h1>
       <Form
         className="login-form-body"
         layout="vertical"
@@ -56,7 +56,7 @@ function LoginForm() {
           name="email"
           rules={[{ required: true, message: t('required-email') }, { type: 'email', message: t('invalid-email') }]}
         >
-          <Input />
+          <Input placeholder={t('log-in-email')} />
         </Form.Item>
 
         <Form.Item
@@ -64,7 +64,7 @@ function LoginForm() {
           name="password"
           rules={[{ required: true, message: t('required-password') }, { min: 8, message: t('invalid-password') }]}
         >
-          <Input.Password />
+          <Input.Password placeholder={t('log-in-password')} />
         </Form.Item>
         <p>
           {`${t('login-signup-text')} `}

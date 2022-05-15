@@ -97,6 +97,8 @@ const ar = {
   locations: 'المواقع',
   footer: 'Herfa ©2022 فريق حرفة الفني',
   'all-services': 'الخدمات',
+  'log-in-email': 'مثال: example@gmail.com',
+  'log-in-password': 'مثال سيئ: 12345678',
 };
 
 export default ar;

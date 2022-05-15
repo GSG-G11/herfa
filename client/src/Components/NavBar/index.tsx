@@ -35,19 +35,20 @@ function Nav({ language, setLanguage }: NavBarProps) {
     },
     {
       label: t('logout'),
-      key: '/logout',
+      key: '/',
     },
   ];
+
   const menu = (
     <Menu
       items={subMenuItems}
       onClick={({
         key,
-      }) => navigate(key)}
+      }) => { if (key === '/') console.log('test'); navigate(key); }}
     />
   );
 
-  let authItems:{} = <Button type="primary">{ t('login') }</Button>;
+  let authItems:{} = <Link to="/login"><Button type="primary">{ t('login') }</Button></Link>;
   if (userData) {
     authItems = (
       <Dropdown.Button

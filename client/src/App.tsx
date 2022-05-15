@@ -37,10 +37,10 @@ function App() {
               <Route path="/user/:userName" element={<Profile />} />
               <Route path="/search" element={<Search />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/login" element={<LogIn />} />
             </Route>
             <Route element={<Nav language={lang} setLanguage={setLang} />}>
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<LogIn />} />
             </Route>
           </Routes>
         </Router>
