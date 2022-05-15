@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Button } from 'antd';
 import {
-  UserInfoCard, SpinierComponent, WorkList, Reviews, ErrorComponent,
+  UserInfoCard, SpinierComponent, WorkList, Reviews, ErrorComponent, WorkModal,
 } from '../Components';
 import {
-  Works, User, TopTenReviews, ProfileDataProps, WorksProps,
+  Works, User, TopTenReviews, ProfileDataProps, WorksProps, request,
 } from '../utils';
 import { UserContext } from '../Context/LoggedUserContext';
 import { getUserProfileData, getWorksData } from '../Controllers';
@@ -23,6 +25,8 @@ function Profile() {
   const [workLoading, setWorkLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [resultCount, setResultCount] = useState<number>(1);
+  const [isClickedAddWork, setIsClickedAddWork] = useState(false);
+  const { t } = useTranslation();
   const { id = 1 } = useParams();
   const userInfo: any = useContext(UserContext);
   const handlePageChange = (PageNnm: number) => {
@@ -63,6 +67,33 @@ function Profile() {
     id: +id,
     page,
   };
+  const addWork = async (values: object) => {
+    const data = await request('post', '/work', values);
+    return data;
+  };
+  const addSuccessWork = (work: any) => {
+    const data: any = {
+      1: [work, ...worksData['1']],
+    };
+    setWorksData(data);
+  };
+  const updateWorks = (id2: number, work: any) => {
+    const newWork = worksData['1'].map((element: any) => {
+      if (element.id === id2) { return work.data; }
+      return element;
+    });
+    const data: any = {
+      1: newWork,
+    };
+    setWorksData(data);
+  };
+  const deletedWork = (id1: number) => {
+    const newWork = worksData['1'].filter((element: any) => element.id !== id1);
+    const data: any = {
+      1: newWork,
+    };
+    setWorksData(data);
+  };
   useEffect(() => {
     getUserProfileData(getUserProfileDataParams);
   }, []);
@@ -80,6 +111,18 @@ function Profile() {
         !error,
         <>
           <UserInfoCard userInfo={{ user: userData, totalReviews: reviewsAvg }} />
+          {isAuth.isAuth && (
+            <div className="show-add-work-modal">
+              <Button type="primary" onClick={() => setIsClickedAddWork(true)}>{t('add-button')}</Button>
+            </div>
+          )}
+          <WorkModal
+            visible={isClickedAddWork}
+            handelVisible={setIsClickedAddWork}
+            modalText={t('add-button')}
+            handelFinisher={addWork}
+            addSuccessWork={addSuccessWork}
+          />
           <WorkList
             worksData={worksData[page]}
             page={page}
@@ -88,6 +131,8 @@ function Profile() {
             isAuth={isAuth}
             isLoading={workLoading}
             error={workError}
+            updateWorks={updateWorks}
+            deletedWork={deletedWork}
           />
           <Reviews data={reviewsArray} />
         </>,

@@ -1,15 +1,17 @@
 import React from 'react';
 import { Pagination, Empty } from 'antd';
 import WorkCard from '../WorkCard';
-import { OnWork, WorkListProps } from '../../utils';
+import { OnWork } from '../../utils';
 import SpinierComponent from '../Spinier';
 import ErrorComponent from '../Error';
+import './style.css';
 
 const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
 function WorkList({
-  worksData, page, handlePageChange, resultCount, isAuth, isLoading, error,
-}:WorkListProps) {
+  worksData, page, handlePageChange, resultCount,
+  isAuth, isLoading, error, updateWorks, deletedWork,
+}:any) {
   return (
     <div className="works-container">
       {isLoading ? <SpinierComponent /> : iff(
@@ -17,7 +19,13 @@ function WorkList({
         worksData?.length ? (
           <div className="work-card-container">
             { worksData?.map((work: OnWork) => (
-              <WorkCard key={work?.id} work={work} isAuth={isAuth} />
+              <WorkCard
+                updateWorks={updateWorks}
+                deletedWork={deletedWork}
+                key={work?.id}
+                work={work}
+                isAuth={isAuth}
+              />
             ))}
           </div>
         ) : (
