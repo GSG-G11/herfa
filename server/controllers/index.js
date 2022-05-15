@@ -7,7 +7,7 @@ const { subServices } = require('./search');
 const loginHandler = require('./login');
 const checkAuth = require('./middleware');
 const { signUp } = require('./signUp');
-const signUpHandler = require('./signUp/checkIsEmailExists');
+const emailCheck = require('./signUp/checkIsEmailExists');
 
 module.exports = {
   getHomeData,
@@ -22,5 +22,5 @@ module.exports = {
   getSearchResult,
   addWork,
   signUp,
-  signUpHandler,
+  emailCheck,
 };

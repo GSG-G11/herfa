@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Form, Input, Button,
@@ -10,23 +9,16 @@ import './style.css';
 
 function PersonalForm() {
   const { t } = useTranslation();
-  const [userInfo, setUserInfo] = useState({
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-  });
+
   const [error, setError] = useState('');
   const [hasFeedBack, setHasFeedBack] = useState(false);
-  const handleChange = ({ target: { name, value } }:any) => {
-    setUserInfo({ ...userInfo, [name]: value });
-  };
-  const register = async () => {
+  const emailCheck = async (e:React.ChangeEvent<HTMLInputElement>) => {
     setError('');
     setHasFeedBack(true);
     try {
-      const { data } = await axios.post('/api/v1/signUp', userInfo);
-      console.log(data);
+      await axios.post('/api/v1/checkEmail', {
+        email: e.target.value,
+      });
     } catch (err:any) {
       if (err.response) {
         if (err.response.data.status === 500) {
@@ -51,10 +43,9 @@ function PersonalForm() {
       <Form
         className="Form-sign-up"
         name="register"
-        // form={form}
         layout="vertical"
         autoComplete="off"
-        onFinish={() => console.log('finish')}
+        onFinish={(values) => console.log(values)}
       >
         <div className="name-input">
           <Form.Item
@@ -62,7 +53,7 @@ function PersonalForm() {
             name="firstName"
             rules={[{ required: true, message: t('required-firstName') }]}
           >
-            <Input onChange={handleChange} />
+            <Input />
           </Form.Item>
           <Form.Item
             label={t('Last Name')}
@@ -70,9 +61,7 @@ function PersonalForm() {
             rules={[{ required: true, message: t('required-lastName') }]}
             className="firstNameInput"
           >
-            <Input
-              onChange={handleChange}
-            />
+            <Input />
           </Form.Item>
         </div>
         <Form.Item
@@ -84,8 +73,7 @@ function PersonalForm() {
           rules={[{ required: true, message: t('required-email') }, { type: 'email', message: t('invalid-email') }]}
         >
           <Input
-            onBlur={register}
-            onChange={handleChange}
+            onBlur={emailCheck}
           />
         </Form.Item>
         <Form.Item
@@ -93,7 +81,7 @@ function PersonalForm() {
           name="password"
           rules={[{ required: true, message: t('required-password') }, { min: 8, message: t('invalid-password') }]}
         >
-          <Input.Password onChange={handleChange} />
+          <Input.Password />
         </Form.Item>
         <Form.Item
           name="confirm"

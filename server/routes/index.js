@@ -12,7 +12,7 @@ const {
   checkAuth,
   addWork,
   // signUp,
-  signUpHandler,
+  emailCheck,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
@@ -33,7 +33,7 @@ router.post('/img', async (req, res) => {
   const data = await uploadImage(req.files.image, userId);
   res.json({ data });
 });
-router.post('/signUp', signUpHandler);
+router.post('/checkEmail', emailCheck);
 router.use(checkAuth);
 router.post('/work', addWork);
 router.delete('/work/:id', deleteWork);
