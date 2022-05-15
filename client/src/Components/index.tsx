@@ -12,6 +12,8 @@ import UserCard from './UserCard';
 import FilterSection from './FilterSection';
 import LogInPage from './Login';
 import WorkModal from './WorkModal';
+import Footer from './Footer';
+import Nav from './NavBar';
 
 export {
   Reviews,
@@ -28,4 +30,6 @@ export {
   LogInPage,
   FilterSection,
   WorkModal,
+  Footer,
+  Nav,
 };

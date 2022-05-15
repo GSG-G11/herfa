@@ -77,6 +77,9 @@ const ar = {
   'text-content': 'وصف العمل ',
   'successfully-added': 'لقد تم اضافة العمل بنجاح',
   'img-upload': 'يمكنك فقط اختيار صورة بصيغة JPG/PNG!',
+  locations: 'المواقع',
+  footer: 'Herfa ©2022 فريق حرفة الفني',
+  'all-services': 'الخدمات',
 };
 
 export default ar;

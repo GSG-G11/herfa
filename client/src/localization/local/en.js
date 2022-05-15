@@ -77,6 +77,10 @@ const en = {
   'text-content': 'Work description',
   'successfully-added': 'The work added successfully',
   'img-upload': 'You can only upload JPG/PNG images!',
+  'successfully-delete-load': 'Delete loading',
+  locations: 'Locations',
+  footer: 'Herfa ©2022 Created By Herfa Team',
+  'all-services': 'services',
 };
 
 export default en;
