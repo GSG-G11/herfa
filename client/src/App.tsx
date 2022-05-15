@@ -15,6 +15,7 @@ import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
 import LoggedUserInfoProvider from './Context/LoggedUserContext';
 import Nav from './Components/NavBar';
+import { Footer } from './Components';
 
 function App() {
   const { i18n } = useTranslation();
@@ -39,6 +40,7 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </Router>
       </ConfigProvider>
     </LoggedUserInfoProvider>

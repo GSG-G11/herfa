@@ -63,6 +63,8 @@ const ar = {
   'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
   'successfully-delete-load': 'يتم الان الحذف ...',
   'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
+  locations: 'المواقع',
+  footer: 'Herfa ©2022 فريق حرفة الفني',
 };
 
 export default ar;
