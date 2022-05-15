@@ -63,7 +63,6 @@ const en = {
   'successfully-delete': 'Your work deleted successfully',
   'successfully-delete-load': 'Delete loading',
   'error-delete-message': 'An error ocurred.Try later',
-
   'First Name': 'First Name',
   'Last Name': 'Last Name',
   Email: 'Email',
@@ -80,6 +79,9 @@ const en = {
   'required-firstName': 'Please input your first name!',
   'required-lastName': 'Please input your last name!',
   'required-confirmPassword': 'Please input your confirm password!',
+  locations: 'Locations',
+  footer: 'Herfa ©2022 Created By Herfa Team',
+  'all-services': 'services',
 };
 
 export default en;

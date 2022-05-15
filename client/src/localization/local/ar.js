@@ -63,7 +63,6 @@ const ar = {
   'successfully-delete': 'لقد تم حذف هذا العمل بنجاح',
   'successfully-delete-load': 'يتم الان الحذف ...',
   'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
-
   'First Name': 'الاسم الاول',
   'Last Name': 'الاسم الاخير',
   'Confirm Password': 'تأكيد كلمةالمرور',
@@ -81,6 +80,9 @@ const ar = {
   'required-firstName': 'الرجاء إدخال الاسم الاول',
   'required-lastName': 'الرجاء إدخال الاسم الاخير',
   'required-confirmPassword': 'الرجاء تأكيد إدخال كلمة السر',
+  locations: 'المواقع',
+  footer: 'Herfa ©2022 فريق حرفة الفني',
+  'all-services': 'الخدمات',
 };
 
 export default ar;
