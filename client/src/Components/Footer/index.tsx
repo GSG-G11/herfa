@@ -21,7 +21,7 @@ function Footer() {
             </div>
           </div>
           <div className="col-2">
-            <h2 className="footer-col-header"> {t('home-main-services')} </h2>
+            <h2 className="footer-col-header"> {t('all-services')} </h2>
             <div className="footer-items services">
               <Link to="/">السباكة</Link>
               <Link to="/"> الحدادة </Link>

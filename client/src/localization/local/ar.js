@@ -65,6 +65,7 @@ const ar = {
   'error-delete-message': 'لقد حدث خطأ ما. حاول في وقت لاحق',
   locations: 'المواقع',
   footer: 'Herfa ©2022 فريق حرفة الفني',
+  'all-services': 'الخدمات',
 };
 
 export default ar;
