@@ -63,6 +63,9 @@ const en = {
   'successfully-delete': 'Your work deleted successfully',
   'successfully-delete-load': 'Delete loading',
   'error-delete-message': 'An error ocurred.Try later',
+  locations: 'Locations',
+  footer: 'Herfa ©2022 Created By Herfa Team',
+  'all-services': 'services',
 };
 
 export default en;

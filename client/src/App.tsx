@@ -14,7 +14,8 @@ import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
 import LoggedUserInfoProvider from './Context/LoggedUserContext';
-import Nav from './Components/NavBar';
+import { Nav } from './Components';
+import Layout from './Pages/Layout';
 
 function App() {
   const { i18n } = useTranslation();
@@ -30,14 +31,17 @@ function App() {
     <LoggedUserInfoProvider>
       <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
         <Router>
-          <Nav language={lang} setLanguage={setLang} />
           <Routes>
-            <Route path="/" element={<ServiceLocationContext><Home /></ServiceLocationContext>} />
-            <Route path="/user/:userName" element={<Profile />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<ServiceLocationContext><Layout language={lang} setLanguage={setLang} /></ServiceLocationContext>}>
+              <Route index element={<Home />} />
+              <Route path="/user/:userName" element={<Profile />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route element={<Nav language={lang} setLanguage={setLang} />}>
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<LogIn />} />
+            </Route>
           </Routes>
         </Router>
       </ConfigProvider>
