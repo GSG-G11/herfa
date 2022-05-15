@@ -20,6 +20,7 @@ import {
   SearchResponse,
   Event,
   ServiceSearch,
+  signUpForm,
   WorkCardProps,
   LoginFormType,
 } from './types';
@@ -48,6 +49,7 @@ export type {
   SearchResponse,
   Event,
   ServiceSearch,
+  signUpForm,
   WorkCardProps,
   LoginFormType,
 };

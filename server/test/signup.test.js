@@ -23,7 +23,7 @@ describe('Test POST api/v1/signup', () => {
 
   test('Post /api/v1/signup return with status code equal 201 created', (done) => {
     request(app)
-      .post('/api/v1/signup')
+      .post('/api/v1/signUp')
       .expect(201)
       .send(userTest)
       .end((error, response) => {
