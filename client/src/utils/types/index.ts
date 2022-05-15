@@ -193,7 +193,9 @@ export interface WorkCardProps {
   };
   isAuth: {
     isAuth: boolean;
-  }
+  };
+  updateWorks: (id: number, work: object) => void,
+  deletedWork: (id: number) => void,
 }
 export type LoginFormType = {
   email: string,
