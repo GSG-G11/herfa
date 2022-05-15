@@ -39,6 +39,7 @@ export type Reviews = [
     userId: number;
   }
 ];
+
 export interface Request {
   data: {
     user: User;
@@ -166,6 +167,22 @@ export interface FilterSearchProps {
   page: number;
 }
 
+export type signUpForm = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+  phone: string;
+  whatsapp: string;
+  main_service: string;
+  location: {
+    city: string;
+  };
+  services: [];
+  description: string;
+  image: string;
+}
 export interface WorkCardProps {
   work: {
     title: string;

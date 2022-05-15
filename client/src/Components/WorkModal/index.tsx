@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React from 'react';
 import {
   message, Modal, Input, Upload, Button, Form,
@@ -10,11 +9,10 @@ export interface WorkModalProps {
   visible: boolean,
   handelVisible: (data: boolean) => void,
   initialValues?: object,
-  modalText: any,
+  modalText: string,
   handelFinisher: (data: object) => any,
   addSuccessWork: (work: any) => void
 }
-
 function WorkModal({
   visible, handelVisible, initialValues, modalText, handelFinisher, addSuccessWork,
 } : WorkModalProps) {
