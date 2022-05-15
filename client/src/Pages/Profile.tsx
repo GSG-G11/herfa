@@ -53,7 +53,7 @@ function Profile() {
   };
   const updateWorks = (id: number, work: any) => {
     const newWork = worksData['1'].map((element: any) => {
-      if (element.id === id) { return work.data.data; }
+      if (element.id === id) { return work.data; }
       return element;
     });
     const data: any = {

@@ -28,7 +28,7 @@ function WorkModal({
       const { title, content, image } = values;
       const data = await handelFinisher({ title, content, image: image[0] });
       handelVisible(false);
-      addSuccessWork(data);
+      addSuccessWork(data.data);
       message.success(t('successfully-added'));
     } catch (error: any) {
       message.error(t('error-delete-message'));
