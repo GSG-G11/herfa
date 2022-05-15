@@ -99,6 +99,7 @@ const en = {
   'all-services': 'services',
   'log-in-email': 'Example: example@gmail.com',
   'log-in-password': 'Bad Example: 12345678',
+  'log-out': 'Logged out successfully !',
 };
 
 export default en;

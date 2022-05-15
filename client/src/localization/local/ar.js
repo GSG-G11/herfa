@@ -99,6 +99,7 @@ const ar = {
   'all-services': 'الخدمات',
   'log-in-email': 'مثال: example@gmail.com',
   'log-in-password': 'مثال سيئ: 12345678',
+  'log-out': 'لقد تم تسجيل خروجك بنجاح!',
 };
 
 export default ar;
