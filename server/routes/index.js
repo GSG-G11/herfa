@@ -11,7 +11,7 @@ const {
   deleteWork,
   checkAuth,
   addWork,
-  // signUp,
+  signUp,
   emailCheck,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
@@ -34,6 +34,7 @@ router.post('/img', async (req, res) => {
   res.json({ data });
 });
 router.post('/checkEmail', emailCheck);
+router.post('/signup', signUp);
 router.use(checkAuth);
 router.post('/work', addWork);
 router.delete('/work/:id', deleteWork);
