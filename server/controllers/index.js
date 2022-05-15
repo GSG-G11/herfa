@@ -6,8 +6,8 @@ const { getProfileInfo, addReview, getSearchResult } = require('./user');
 const { subServices } = require('./search');
 const loginHandler = require('./login');
 const checkAuth = require('./middleware');
-const { signUp } = require('./signUp');
-const emailCheck = require('./signUp/checkIsEmailExists');
+const { signUp } = require('./signup');
+const emailCheck = require('./signup/checkIsEmailExists');
 
 module.exports = {
   getHomeData,
