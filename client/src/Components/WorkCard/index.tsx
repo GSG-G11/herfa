@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import {
-  Card, message, Popconfirm, Modal,
+  Card, message, Popconfirm,
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import { WorkCardProps, request } from '../../utils';
+import WorkModal from '../WorkModal';
 import './style.css';
 
 const { Meta } = Card;
 
-function WorkCard({ work, isAuth }: WorkCardProps) {
+function WorkCard({
+  work, isAuth, updateWorks, deletedWork,
+}: WorkCardProps) {
   const { t } = useTranslation();
   const [isClickEdit, setIsClickEdit] = useState(false);
 
@@ -17,18 +21,33 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
     try {
       const result = await request('delete', `/work/${`${work.id}`}`);
       if (result.msg === 'work deleted successfully') message.success(t('successfully-delete'));
-    } catch (error: any) {
-      if (error) message.error(t('error-delete-message'));
+      deletedWork(work.id);
+    } catch {
+      message.error(t('error-delete-message'));
     }
   };
 
-  const handelEdit = () => {
-    setIsClickEdit(true);
-    // actions.edit(work.id);
+  const handelEdit = async (values: object) => {
+    const data = await axios({
+      method: 'patch',
+      url: '/api/v1/work/',
+      data: {
+        id: work.id, ...values,
+      },
+    });
+    return data;
   };
-  const handelCancelEdit = () => {
-    setIsClickEdit(false);
+  const addSuccessWork = (edited: any) => {
+    updateWorks(work.id, edited);
   };
+  const fileList = [
+    {
+      uid: '-1',
+      name: 'default.png',
+      url: work.image,
+      thumbUrl: work.image,
+      type: 'image/png',
+    }];
 
   return (
     <>
@@ -44,7 +63,7 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
           >
             <DeleteOutlined key="delete" />
           </Popconfirm>,
-          <EditOutlined onClick={handelEdit} key="edit" />,
+          <EditOutlined onClick={() => setIsClickEdit(true)} key="edit" />,
         ] : []}
         cover={<img alt="example" src={work.image} />}
       >
@@ -54,11 +73,16 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
           description={work.content}
         />
       </Card>
-      <Modal title="Edit Work" visible={isClickEdit} onOk={() => console.log('ok is clicked edit')} onCancel={handelCancelEdit}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+      <WorkModal
+        visible={isClickEdit}
+        handelVisible={setIsClickEdit}
+        initialValues={{
+          modifier: 'public', title: work.title, content: work.content, image: fileList,
+        }}
+        modalText={t('edit-header')}
+        handelFinisher={handelEdit}
+        addSuccessWork={addSuccessWork}
+      />
     </>
   );
 }
