@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Form, Input, Button,
@@ -8,30 +9,25 @@ import axios from 'axios';
 import './style.css';
 
 function PersonalForm() {
-  const [form] = Form.useForm();
-  // console.log(form);
   const { t } = useTranslation();
-  // const [userInfo, setUserInfo] = useState({ email: '' });
+  const [userInfo, setUserInfo] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+  });
   const [error, setError] = useState('');
   const [hasFeedBack, setHasFeedBack] = useState(false);
-  // const [errorVerify, setErrorVerify] = useState('');
-  // const [userPass, setUserPass] = useState('');
-  // const handleChange = ({ target: { name, value } }:any) => {
-  //   setUserInfo({ ...userInfo, [name]: value });
-  // };
+  const handleChange = ({ target: { name, value } }:any) => {
+    setUserInfo({ ...userInfo, [name]: value });
+  };
   const register = async () => {
     setError('');
-    // if (userInfo.email === '') {
-    // setHasFeedBack(false);
-    // setError(t('required-email'));
-    // return;
-    // }
     setHasFeedBack(true);
     try {
-      const { data } = await axios.post('/api/v1/signUp', { email: 'abdlrahmankal@hotmail.com' });
+      const { data } = await axios.post('/api/v1/signUp', userInfo);
       console.log(data);
     } catch (err:any) {
-      console.log(err.response.data);
       if (err.response) {
         if (err.response.data.status === 500) {
           setError(t('error-message'));
@@ -51,12 +47,14 @@ function PersonalForm() {
   };
   return (
     <div className="personal-form">
+      <h1>{t('crate-account')}</h1>
       <Form
         className="Form-sign-up"
         name="register"
-        form={form}
+        // form={form}
         layout="vertical"
         autoComplete="off"
+        onFinish={() => console.log('finish')}
       >
         <div className="name-input">
           <Form.Item
@@ -64,7 +62,7 @@ function PersonalForm() {
             name="firstName"
             rules={[{ required: true, message: t('required-firstName') }]}
           >
-            <Input />
+            <Input onChange={handleChange} />
           </Form.Item>
           <Form.Item
             label={t('Last Name')}
@@ -73,26 +71,29 @@ function PersonalForm() {
             className="firstNameInput"
           >
             <Input
-              placeholder={t('Last Name')}
+              onChange={handleChange}
             />
           </Form.Item>
         </div>
         <Form.Item
-          label={t('Email')}
+          label={t('login-email')}
           name="email"
           hasFeedback={hasFeedBack}
           validateStatus={error ? 'error' : 'success'}
           help={error}
           rules={[{ required: true, message: t('required-email') }, { type: 'email', message: t('invalid-email') }]}
         >
-          <Input onBlur={register} />
+          <Input
+            onBlur={register}
+            onChange={handleChange}
+          />
         </Form.Item>
         <Form.Item
-          label={t('Password')}
+          label={t('login-password')}
           name="password"
           rules={[{ required: true, message: t('required-password') }, { min: 8, message: t('invalid-password') }]}
         >
-          <Input.Password />
+          <Input.Password onChange={handleChange} />
         </Form.Item>
         <Form.Item
           name="confirm"

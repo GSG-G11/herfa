@@ -66,9 +66,7 @@ const ar = {
 
   'First Name': 'الاسم الاول',
   'Last Name': 'الاسم الاخير',
-  Email: 'البريد الالكتروني',
-  Password: 'كلمة السر',
-  'Confirm Password': 'تأكيد كلمة السر',
+  'Confirm Password': 'تأكيد كلمةالمرور',
   'Phone Number': 'رقم الهاتف',
   Address: 'العنوان',
   City: 'المدينة',

@@ -1,11 +1,12 @@
 .personal-form{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    font-weight: 400;
-    color: #fff;
+    font-weight: 500;
 }
+
 .personal-form .name-input{
     display: flex;
     justify-content: space-between;
@@ -14,11 +15,15 @@
 }
 
 .ant-form{
-    width: 350px;
+    width: 380px;
 }
 .next-btn{
 display: flex;
 justify-content: center;
 align-items: center;
 }
-
+.ant-form-item-label > label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #000;
+}
