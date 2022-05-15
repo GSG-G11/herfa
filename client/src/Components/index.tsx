@@ -13,6 +13,7 @@ import FilterSection from './FilterSection';
 import LogInPage from './Login';
 import Footer from './Footer';
 import Nav from './NavBar';
+import { PersonalForm, ServicesForm } from './Signup';
 
 export {
   Reviews,
@@ -30,4 +31,6 @@ export {
   FilterSection,
   Footer,
   Nav,
+  PersonalForm,
+  ServicesForm,
 };
