@@ -1,15 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { WorkCard, UserInfoCard, AddWorkButton } from '../Components';
+import { useTranslation } from 'react-i18next';
+import { Button } from 'antd';
+import { WorkCard, UserInfoCard, WorkModal } from '../Components';
 import {
   Works, Request, AllWorks, OnWork, request,
 } from '../utils';
 
 function Profile() {
+  const { t } = useTranslation();
+
   const [userData, setUserData] = useState({});
   const [worksData, setWorksData] = useState<AllWorks>({ 1: [] });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [isClickedAddWork, setIsClickedAddWork] = useState(false);
 
+  const addWork = async (values: object) => {
+    const data = await request('post', '/work', values);
+    return data;
+  };
+  const addSuccessWork = (work: any) => {
+    const data: any = {
+      1: [work, ...worksData['1']],
+    };
+    setWorksData(data);
+  };
   useEffect(() => {
     const getData = async () => {
       try {
@@ -36,6 +51,23 @@ function Profile() {
   const isAuth = {
     isAuth: true,
   };
+  const updateWorks = (id: number, work: any) => {
+    const newWork = worksData['1'].map((element: any) => {
+      if (element.id === id) { return work.data.data; }
+      return element;
+    });
+    const data: any = {
+      1: newWork,
+    };
+    setWorksData(data);
+  };
+  const deletedWork = (id: number) => {
+    const newWork = worksData['1'].filter((element: any) => element.id !== id);
+    const data: any = {
+      1: newWork,
+    };
+    setWorksData(data);
+  };
   return (
     <div className="container">
       {isLoading ? (
@@ -47,11 +79,24 @@ function Profile() {
       ) : (
         <>
           <UserInfoCard userInfo={userData} />
-          <AddWorkButton />
+          <Button type="primary" onClick={() => setIsClickedAddWork(true)}>{t('add-button')}</Button>
+          <WorkModal
+            visible={isClickedAddWork}
+            handelVisible={setIsClickedAddWork}
+            modalText={t('add-button')}
+            handelFinisher={addWork}
+            addSuccessWork={addSuccessWork}
+          />
           <br />
           <div className="work-card-container">
             {worksData[1].map((work: OnWork) => (
-              <WorkCard key={work.id} work={work} isAuth={isAuth} />
+              <WorkCard
+                key={work.id}
+                work={work}
+                isAuth={isAuth}
+                updateWorks={updateWorks}
+                deletedWork={deletedWork}
+              />
             ))}
           </div>
         </>

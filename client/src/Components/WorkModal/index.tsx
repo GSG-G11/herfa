@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
+/* eslint-disable react/require-default-props */
+import React from 'react';
 import {
   message, Modal, Input, Upload, Button, Form,
 } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { UploadOutlined } from '@ant-design/icons';
-import { request } from '../../utils';
 
-function AddWorkButton() {
+export interface WorkModalProps {
+  visible: boolean,
+  handelVisible: (data: boolean) => void,
+  initialValues?: object,
+  modalText: any,
+  handelFinisher: (data: object) => any,
+  addSuccessWork: (work: any) => void
+}
+
+function WorkModal({
+  visible, handelVisible, initialValues, modalText, handelFinisher, addSuccessWork,
+} : WorkModalProps) {
   const { t } = useTranslation();
-  const [isClickAddWork, setIsClickAddWork] = useState(false);
   const [form] = Form.useForm();
   const { TextArea } = Input;
 
-  const handelAddWork = () => {
+  const handelAddWork = async () => {
     try {
-      form
-        .validateFields()
-        .then(async (values) => {
-          const { title, content, image } = values;
-          await request('post', '/work', {
-            title, content, image: image[0],
-          });
-
-          setIsClickAddWork(false);
-          message.success(t('successfully-added'));
-        });
+      const values = await form.validateFields();
+      const { title, content, image } = values;
+      const data = await handelFinisher({ title, content, image: image[0] });
+      handelVisible(false);
+      addSuccessWork(data);
+      message.success(t('successfully-added'));
     } catch (error: any) {
       message.error(t('error-delete-message'));
     }
@@ -33,29 +38,22 @@ function AddWorkButton() {
     if (Array.isArray(e)) return e;
     return e && e.fileList;
   };
-  const checkImage = (file: any) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-      message.error(t('img-upload'));
-    }
-    return false;
-  };
+
   return (
     <div className="container">
-      <Button type="primary" onClick={() => setIsClickAddWork(true)}>{t('add-button')}</Button>
       <Modal
-        title={t('add-button')}
-        visible={isClickAddWork}
+        title={modalText}
+        visible={visible}
         onOk={handelAddWork}
-        onCancel={() => setIsClickAddWork(false)}
-        okText={t('add-button')}
+        onCancel={() => handelVisible(false)}
+        okText={modalText}
         cancelText={t('cancel-button')}
       >
         <Form
           form={form}
           layout="vertical"
           name="form_in_modal"
-          initialValues={{ modifier: 'public' }}
+          initialValues={initialValues}
         >
           <Form.Item
             name="title"
@@ -82,7 +80,8 @@ function AddWorkButton() {
               name="work-image"
               listType="picture"
               maxCount={1}
-              beforeUpload={(file:any) => checkImage(file)}
+              beforeUpload={() => false}
+              accept="image/png, image/jpeg"
             >
               <Button icon={<UploadOutlined />}>{t('upload-image-of-work')}</Button>
             </Upload>
@@ -93,4 +92,4 @@ function AddWorkButton() {
   );
 }
 
-export default AddWorkButton;
+export default WorkModal;

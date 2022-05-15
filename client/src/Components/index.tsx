@@ -11,7 +11,7 @@ import ErrorComponent from './Error';
 import UserCard from './UserCard';
 import FilterSection from './FilterSection';
 import LogInPage from './Login';
-import AddWorkButton from './AddWorkButton';
+import WorkModal from './WorkModal';
 
 export {
   Reviews,
@@ -27,5 +27,5 @@ export {
   UserCard,
   LogInPage,
   FilterSection,
-  AddWorkButton,
+  WorkModal,
 };

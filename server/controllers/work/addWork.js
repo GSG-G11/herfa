@@ -11,13 +11,13 @@ const addWork = async (request, response, next) => {
     });
     const { Location } = await uploadImage(image, id);
     if (!Location) throw customError('problem with uploading the image', 500);
-    await Work.create({
+    const data = await Work.create({
       title,
       content,
       userId: id,
       image: Location,
     });
-    response.status(201).json({ msg: 'Work is added successfully' });
+    response.status(201).json({ msg: 'Work is added successfully', data });
   } catch (error) {
     if (error.name === 'ValidationError') next(customError(error.message, 400));
     next(error);

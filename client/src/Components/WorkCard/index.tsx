@@ -1,49 +1,45 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import {
-  Card, message, Popconfirm, Modal, Input, Upload, Button, Form,
+  Card, message, Popconfirm,
 } from 'antd';
-import { EditOutlined, DeleteOutlined, UploadOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { WorkCardProps, request } from '../../utils';
+import WorkModal from '../WorkModal';
 import './style.css';
 
 const { Meta } = Card;
 
-function WorkCard({ work, isAuth }: WorkCardProps) {
+function WorkCard({
+  work, isAuth, updateWorks, deletedWork,
+}: WorkCardProps) {
   const { t } = useTranslation();
   const [isClickEdit, setIsClickEdit] = useState(false);
-  const [form] = Form.useForm();
 
   const handelDelete = async () => {
     try {
       const result = await request('delete', `/work/${`${work.id}`}`);
       if (result.msg === 'work deleted successfully') message.success(t('successfully-delete'));
+      deletedWork(work.id);
     } catch {
       message.error(t('error-delete-message'));
     }
   };
 
-  const handelEdit = async () => {
-    try {
-      const { title, content, workImg } = form.getFieldsValue();
-      await axios({
-        method: 'patch',
-        url: '/api/v1/work/',
-        data: {
-          id: work.id, title, content, workImg: workImg[0],
-        },
-      });
-      setIsClickEdit(false);
-      message.success(t('successfully-edit'));
-    } catch (error: any) {
-      message.error(t('error-delete-message'));
-    }
+  const handelEdit = async (values: object) => {
+    const data = await axios({
+      method: 'patch',
+      url: '/api/v1/work/',
+      data: {
+        id: work.id, ...values,
+      },
+    });
+    return data;
   };
-
-  const normFile = (e: any) => {
-    if (Array.isArray(e)) return e;
-    return e && e.fileList;
+  const addSuccessWork = (edited: any) => {
+    updateWorks(work.id, edited);
   };
   const fileList = [
     {
@@ -51,14 +47,9 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
       name: 'default.png',
       url: work.image,
       thumbUrl: work.image,
+      type: 'image/png',
     }];
-  const checkImage = (file: any) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-    if (!isJpgOrPng) {
-      message.error(t('img-upload'));
-    }
-    return false;
-  };
+
   return (
     <>
       <Card
@@ -83,42 +74,16 @@ function WorkCard({ work, isAuth }: WorkCardProps) {
           description={work.content}
         />
       </Card>
-      <Modal
-        title={t('edit-header')}
+      <WorkModal
         visible={isClickEdit}
-        onOk={handelEdit}
-        onCancel={() => setIsClickEdit(false)}
-        okText={t('ok-button')}
-        cancelText={t('cancel-button')}
-      >
-        <Form
-          form={form}
-          layout="vertical"
-          name="form_in_modal"
-          initialValues={{ modifier: 'public', title: work.title, content: work.content }}
-        >
-          <Form.Item
-            name="title"
-            label={t('title-of-work')}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item name="content" label={t('content-of-work')}>
-            <Input type="textarea" />
-          </Form.Item>
-          <Form.Item name="workImg" label={t('image-of-work')} valuePropName="fileList" getValueFromEvent={normFile}>
-            <Upload
-              name="work-image"
-              listType="picture"
-              maxCount={1}
-              beforeUpload={(file: any) => checkImage(file)}
-              defaultFileList={[...fileList]}
-            >
-              <Button icon={<UploadOutlined />}>{t('upload-image-of-work')}</Button>
-            </Upload>
-          </Form.Item>
-        </Form>
-      </Modal>
+        handelVisible={setIsClickEdit}
+        initialValues={{
+          modifier: 'public', title: work.title, content: work.content, image: fileList,
+        }}
+        modalText={t('edit-header')}
+        handelFinisher={handelEdit}
+        addSuccessWork={addSuccessWork}
+      />
     </>
   );
 }
