@@ -13,11 +13,13 @@ const {
   addWork,
   signUp,
   emailCheck,
+  uploadImageController,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
 // router.use(checkAuth);
 router.get('/providers/:id', getProfileInfo);
+router.patch('/providers/:id', checkAuth, uploadImageController);
 router.get('/', getHomeData);
 // http://localhost:3030/api/v1/provider/?name=صالح&location=1&service=1&subservice=1,2,3&page=1
 router.get('/provider', getSearchResult);
