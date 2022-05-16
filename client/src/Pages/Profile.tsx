@@ -78,7 +78,6 @@ function Profile() {
     setWorksData(data);
   };
   const addReview = (review: any) => {
-    console.log(review);
     setReviewsArray([review, ...reviewsArray]);
   };
   const updateWorks = (id2: number, work: any) => {
