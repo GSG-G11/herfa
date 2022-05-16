@@ -43,6 +43,7 @@ function WorkModal({
       const data = await handelFinisher({ title, content, image: image[0] });
       handelVisible(false);
       addSuccessWork(data.data);
+      form.resetFields();
       message.success(t('successfully-added'));
     } catch (error: any) {
       message.error(t('error-delete-message'));

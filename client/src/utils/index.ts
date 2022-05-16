@@ -20,9 +20,17 @@ import {
   SearchResponse,
   Event,
   ServiceSearch,
+  ProfileInfoResponse,
+  UserResponse,
+  Reviews,
+  HomeReviewProps,
+  WorkListProps,
+  ProfileDataProps,
+  WorksProps,
   signUpForm,
   WorkCardProps,
   LoginFormType,
+  ProviderDataType,
 } from './types';
 
 export {
@@ -49,7 +57,15 @@ export type {
   SearchResponse,
   Event,
   ServiceSearch,
+  ProfileInfoResponse,
+  UserResponse,
+  Reviews,
+  HomeReviewProps,
+  WorkListProps,
+  ProfileDataProps,
+  WorksProps,
   signUpForm,
   WorkCardProps,
   LoginFormType,
+  ProviderDataType,
 };
