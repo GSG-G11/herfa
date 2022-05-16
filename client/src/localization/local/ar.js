@@ -99,6 +99,8 @@ const ar = {
   'required-location': 'الرجاء إختيار الموقع!',
   'required-description': 'الرجاء إضافة نبذة عنك!',
   'previous-button': 'رجوع',
+  'personal-information': 'البيانات الشخصية',
+  'services-information': 'بيانات الخدمات',
 };
 
 export default ar;

@@ -98,6 +98,8 @@ const en = {
   'required-location': 'Please select the location!',
   'required-description': 'Please add a biography!',
   'previous-button': 'Previous',
+  'personal-information': 'Personal Information',
+  'services-information': 'Services Information',
 };
 
 export default en;

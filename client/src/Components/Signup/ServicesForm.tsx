@@ -2,6 +2,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-unresolved */
 import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 import {
@@ -12,20 +13,40 @@ import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import { serviceObject, request } from '../../utils';
 // import ErrorComponent from '../Error';
 
-function ServicesForm(firstForm:any) {
+function ServicesForm({ firstForm, prev }:any) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const Location: any = useLocation();
+
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
   const [subService, setSubService] = useState<number[]>([]);
-  // const [searchValueFromInput, setSearchValueFromInput] = useState();
   const [error, setError] = useState('');
   const [mainServiceId, setMainServiceId] = useState(0);
   const [hasFeedBack, setHasFeedBack] = useState(false);
 
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
-  const onFinish = (values:React.ChangeEvent<HTMLInputElement>) => {
+  const onFinish = async (values:React.ChangeEvent<HTMLInputElement>) => {
     const finalData = { ...firstForm, ...values };
-    console.log(finalData);
+    try {
+      const data = await axios.post('/api/v1/signup', finalData);
+      if (data) {
+        const newLink = `/providers/${data.data.data.id}`;
+        navigate(Location.state?.from || newLink);
+      }
+    } catch (err:any) {
+      if (err.response) {
+        if (err.response.status === 401) {
+          message.warning(t('failed-login'));
+        } else if (err.response.status === 500) {
+          message.warning(t('error-message'));
+        } else if (err.response.status === 400) {
+          message.warning(err.response.data.msg);
+        }
+      } else {
+        message.warning(t('error-message'));
+      }
+    }
   };
   const checkphone = async (e:React.ChangeEvent<HTMLInputElement>) => {
     setError('');
@@ -131,7 +152,7 @@ function ServicesForm(firstForm:any) {
 
         </Form.Item>
         <Form.Item
-          name="subServiceId"
+          name="subservice"
           label={t('services')}
         >
           <Select
@@ -180,6 +201,9 @@ function ServicesForm(firstForm:any) {
         <Form.Item className="next-btn">
           <Button type="primary" htmlType="submit">
             {t('create-account-button')}
+          </Button>
+          <Button style={{ margin: '0 3px' }} onClick={() => prev()}>
+            {t('previous-button')}
           </Button>
         </Form.Item>
       </Form>

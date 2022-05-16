@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './style.css';
 
-function PersonalForm({ current, setCurrent, setFirstForm }: any) {
+function PersonalForm({ next, setFirstForm }: any) {
   const { t } = useTranslation();
   const [error, setError] = useState('');
   const [hasFeedBack, setHasFeedBack] = useState(false);
@@ -45,21 +45,21 @@ function PersonalForm({ current, setCurrent, setFirstForm }: any) {
         layout="vertical"
         autoComplete="off"
         onFinish={(values) => {
-          setCurrent(current + 1);
+          next();
           setFirstForm(values);
         }}
       >
         <div className="name-input">
           <Form.Item
             label={t('First Name')}
-            name="firstName"
+            name="first_name"
             rules={[{ required: true, message: t('required-firstName') }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label={t('Last Name')}
-            name="lastName"
+            name="last_name"
             rules={[{ required: true, message: t('required-lastName') }]}
             className="firstNameInput"
           >
