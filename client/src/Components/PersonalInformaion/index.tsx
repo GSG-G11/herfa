@@ -45,7 +45,6 @@ function PersonalForm() {
         name="register"
         layout="vertical"
         autoComplete="off"
-        onFinish={(values) => console.log(values)}
       >
         <div className="name-input">
           <Form.Item

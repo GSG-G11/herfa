@@ -8,7 +8,6 @@
 }
 .search-user-card-body{
     width: 70%;
-    /* background-color:antiquewhite; */
     padding: 0 4%;
 }
 .search-user-card-image{
@@ -54,6 +53,3 @@
 .result-counter{
     padding: 0 5% 2% 5%;
 }
-/* .search-user-card-contact{
-    background-color: aqua; 
-} */

@@ -13,9 +13,7 @@ function UserCard({ user }: { user: UserData }) {
   const {
     first_name: firstName,
     last_name: lastName,
-    // email,
     phone,
-    // whatsapp,
     description,
     image,
     avgRating,
@@ -40,15 +38,11 @@ function UserCard({ user }: { user: UserData }) {
             <div className="div-80-2 search-user-card-contact">
               <p>{location?.city}</p>
               <p>{phone}</p>
-              {/* <p>{email}</p> */}
             </div>
             <Title level={5}>{t('servicesOffer')}</Title>
-            {/* <div className="div-80-2 search-user-card-contact"> */}
             <p>{mainServices.name}</p>
-            {/* </div> */}
             <p className="search-user-card-services" />
             <p>{description}</p>
-            {/* <p>{whatsapp}</p> */}
           </div>
         </div>
       </div>
