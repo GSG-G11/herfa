@@ -16,7 +16,7 @@ const { Header } = Layout;
 function Nav({ language, setLanguage }: NavBarProps) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const userData: any = useContext(UserContext);
+  const { user: userData, setUser }: any = useContext(UserContext);
   const navBarItems: MenuProps['items'] = [
     {
       label: t('home'),
@@ -38,8 +38,13 @@ function Nav({ language, setLanguage }: NavBarProps) {
     },
   ];
   const handelLogOut = async () => {
-    await request('get', '/logout');
-    message.success(t('log-out'));
+    try {
+      await request('get', '/logout');
+      setUser({});
+      message.success(t('log-out'));
+    } catch {
+      setUser({});
+    }
   };
   const menu = (
     <Menu
@@ -51,7 +56,7 @@ function Nav({ language, setLanguage }: NavBarProps) {
   );
 
   let authItems:{} = <Link to="/login"><Button type="primary">{ t('login') }</Button></Link>;
-  if (userData) {
+  if (userData.providerID) {
     authItems = (
       <Dropdown.Button
         icon={<DownOutlined />}

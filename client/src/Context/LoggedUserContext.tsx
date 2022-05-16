@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, useEffect, createContext } from 'react';
 import Cookies from 'js-cookie';
 // eslint-disable-next-line camelcase
@@ -8,7 +9,7 @@ export const UserContext = createContext({});
 
 function LoggedUserInfoProvider(props:any) {
   const { children } = props;
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<any>({});
   useEffect(() => {
     const token: string | undefined = Cookies.get('token');
     if (token) {
@@ -17,7 +18,7 @@ function LoggedUserInfoProvider(props:any) {
     }
   }, []);
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );
