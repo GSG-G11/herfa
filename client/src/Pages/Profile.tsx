@@ -77,6 +77,10 @@ function Profile() {
     };
     setWorksData(data);
   };
+  const addReview = (review: any) => {
+    console.log(review);
+    setReviewsArray([review, ...reviewsArray]);
+  };
   const updateWorks = (id2: number, work: any) => {
     const newWork = worksData['1'].map((element: any) => {
       if (element.id === id2) { return work.data; }
@@ -110,7 +114,9 @@ function Profile() {
       {isLoading ? <SpinierComponent /> : iff(
         !error,
         <>
-          <UserInfoCard userInfo={{ user: userData, totalReviews: reviewsAvg }} />
+          <UserInfoCard
+            userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+          />
           {isAuth.isAuth && (
             <div className="show-add-work-modal">
               <Button type="primary" onClick={() => setIsClickedAddWork(true)}>{t('add-button')}</Button>

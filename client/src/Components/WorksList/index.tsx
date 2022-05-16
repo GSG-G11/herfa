@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { Pagination, Empty } from 'antd';
 import WorkCard from '../WorkCard';
@@ -12,6 +13,7 @@ function WorkList({
   worksData, page, handlePageChange, resultCount,
   isAuth, isLoading, error, updateWorks, deletedWork,
 }:any) {
+  const { t } = useTranslation();
   return (
     <div className="works-container">
       {isLoading ? <SpinierComponent /> : iff(
@@ -29,7 +31,7 @@ function WorkList({
             ))}
           </div>
         ) : (
-          <Empty description={(<span>no-data</span>)} />
+          <Empty description={(<span>{t('no-data')}</span>)} />
         ),
         <ErrorComponent errorMessage={error} />,
       )}

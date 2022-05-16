@@ -35,6 +35,7 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
       instagram_link: instagramLink,
     },
     totalReviews,
+    addReview,
   } = userInfo;
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
@@ -42,8 +43,8 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     try {
       setVisible(false);
       const formData = { ...values, userId: id };
-      // eslint-disable-next-line no-unused-vars
       const response = await axios.post('/api/v1/reviews', formData);
+      addReview(response.data.data);
       message.success(t('review-message'), 5);
     } catch (error:any) {
       if (error.response.status === 400) {
