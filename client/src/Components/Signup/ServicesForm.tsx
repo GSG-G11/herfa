@@ -1,6 +1,3 @@
-/* eslint-disable prefer-regex-literals */
-/* eslint-disable camelcase */
-/* eslint-disable import/no-unresolved */
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +8,6 @@ import {
 import axios from 'axios';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import { serviceObject, request } from '../../utils';
-// import ErrorComponent from '../Error';
 
 function ServicesForm({
   firstForm, prev, setSecondForm, secondForm,
@@ -114,7 +110,7 @@ function ServicesForm({
             rules={[
               { required: true, message: t('required-phone') },
               {
-                pattern: new RegExp(/^\d{10}$/), message: t('invalid-phone'),
+                pattern: /\/^\d{10}$\//, message: t('invalid-phone'),
               }]}
           >
             <Input
@@ -127,10 +123,10 @@ function ServicesForm({
             className="firstNameInput"
             name="whatsapp"
             rules={[{ required: true, message: t('required-whatsapp') },
-              { pattern: new RegExp(/^\d{14}$/), message: t('invalid-whatsapp') },
+              { pattern: /^\d{14}$/, message: t('invalid-whatsapp') },
             ]}
           >
-            <Input placeholder={t('whats-app')} />
+            <Input placeholder={t('whats-app-placeholder')} />
           </Form.Item>
         </div>
         <Form.Item

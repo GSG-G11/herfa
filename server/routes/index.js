@@ -15,10 +15,8 @@ const {
   emailCheck,
   checkPhone,
 } = require('../controllers');
-// const checkPhone = require('../controllers/signup/checkPhone');
 const { uploadImage } = require('../utils');
 
-// router.use(checkAuth);
 router.get('/providers/:id', getProfileInfo);
 router.get('/', getHomeData);
 // http://localhost:3030/api/v1/provider/?name=صالح&location=1&service=1&subservice=1,2,3&page=1
