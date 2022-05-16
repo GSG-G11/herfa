@@ -1,10 +1,8 @@
 const { paramsValidation, editUserValidation } = require('../../utils/validation');
 const { User } = require('../../database/models');
 const { customError } = require('../errors');
-const { sequelize } = require('../../database/config');
 
 const editUserData = async (req, res, next) => {
-  const t = await sequelize.transaction();
   try {
     const { providerID } = req;
     const { id: providerId } = await paramsValidation.validateAsync(req.params);
@@ -26,23 +24,13 @@ const editUserData = async (req, res, next) => {
         where: { id: providerId },
       },
     );
-    if (data.subservice?.length) {
-      await sequelize.models.services_user.destroy(
-        { where: { userId: providerId } },
-        { transaction: t },
-      );
-      await isUser.addServices(data.subservice, { transaction: t });
-      await t.commit();
-    }
+    await isUser.setServices(data.subservice);
     return res.json({
       msg: 'User data updated',
       data: user,
     });
   } catch (err) {
     if (err.name === 'ValidationError') {
-      return next(customError(err.message, 400));
-    } if (err.name === 'SequelizeUniqueConstraintError') {
-      await t.rollback();
       return next(customError(err.message, 400));
     }
     return next(err);
