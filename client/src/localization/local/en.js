@@ -82,6 +82,22 @@ const en = {
   locations: 'Locations',
   footer: 'Herfa ©2022 Created By Herfa Team',
   'all-services': 'services',
+  'phone-number': 'Phone Number',
+  'whats-app': 'Whats app',
+  'services-category': 'Services Category',
+  services: 'Services',
+  location: 'Location',
+  biography: 'Biography',
+  'create-account-button': 'Create Account',
+  'required-phone': 'please enter a phone number!',
+  'invalid-phone': 'incorrect phone number!',
+  'phone-exists': 'phone is already exists!',
+  'required-whatsapp': 'Please enter whatsApp!',
+  'invalid-whatsapp': 'incorrect whatsApp number!',
+  'required-service': 'Please select the service!',
+  'required-location': 'Please select the location!',
+  'required-description': 'Please add a biography!',
+  'previous-button': 'Previous',
 };
 
 export default en;

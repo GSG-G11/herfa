@@ -83,6 +83,22 @@ const ar = {
   locations: 'المواقع',
   footer: 'Herfa ©2022 فريق حرفة الفني',
   'all-services': 'الخدمات',
+  'phone-number': 'رقم الجوال',
+  'whats-app': 'الواتس اب',
+  'services-category': 'فئة الخدمات',
+  services: 'الخدمات',
+  location: 'الموقع',
+  biography: 'نبذة تعريفية',
+  'create-account-button': 'إنشاء حساب',
+  'required-phone': 'الرجاء إدخال رقم الجوال!',
+  'invalid-phone': 'رقم جوال غير صحيح!',
+  'required-whatsapp': 'الرجاء إدخال واتس اب!',
+  'phone-exists': 'رقم جوال مستخدم مسبقا!',
+  'invalid-whatsapp': 'رقم واتس اب غير صحيح!',
+  'required-service': 'الرجاء إختيار الخدمة!',
+  'required-location': 'الرجاء إختيار الموقع!',
+  'required-description': 'الرجاء إضافة نبذة عنك!',
+  'previous-button': 'رجوع',
 };
 
 export default ar;
