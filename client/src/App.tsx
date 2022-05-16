@@ -34,7 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ServiceLocationContext><Layout language={lang} setLanguage={setLang} /></ServiceLocationContext>}>
               <Route index element={<Home />} />
-              <Route path="/user/:userName" element={<Profile />} />
+              <Route path="/user/:id" element={<Profile />} />
               <Route path="/search" element={<Search />} />
               <Route path="*" element={<NotFound />} />
             </Route>

@@ -10,6 +10,7 @@ import SpinierComponent from './Spinier';
 import ErrorComponent from './Error';
 import UserCard from './UserCard';
 import FilterSection from './FilterSection';
+import WorkList from './WorksList';
 import LogInPage from './Login';
 import WorkModal from './WorkModal';
 import Footer from './Footer';
@@ -27,6 +28,7 @@ export {
   SpinierComponent,
   ErrorComponent,
   UserCard,
+  WorkList,
   LogInPage,
   FilterSection,
   WorkModal,

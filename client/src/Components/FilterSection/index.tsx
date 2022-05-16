@@ -4,7 +4,7 @@ import { Input, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ErrorComponent from '../Error';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
-import getSearchResults from '../../Controllers';
+import { getSearchResults } from '../../Controllers';
 import './style.css';
 import {
   locationObject,

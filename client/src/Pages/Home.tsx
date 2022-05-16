@@ -12,7 +12,11 @@ import {
 import { ServiceLocation } from '../Context/ServiceLocationContext';
 
 function Home() {
-  const { checks: { error, isLoading, errorExist } } = useContext(ServiceLocation);
+  const {
+    checks: { error, isLoading, errorExist },
+    data: { topTenReviews },
+  } = useContext(ServiceLocation);
+
   const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
   return (
     <div>
@@ -31,7 +35,7 @@ function Home() {
               </div>
               <JoinUs />
               <div className="container">
-                <Reviews />
+                <Reviews data={topTenReviews} />
               </div>
             </>
           ),
