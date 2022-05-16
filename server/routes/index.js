@@ -13,7 +13,9 @@ const {
   addWork,
   signUp,
   emailCheck,
+  checkPhone,
 } = require('../controllers');
+// const checkPhone = require('../controllers/signup/checkPhone');
 const { uploadImage } = require('../utils');
 
 // router.use(checkAuth);
@@ -34,6 +36,7 @@ router.post('/img', async (req, res) => {
   res.json({ data });
 });
 router.post('/checkEmail', emailCheck);
+router.post('/checkphone', checkPhone);
 router.post('/signup', signUp);
 router.use(checkAuth);
 router.post('/work', addWork);

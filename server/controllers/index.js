@@ -8,6 +8,7 @@ const loginHandler = require('./login');
 const checkAuth = require('./middleware');
 const { signUp } = require('./signup');
 const emailCheck = require('./signup/checkIsEmailExists');
+const checkPhone = require('./signup/checkPhone');
 
 module.exports = {
   getHomeData,
@@ -23,4 +24,5 @@ module.exports = {
   addWork,
   signUp,
   emailCheck,
+  checkPhone,
 };
