@@ -9,23 +9,31 @@ function SignUp() {
   const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
   const [firstForm, setFirstForm] = useState({});
+  const [secondForm, setSecondForm] = useState({});
   const prev = () => {
     setCurrent(current - 1);
   };
   const next = () => {
     setCurrent(current + 1);
   };
+  console.log(secondForm);
   const steps = [
     {
       title: t('personal-information'),
       content: <PersonalForm
         next={next}
         setFirstForm={setFirstForm}
+        firstForm={firstForm}
       />,
     },
     {
       title: t('services-information'),
-      content: <ServicesForm firstForm={firstForm} prev={prev} />,
+      content: <ServicesForm
+        firstForm={firstForm}
+        setSecondForm={setSecondForm}
+        secondForm={secondForm}
+        prev={prev}
+      />,
     },
   ];
 

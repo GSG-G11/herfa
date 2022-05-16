@@ -13,7 +13,10 @@ import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import { serviceObject, request } from '../../utils';
 // import ErrorComponent from '../Error';
 
-function ServicesForm({ firstForm, prev }:any) {
+function ServicesForm({
+  firstForm, prev, setSecondForm, secondForm,
+}:any) {
+  const [form] = Form.useForm();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const Location: any = useLocation();
@@ -23,22 +26,21 @@ function ServicesForm({ firstForm, prev }:any) {
   const [error, setError] = useState('');
   const [mainServiceId, setMainServiceId] = useState(0);
   const [hasFeedBack, setHasFeedBack] = useState(false);
-
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
   const onFinish = async (values:React.ChangeEvent<HTMLInputElement>) => {
     const finalData = { ...firstForm, ...values };
+
     try {
       const data = await axios.post('/api/v1/signup', finalData);
       if (data) {
-        const newLink = `/providers/${data.data.data.id}`;
+        const newLink = `/user/${data.data.data.id}`;
+        // set User data from user context
         navigate(Location.state?.from || newLink);
       }
     } catch (err:any) {
       if (err.response) {
-        if (err.response.status === 401) {
-          message.warning(t('failed-login'));
-        } else if (err.response.status === 500) {
+        if (err.response.status === 500) {
           message.warning(t('error-message'));
         } else if (err.response.status === 400) {
           message.warning(err.response.data.msg);
@@ -99,6 +101,8 @@ function ServicesForm({ firstForm, prev }:any) {
         name="register"
         layout="vertical"
         onFinish={onFinish}
+        form={form}
+        initialValues={secondForm}
       >
         <div className="name-input">
           <Form.Item
@@ -194,16 +198,15 @@ function ServicesForm({ firstForm, prev }:any) {
         <Form.Item
           label={t('biography')}
           name="description"
-          rules={[{ required: true, message: t('required-description') }]}
         >
           <Input />
         </Form.Item>
-        <Form.Item className="next-btn">
+        <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
+          {t('previous-button')}
+        </Button>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             {t('create-account-button')}
-          </Button>
-          <Button style={{ margin: '0 3px' }} onClick={() => prev()}>
-            {t('previous-button')}
           </Button>
         </Form.Item>
       </Form>
