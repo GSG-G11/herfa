@@ -8,6 +8,7 @@ const workValidation = require('./workValidation');
 const workEditValidation = require('./workEditValidation');
 const { signUpValidation } = require('./signUpValidation');
 const { emailValidation } = require('./emailValidation');
+const { editUserValidation } = require('./editUserValidation');
 
 module.exports = {
   paramsValidation,
@@ -20,4 +21,5 @@ module.exports = {
   workEditValidation,
   signUpValidation,
   emailValidation,
+  editUserValidation,
 };

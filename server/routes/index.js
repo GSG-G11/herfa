@@ -13,6 +13,7 @@ const {
   addWork,
   signUp,
   emailCheck,
+  editUserData,
 } = require('../controllers');
 const { uploadImage } = require('../utils');
 
@@ -26,6 +27,7 @@ router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
 router.post('/reviews', addReview);
 router.patch('/work/', checkAuth, editWork);
+router.patch('/provider/:id', checkAuth, editUserData);
 router.delete('/work/:id', checkAuth, deleteWork);
 // example how to upload image using S3
 router.post('/img', async (req, res) => {
