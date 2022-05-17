@@ -15,6 +15,7 @@ import LogInPage from './Login';
 import WorkModal from './WorkModal';
 import Footer from './Footer';
 import Nav from './NavBar';
+import { PersonalForm, ServicesForm } from './Signup';
 
 export {
   Reviews,
@@ -34,4 +35,6 @@ export {
   WorkModal,
   Footer,
   Nav,
+  PersonalForm,
+  ServicesForm,
 };
