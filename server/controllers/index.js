@@ -9,6 +9,7 @@ const checkAuth = require('./middleware');
 const { signUp } = require('./signup');
 const emailCheck = require('./signup/checkIsEmailExists');
 const checkPhone = require('./signup/checkPhone');
+const logOut = require('./logout');
 
 module.exports = {
   getHomeData,
@@ -25,4 +26,5 @@ module.exports = {
   signUp,
   emailCheck,
   checkPhone,
+  logOut,
 };

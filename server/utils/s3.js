@@ -1,4 +1,3 @@
-const fs = require('fs');
 const S3 = require('aws-sdk/clients/s3');
 const uuid = require('uuid');
 const path = require('path');
@@ -18,12 +17,13 @@ const s3 = new S3({
 });
 
 function uploadImage(img, userId) {
-  const fileStream = fs.createReadStream(img.path);
+  const base64Data = Buffer.from(img.thumbUrl.replace(/^data:image\/\w+;base64,/, ''), 'base64');
   const extension = path.extname(img.name);
   const uploadParams = {
     Bucket: bucketName,
-    Body: fileStream,
+    Body: base64Data,
     Key: `${userId}/${uuid.v1()}${extension}`,
+    ContentEncoding: 'base64',
   };
   return s3.upload(uploadParams).promise();
 }

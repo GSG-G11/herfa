@@ -6,6 +6,7 @@ const {
   Location,
   SubServices,
   User,
+  MainServices,
 } = require('../../database/models');
 const { paramsValidation } = require('../../utils/validation');
 const { customError } = require('../errors');
@@ -14,13 +15,17 @@ const getProfileInfo = async (req, res, next) => {
   try {
     const { id } = await paramsValidation.validateAsync(req.params);
     const user = await User.findByPk(id, {
-      include: [{ model: Location }, { model: SubServices }],
+      include: [
+        { model: Location },
+        { model: SubServices, duplicating: false },
+        { model: MainServices },
+      ],
       attributes: {
         exclude: ['password', 'createdAt', 'updatedAt'],
       },
     });
     if (!user) {
-      throw customError('user does not exist', 400);
+      throw customError('user does not exist', 404);
     }
     const reviewsAndWorks = await Promise.all([
       Review.findAll({
@@ -32,7 +37,7 @@ const getProfileInfo = async (req, res, next) => {
           },
         },
       }),
-      Work.findAll({
+      Work.findAndCountAll({
         limit: 4,
         where: {
           userId: id,
@@ -44,12 +49,13 @@ const getProfileInfo = async (req, res, next) => {
     const data = {
       user,
       reviews: reviewsAndWorks[0],
-      works: reviewsAndWorks[1],
-      test: reviewsAndWorks[2],
+      works: reviewsAndWorks[1].rows,
+      count: reviewsAndWorks[1].count,
       totalReviews: totalReviews / count,
     };
     res.status(200).json({ msg: "Profile user's information", data });
   } catch (error) {
+    console.log(error);
     if (error.name === 'ValidationError') {
       return next(customError(error.message, 400));
     }

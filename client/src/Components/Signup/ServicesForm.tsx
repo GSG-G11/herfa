@@ -7,6 +7,7 @@ import {
 } from 'antd';
 import axios from 'axios';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
+import { UserContext } from '../../Context/LoggedUserContext';
 import { serviceObject, request } from '../../utils';
 
 function ServicesForm({
@@ -16,7 +17,7 @@ function ServicesForm({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const Location: any = useLocation();
-
+  const { setUser }: any = useContext(UserContext);
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
   const [subService, setSubService] = useState<number[]>([]);
   const [error, setError] = useState('');
@@ -24,14 +25,16 @@ function ServicesForm({
   const [hasFeedBack, setHasFeedBack] = useState(false);
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
+
   const onFinish = async (values:React.ChangeEvent<HTMLInputElement>) => {
     const finalData = { ...firstForm, ...values };
 
     try {
       const data = await axios.post('/api/v1/signup', finalData);
       if (data) {
-        const newLink = `/user/${data.data.data.id}`;
-        // set User data from user context
+        const { id, providerName } = data.data.data;
+        const newLink = `/user/${id}`;
+        setUser({ providerName, providerID: id });
         navigate(Location.state?.from || newLink);
       }
     } catch (err:any) {
@@ -107,11 +110,8 @@ function ServicesForm({
             hasFeedback={hasFeedBack}
             validateStatus={error ? 'error' : 'success'}
             help={error}
-            rules={[
-              { required: true, message: t('required-phone') },
-              {
-                pattern: /\/^\d{10}$\//, message: t('invalid-phone'),
-              }]}
+            rules={[{ required: true, message: t('required-phone') },
+              { pattern: /^\d{10}$/, message: t('invalid-phone') }]}
           >
             <Input
               placeholder={t('phone-number')}
@@ -123,8 +123,7 @@ function ServicesForm({
             className="firstNameInput"
             name="whatsapp"
             rules={[{ required: true, message: t('required-whatsapp') },
-              { pattern: /^\d{14}$/, message: t('invalid-whatsapp') },
-            ]}
+              { pattern: /^\d{14}$/, message: t('invalid-whatsapp') }]}
           >
             <Input placeholder={t('whats-app-placeholder')} />
           </Form.Item>
