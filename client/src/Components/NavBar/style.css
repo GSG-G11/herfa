@@ -1,5 +1,7 @@
 .nav-container{
-  margin-bottom: 100px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 .nav-container .ant-menu-overflow  {
   width: 80%;
@@ -19,6 +21,3 @@
 .logo img{
   width: 121px;
 }
-
-
-

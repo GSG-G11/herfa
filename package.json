@@ -13,6 +13,7 @@
     "dev": "cross-env NODE_ENV=development nodemon server/index.js",
     "heroku-postbuild": " cd client && npm i && npm run build",
     "db:seed": "cross-env NODE_ENV=development BUILD_DB=true node server/database/seeders/index.js",
+    "install-client": "cd client && npm i",
     "prepare": "is-ci || npx husky install"
   },
   "repository": {

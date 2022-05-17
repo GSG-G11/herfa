@@ -15,6 +15,7 @@ const userTest = {
   instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
   mainServiceId: 1,
   subservice:[1],
+  confirm: 'saleh123133255',
 };
 
 beforeAll(() => build());

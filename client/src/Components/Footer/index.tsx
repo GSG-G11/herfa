@@ -25,7 +25,7 @@ function Footer() {
           </div>
           <div className="col-2">
             <h2 className="footer-col-header"> {t('all-services')} </h2>
-            <div className="footer-items services">
+            <div className="footer-items footer-services">
               {services.map(
                 (item :serviceObject) => (
                   <Link key={item.name} to="/search" state={{ serviceSearch: item.id }}>{item.name}</Link>

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './style.css';
 
-function PersonalForm({ next, setFirstForm }: any) {
+function PersonalForm({ next, setFirstForm, firstForm }: any) {
   const { t } = useTranslation();
   const [error, setError] = useState('');
   const [hasFeedBack, setHasFeedBack] = useState(false);
@@ -38,7 +38,6 @@ function PersonalForm({ next, setFirstForm }: any) {
   };
   return (
     <div className="personal-form">
-      <h1>{t('crate-account')}</h1>
       <Form
         className="Form-sign-up"
         name="register"
@@ -48,6 +47,7 @@ function PersonalForm({ next, setFirstForm }: any) {
           next();
           setFirstForm(values);
         }}
+        initialValues={firstForm}
       >
         <div className="name-input">
           <Form.Item

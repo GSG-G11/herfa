@@ -1,6 +1,3 @@
-/* eslint-disable prefer-regex-literals */
-/* eslint-disable camelcase */
-/* eslint-disable import/no-unresolved */
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -10,35 +7,39 @@ import {
 } from 'antd';
 import axios from 'axios';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
+import { UserContext } from '../../Context/LoggedUserContext';
 import { serviceObject, request } from '../../utils';
-// import ErrorComponent from '../Error';
 
-function ServicesForm({ firstForm, prev }:any) {
+function ServicesForm({
+  firstForm, prev, setSecondForm, secondForm,
+}:any) {
+  const [form] = Form.useForm();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const Location: any = useLocation();
-
+  const { setUser }: any = useContext(UserContext);
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
   const [subService, setSubService] = useState<number[]>([]);
   const [error, setError] = useState('');
   const [mainServiceId, setMainServiceId] = useState(0);
   const [hasFeedBack, setHasFeedBack] = useState(false);
-
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
+
   const onFinish = async (values:React.ChangeEvent<HTMLInputElement>) => {
     const finalData = { ...firstForm, ...values };
+
     try {
       const data = await axios.post('/api/v1/signup', finalData);
       if (data) {
-        const newLink = `/providers/${data.data.data.id}`;
+        const { id, providerName } = data.data.data;
+        const newLink = `/user/${id}`;
+        setUser({ providerName, providerID: id });
         navigate(Location.state?.from || newLink);
       }
     } catch (err:any) {
       if (err.response) {
-        if (err.response.status === 401) {
-          message.warning(t('failed-login'));
-        } else if (err.response.status === 500) {
+        if (err.response.status === 500) {
           message.warning(t('error-message'));
         } else if (err.response.status === 400) {
           message.warning(err.response.data.msg);
@@ -99,6 +100,8 @@ function ServicesForm({ firstForm, prev }:any) {
         name="register"
         layout="vertical"
         onFinish={onFinish}
+        form={form}
+        initialValues={secondForm}
       >
         <div className="name-input">
           <Form.Item
@@ -107,11 +110,8 @@ function ServicesForm({ firstForm, prev }:any) {
             hasFeedback={hasFeedBack}
             validateStatus={error ? 'error' : 'success'}
             help={error}
-            rules={[
-              { required: true, message: t('required-phone') },
-              {
-                pattern: new RegExp(/^\d{10}$/), message: t('invalid-phone'),
-              }]}
+            rules={[{ required: true, message: t('required-phone') },
+              { pattern: /^\d{10}$/, message: t('invalid-phone') }]}
           >
             <Input
               placeholder={t('phone-number')}
@@ -123,10 +123,9 @@ function ServicesForm({ firstForm, prev }:any) {
             className="firstNameInput"
             name="whatsapp"
             rules={[{ required: true, message: t('required-whatsapp') },
-              { pattern: new RegExp(/^\d{14}$/), message: t('invalid-whatsapp') },
-            ]}
+              { pattern: /^\d{14}$/, message: t('invalid-whatsapp') }]}
           >
-            <Input placeholder={t('whats-app')} />
+            <Input placeholder={t('whats-app-placeholder')} />
           </Form.Item>
         </div>
         <Form.Item
@@ -194,16 +193,15 @@ function ServicesForm({ firstForm, prev }:any) {
         <Form.Item
           label={t('biography')}
           name="description"
-          rules={[{ required: true, message: t('required-description') }]}
         >
           <Input />
         </Form.Item>
-        <Form.Item className="next-btn">
+        <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
+          {t('previous-button')}
+        </Button>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             {t('create-account-button')}
-          </Button>
-          <Button style={{ margin: '0 3px' }} onClick={() => prev()}>
-            {t('previous-button')}
           </Button>
         </Form.Item>
       </Form>

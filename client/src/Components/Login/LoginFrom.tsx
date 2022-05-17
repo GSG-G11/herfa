@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import {
   Form, Input, Button, message,
 } from 'antd';
 import axios from 'axios';
+import { UserContext } from '../../Context/LoggedUserContext';
 import { LoginFormType } from '../../utils';
 
 interface loginProps {
@@ -16,12 +17,15 @@ function LoginForm() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location: any = useLocation();
+  const { setUser }: any = useContext(UserContext);
   const onFinish = async (values: loginProps) => {
     try {
       setLoading(true);
       const loginResult = await axios.post('/api/v1/login', values);
       setLoading(false);
-      const newLink = `/user/${loginResult.data.data.id}`;
+      const { id, providerName } = loginResult.data.data;
+      const newLink = `/user/${id}`;
+      setUser({ providerName, providerID: id });
       navigate(location.state?.from || newLink);
     } catch (err: any) {
       setLoading(false);
@@ -40,7 +44,7 @@ function LoginForm() {
   };
   return (
     <div className="login-form">
-      <h1>{t('login-title')}</h1>
+      <h1 className="log-in-main-text">{t('login-title')}</h1>
       <Form
         className="login-form-body"
         layout="vertical"
@@ -56,7 +60,7 @@ function LoginForm() {
           name="email"
           rules={[{ required: true, message: t('required-email') }, { type: 'email', message: t('invalid-email') }]}
         >
-          <Input />
+          <Input placeholder={t('log-in-email')} />
         </Form.Item>
 
         <Form.Item
@@ -64,7 +68,7 @@ function LoginForm() {
           name="password"
           rules={[{ required: true, message: t('required-password') }, { min: 8, message: t('invalid-password') }]}
         >
-          <Input.Password />
+          <Input.Password placeholder={t('log-in-password')} />
         </Form.Item>
         <p>
           {`${t('login-signup-text')} `}
