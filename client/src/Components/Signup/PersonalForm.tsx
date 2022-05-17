@@ -7,9 +7,8 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './style.css';
 
-function PersonalForm() {
+function PersonalForm({ next, setFirstForm, firstForm }: any) {
   const { t } = useTranslation();
-
   const [error, setError] = useState('');
   const [hasFeedBack, setHasFeedBack] = useState(false);
   const emailCheck = async (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -39,24 +38,28 @@ function PersonalForm() {
   };
   return (
     <div className="personal-form">
-      <h1>{t('crate-account')}</h1>
       <Form
         className="Form-sign-up"
         name="register"
         layout="vertical"
         autoComplete="off"
+        onFinish={(values) => {
+          next();
+          setFirstForm(values);
+        }}
+        initialValues={firstForm}
       >
         <div className="name-input">
           <Form.Item
             label={t('First Name')}
-            name="firstName"
+            name="first_name"
             rules={[{ required: true, message: t('required-firstName') }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label={t('Last Name')}
-            name="lastName"
+            name="last_name"
             rules={[{ required: true, message: t('required-lastName') }]}
             className="firstNameInput"
           >
