@@ -100,6 +100,31 @@ const en = {
   'previous-button': 'Previous',
   'personal-information': 'Personal Information',
   'services-information': 'Services Information',
+  // locations >>>>>>>>>
+  'Bait-hanoon': 'Bait-hanoon',
+  'Bait-lahia': 'Bait-lahia',
+  'Jabalia-camp': 'Jabalia-camp',
+  Jabalia: 'Jabalia',
+  Gaza: 'Gaza',
+  'Al-zahraa': 'Al-zahraa',
+  'Al-nusirat': 'Al-nusirat',
+  'Dair-albalah': 'Dair-albalah',
+  'Al-maghazi': 'Al-maghazi',
+  'Al-buraig': 'Al-buraig',
+  'Khan-younis': 'Khan-younis',
+  Rafah: 'Rafah',
+  // services >>>>>>>>
+  blacksmith: 'Blacksmith',
+  plumbing: 'Plumbing',
+  carpentry: 'Carpentry',
+  'construction-works': 'Construction works',
+  mechanics: 'Mechanics',
+  electrical: 'Electrical',
+  'paint-and-gypsum': 'Paint and Gypsum',
+  cleaning: 'Cleaning',
+  gardening: 'Gardening',
+  textile: 'Textile',
+
 };
 
 export default en;
