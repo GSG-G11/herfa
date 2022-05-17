@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Card, message, Popconfirm,
+  Card, message, Popconfirm, Image,
 } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -65,7 +65,7 @@ function WorkCard({
           </Popconfirm>,
           <EditOutlined onClick={() => setIsClickEdit(true)} key="edit" />,
         ] : []}
-        cover={<img alt="example" src={work.image} />}
+        cover={<Image src={work.image} alt={work.title} />}
       >
         <Meta
           className="work-card-body"

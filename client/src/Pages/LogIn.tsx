@@ -3,9 +3,7 @@ import { LogInPage } from '../Components';
 
 function LogIn() {
   return (
-    <div className="container">
-      <LogInPage />
-    </div>
+    <LogInPage />
   );
 }
 

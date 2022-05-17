@@ -1,3 +1,9 @@
+import getUserProfileData from './getProfileData';
 import getSearchResults from './getSearchData';
+import getWorksData from './getWorks';
 
-export default getSearchResults;
+export {
+  getSearchResults,
+  getUserProfileData,
+  getWorksData,
+};

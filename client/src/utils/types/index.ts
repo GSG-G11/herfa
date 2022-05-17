@@ -48,6 +48,18 @@ export interface Request {
     totalReviews: number;
   };
 }
+
+export type UserResponse = {
+    user: User;
+    reviews: any;
+    works: Works;
+    totalReviews: number;
+    count: number;
+}
+export interface ProfileInfoResponse {
+  data: any;
+  msg: string;
+}
 export interface AllWorks {
   1: [];
 }
@@ -168,6 +180,35 @@ export interface FilterSearchProps {
   setPage: (value: number) => void;
   page: number;
 }
+export type HomeReviewProps = {
+  data: TopTenReviews[];
+}
+export type WorkListProps = {
+  worksData: OnWork[];
+  page: number;
+  handlePageChange: (page: number) => void;
+  resultCount: number;
+  isAuth: {isAuth: boolean};
+  isLoading: boolean;
+  error: string;
+};
+export type ProfileDataProps = {
+  setPage: (page: number) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  setImage: (image: string) => void;
+  successCB: (
+    user:User,
+    works: Works, reviews:TopTenReviews[], totalReviews:number, count: number) => void;
+  failedCB: (msg: string) => void;
+  id: number;
+}
+export type WorksProps = {
+  setWorkLoading: (value: boolean) => void;
+  successCB: (data: any) => void;
+  failedCB: (msg: string) => void;
+  id : number;
+  page : number;
+}
 
 export type signUpForm = {
   first_name: string;
@@ -202,4 +243,11 @@ export interface WorkCardProps {
 export type LoginFormType = {
   email: string,
   password:string,
+}
+export type ProviderDataType = {
+  user: User,
+  works: Works,
+  reviews: TopTenReviews[],
+  totalReviews: number,
+  count: number,
 }

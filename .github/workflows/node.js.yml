@@ -58,4 +58,5 @@ jobs:
           TEST_DB_URL: ${{ secrets.TEST_DB_URL }}
           SECRET_KEY: ${{ secrets.JWT_SECRET }}
           TOKEN: ${{ secrets.PROVIDER_TOKEN }}
+          USER_TOKEN: ${{ secrets.USER_TOKEN }}
         

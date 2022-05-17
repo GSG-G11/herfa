@@ -13,6 +13,7 @@ const signUpValidation = Joi.object({
   instagram_link: Joi.string(),
   mainServiceId: Joi.number().required(),
   subservice: Joi.array(),
+  confirm: Joi.string().required().valid(Joi.ref('password')),
 });
 
 module.exports = { signUpValidation };

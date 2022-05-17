@@ -14,30 +14,28 @@ const {
   signUp,
   emailCheck,
   uploadImageController,
+  editUserData,
+  checkPhone,
+  logOut,
 } = require('../controllers');
-const { uploadImage } = require('../utils');
 
 // router.use(checkAuth);
 router.get('/providers/:id', getProfileInfo);
-router.patch('/providers/:id', checkAuth, uploadImageController);
+router.get('/logout', logOut);
 router.get('/', getHomeData);
-// http://localhost:3030/api/v1/provider/?name=صالح&location=1&service=1&subservice=1,2,3&page=1
+router.get('/providers/:id', getProfileInfo);
 router.get('/provider', getSearchResult);
 router.get('/work/:providerId', getWorkPerPage);
 router.get('/subservices/:mainServiceId', subServices);
 router.post('/login', loginHandler);
 router.post('/reviews', addReview);
-router.patch('/work/', checkAuth, editWork);
-router.delete('/work/:id', checkAuth, deleteWork);
-// example how to upload image using S3
-router.post('/img', async (req, res) => {
-  const { userId } = req.body;
-  const data = await uploadImage(req.files.image, userId);
-  res.json({ data });
-});
 router.post('/checkEmail', emailCheck);
+router.post('/checkphone', checkPhone);
 router.post('/signup', signUp);
 router.use(checkAuth);
-router.post('/work', addWork);
+router.patch('/providers/:id', uploadImageController);
+router.patch('/provider/:id', editUserData);
+router.patch('/work/', editWork);
 router.delete('/work/:id', deleteWork);
+router.post('/work', addWork);
 module.exports = router;
