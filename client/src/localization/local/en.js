@@ -97,6 +97,10 @@ const en = {
   locations: 'Locations',
   footer: 'Herfa ©2022 Created By Herfa Team',
   'all-services': 'services',
+  'log-in-email': 'Example: example@gmail.com',
+  'log-in-password': 'Bad Example: 12345678',
+  'log-out': 'Logged out successfully !',
+  'result-search': 'Search Result :',
 };
 
 export default en;

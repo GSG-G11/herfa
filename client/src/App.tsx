@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Routes, Outlet, Route, BrowserRouter as Router,
+} from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import {
   Home,
@@ -16,6 +18,15 @@ import ServiceLocationContext from './Context/ServiceLocationContext';
 import LoggedUserInfoProvider from './Context/LoggedUserContext';
 import { Nav } from './Components';
 import Layout from './Pages/Layout';
+
+function AuthLayout({ lang, setLang }: any) {
+  return (
+    <>
+      <Nav language={lang} setLanguage={setLang} />
+      <Outlet />
+    </>
+  );
+}
 
 function App() {
   const { i18n } = useTranslation();
@@ -38,7 +49,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="*" element={<NotFound />} />
             </Route>
-            <Route element={<Nav language={lang} setLanguage={setLang} />}>
+            <Route element={<AuthLayout lang={lang} setLang={setLang} />}>
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<LogIn />} />
             </Route>

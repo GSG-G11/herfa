@@ -8,6 +8,7 @@
 .container{
   width: 80%;
   margin: 0 auto;
+  margin-top: 5%;
 }
 @media screen and (min-width: 1440px) {
   .container{

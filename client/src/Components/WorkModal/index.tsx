@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import React from 'react';
 import {
   message, Modal, Input, Upload, Button, Form,
@@ -8,14 +9,29 @@ import { UploadOutlined } from '@ant-design/icons';
 export interface WorkModalProps {
   visible: boolean,
   handelVisible: (data: boolean) => void,
-  initialValues?: object,
   modalText: string,
   handelFinisher: (data: object) => any,
   addSuccessWork: (work: any) => void
 }
+const defaultProps = {
+  initialValues: {
+    modifier: 'public',
+    title: '',
+    content: '',
+    image: [
+      {
+        uid: '-1',
+        name: 'default.png',
+        url: '',
+        thumbUrl: '',
+        type: 'image/png',
+      }],
+  },
+};
+
 function WorkModal({
   visible, handelVisible, initialValues, modalText, handelFinisher, addSuccessWork,
-} : WorkModalProps) {
+} : WorkModalProps & typeof defaultProps) {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const { TextArea } = Input;
@@ -90,5 +106,5 @@ function WorkModal({
     </div>
   );
 }
-
+WorkModal.defaultProps = defaultProps;
 export default WorkModal;

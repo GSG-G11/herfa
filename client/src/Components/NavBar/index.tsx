@@ -1,13 +1,12 @@
-// /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useContext } from 'react';
 import {
-  Menu, Layout, Button, Dropdown, Image, MenuProps,
+  Menu, Layout, Button, Dropdown, Image, MenuProps, message,
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserContext } from '../../Context/LoggedUserContext';
-import { NavBarProps } from '../../utils';
+import { NavBarProps, request } from '../../utils';
 import logo from '../../assets/logo_ar.png';
 import logoEn from '../../assets/logo_en.png';
 import './style.css';
@@ -17,7 +16,7 @@ const { Header } = Layout;
 function Nav({ language, setLanguage }: NavBarProps) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const userData: any = useContext(UserContext);
+  const { user: userData, setUser }: any = useContext(UserContext);
   const navBarItems: MenuProps['items'] = [
     {
       label: t('home'),
@@ -35,20 +34,29 @@ function Nav({ language, setLanguage }: NavBarProps) {
     },
     {
       label: t('logout'),
-      key: '/logout',
+      key: '/',
     },
   ];
+  const handelLogOut = async () => {
+    try {
+      await request('get', '/logout');
+      setUser({});
+      message.success(t('log-out'));
+    } catch {
+      setUser({});
+    }
+  };
   const menu = (
     <Menu
       items={subMenuItems}
       onClick={({
         key,
-      }) => navigate(key)}
+      }) => { if (key === '/') handelLogOut(); navigate(key); }}
     />
   );
 
-  let authItems:{} = <Button type="primary">{ t('login') }</Button>;
-  if (userData) {
+  let authItems:{} = <Link to="/login"><Button type="primary">{ t('login') }</Button></Link>;
+  if (userData.providerID) {
     authItems = (
       <Dropdown.Button
         icon={<DownOutlined />}

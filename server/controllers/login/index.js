@@ -23,7 +23,7 @@ const loginHandler = async (req, res, next) => {
       throw customError('incorrect password or email ...', 401);
     }
     const signTokenCookie = await signToken(providerName, id);
-    res.cookie('userToken', signTokenCookie);
+    res.cookie('token', signTokenCookie);
     res.json({ msg: 'logged in successfully ..', data: { id, providerName } });
   } catch (err) {
     if (err.name === 'ValidationError') {
