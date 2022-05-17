@@ -5,7 +5,6 @@ const { phoneValidation } = require('../../utils/validation/phoneValidaion');
 const checkPhone = async (req, res, next) => {
   try {
     const { phone } = await phoneValidation.validateAsync(req.body);
-    console.log(phone);
     const user = await User.findOne({
       where: { phone },
     });

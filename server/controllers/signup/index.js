@@ -16,7 +16,7 @@ const signUp = async (req, res, next) => {
       await user.addServices(userData.subservice);
     }
     const { token, data } = await generateToken(user);
-    res.status(201).cookie('userToken', token).json({ msg: 'logged in successfully', data });
+    res.status(201).cookie('token', token).json({ msg: 'Singed up successfully', data });
   } catch (err) {
     if (err.name === 'ValidationError') {
       return next(customError(err.message, 400));

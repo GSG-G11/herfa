@@ -48,7 +48,6 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="/user/:id" element={<Profile />} />
                 <Route path="/search" element={<Search />} />
-                <Route path="/signup" element={<SignUp />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route element={<AuthLayout lang={lang} setLang={setLang} />}>
