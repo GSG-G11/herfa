@@ -16,6 +16,7 @@ import './style.css';
 import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
 import ReviewFormModal from '../ModalRating';
+import EditModal from '../EditUserData';
 
 function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const {
@@ -36,9 +37,11 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     },
     totalReviews,
     addReview,
+    isAuth,
   } = userInfo;
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const onCreate = async (values: any) => {
     try {
       setVisible(false);
@@ -49,6 +52,20 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     } catch (error:any) {
       if (error.response.status === 400) {
         message.error(t('review-exists'), 5);
+      } else if (error.response.status === 500) {
+        message.error(t('server-error'), 5);
+      }
+    }
+  };
+  const subservice = userInfo.user.services.map((el : any) => el.id);
+
+  const onEditCreate = async (values: any) => {
+    try {
+      await axios.patch(`/api/v1/provider/${id}`, values);
+      message.success(t('edit-message'), 5);
+    } catch (error:any) {
+      if (error.response.status === 400) {
+        message.error(t('edit-error'), 5);
       } else if (error.response.status === 500) {
         message.error(t('server-error'), 5);
       }
@@ -107,34 +124,48 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
           </div>
 
           <div className="footer">
-            <a href={`https://wa.me/${whatsapp}`}>
-              <span>
-                <FontAwesomeIcon
-                  icon={faWhatsapp}
-                  size="2x"
-                  style={{ color: '#56A309' }}
-                />
-                {' '}
-                {t('contactMe')}
-              </span>
-            </a>
-            <span>
+            {isAuth.isAuth ? (
               <Button
                 type="text"
                 onClick={() => {
-                  setVisible(true);
+                  setEditModalVisible(true);
                 }}
               >
-                <div>
-                  <FontAwesomeIcon
-                    icon={faStar}
-                    size="lg"
-                    style={{ color: '#FADB14' }}
-                  />
-                  {t('review')}
-                </div>
+                {t('edit-profile')}
+
               </Button>
-            </span>
+            ) : (
+              <>
+                <a href={`https://wa.me/${whatsapp}`}>
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faWhatsapp}
+                      size="2x"
+                      style={{ color: '#56A309' }}
+                    />
+                    {t('contactMe')}
+                  </span>
+                </a>
+                <span>
+                  <Button
+                    type="text"
+                    onClick={() => {
+                      setVisible(true);
+                    }}
+                  >
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        size="lg"
+                        style={{ color: '#FADB14' }}
+                      />
+                      {t('review')}
+                    </div>
+                  </Button>
+                </span>
+              </>
+            ) }
+
             <ReviewFormModal
               visible={visible}
               onCreate={onCreate}
@@ -142,6 +173,13 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
                 setVisible(false);
               }}
               userId={id}
+            />
+            <EditModal
+              visible={editModalVisible}
+              handelEdit={onEditCreate}
+              handelVisible={setEditModalVisible}
+              userId={id}
+              initValues={{ ...userInfo.user, subservice }}
             />
           </div>
         </div>

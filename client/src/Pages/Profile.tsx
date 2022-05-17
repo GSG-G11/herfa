@@ -106,7 +106,7 @@ function Profile() {
     }
   }, [page]);
   const isAuth = {
-    isAuth: userInfo?.providerID === +id,
+    isAuth: userInfo?.user.providerID === +id,
   };
   return (
     <div className="container">
@@ -114,7 +114,9 @@ function Profile() {
         !error,
         <>
           <UserInfoCard
-            userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+            userInfo={{
+              user: userData, totalReviews: reviewsAvg, addReview, isAuth,
+            }}
           />
           {isAuth.isAuth && (
             <div className="show-add-work-modal">
