@@ -53,9 +53,8 @@ const getProfileInfo = async (req, res, next) => {
       count: reviewsAndWorks[1].count,
       totalReviews: totalReviews / count,
     };
-    res.status(200).json({ msg: "Profile user's information", data });
+    res.json({ msg: "Profile user's information", data });
   } catch (error) {
-    console.log(error);
     if (error.name === 'ValidationError') {
       return next(customError(error.message, 400));
     }

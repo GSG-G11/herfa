@@ -8,6 +8,7 @@ const loginHandler = require('./login');
 const checkAuth = require('./middleware');
 const { signUp } = require('./signup');
 const emailCheck = require('./signup/checkIsEmailExists');
+const { editUserData } = require('./editUserData');
 const checkPhone = require('./signup/checkPhone');
 const logOut = require('./logout');
 
@@ -25,6 +26,7 @@ module.exports = {
   addWork,
   signUp,
   emailCheck,
+  editUserData,
   checkPhone,
   logOut,
 };
