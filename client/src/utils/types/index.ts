@@ -67,7 +67,9 @@ export interface OneService {
   updatedAt: string;
 }
 export interface UserInfoCardProps {
-  userInfo: any
+  userInfo: any,
+  image: string,
+  setImage: (image:string) => void,
 }
 
 export type TopTenReviews = {

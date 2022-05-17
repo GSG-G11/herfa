@@ -3,7 +3,7 @@ const Joi = require('joi');
 const imageValidation = Joi.object({
   id: Joi.number().integer().positive().required(),
   profileImg: Joi.object().keys({
-    type: Joi.string().valid('image/jpeg', 'image/png').required(),
+    name: Joi.string().required(),
   }).unknown().required(),
 });
 

@@ -25,7 +25,7 @@ const uploadImageController = async (req, res, next) => {
         },
       },
     );
-    res.json({ msg: 'image uploaded successfully', data: user });
+    res.json({ msg: 'image uploaded successfully', data: imgAws.Location });
   } catch (error) {
     if (error.name === 'ValidationError') {
       return next(customError(error.message, 400));

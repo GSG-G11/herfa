@@ -10,6 +10,7 @@ function Profile() {
   const { t } = useTranslation();
 
   const [userData, setUserData] = useState({});
+  const [image, setImage] = useState('');
   const [worksData, setWorksData] = useState<AllWorks>({ 1: [] });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +42,7 @@ function Profile() {
         setIsLoading(false);
         setUserData(userInfoData);
         setWorksData(workPage);
+        setImage(userInfoData.user.image);
       } catch (responseError: any) {
         setError(responseError?.data.msg);
         setIsLoading(false);
@@ -78,7 +80,7 @@ function Profile() {
         </h1>
       ) : (
         <>
-          <UserInfoCard userInfo={userData} />
+          <UserInfoCard userInfo={userData} image={image} setImage={setImage} />
           <Button type="primary" onClick={() => setIsClickedAddWork(true)}>{t('add-button')}</Button>
           <WorkModal
             visible={isClickedAddWork}
