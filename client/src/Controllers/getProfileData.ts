@@ -8,6 +8,7 @@ import {
 
 const getUserProfileData = async (
   {
+    setImage,
     setPage,
     setIsLoading,
     successCB,
@@ -24,6 +25,7 @@ const getUserProfileData = async (
     const {
       user, works, reviews, totalReviews, count,
     } : ProviderDataType = data;
+    setImage(user.image);
     successCB(user, works, reviews, totalReviews, count);
   } catch (responseError: any) {
     failedCB(responseError);
