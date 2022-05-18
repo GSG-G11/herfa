@@ -1,39 +1,34 @@
 .work-card-container {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin: 0 10%;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .work-card {
-  width: 45%;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  margin-bottom: 24px;
+  display: flex;
+    width: 40%;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 75%);
+    margin-bottom: 5%;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .work-card img {
   width: 100%;
-  /* max-height: 500px; */
-}
-.work-card-body {
-  padding: 10px 30px;
+  height: 250px;
+  box-sizing: border-box;
+  object-fit: cover;
 }
 .ant-card-meta-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
-.ant-card-meta-description {
-  font-size: 1.2rem;
-  color: black;
+.work-card-container .container{
+  width: 0;
+  height: 0;
+  margin: 0 0;
 }
-
 .ant-card-actions {
   display: flex;
-  justify-content: space-between;
-  list-style: none;
-  width: 100%;
-  padding: 5px 30px;
-  font-size: 80px;
-}
-.works-container .ant-empty{
-  margin: 50px auto !important;
+  align-items: center;
+  margin-bottom: 0;
 }

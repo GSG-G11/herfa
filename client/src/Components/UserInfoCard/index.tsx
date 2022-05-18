@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
-  Card, Image, Rate, Button, message,
+  Card, Image, Rate, Button, message, Typography,
 } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -54,16 +53,16 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
       }
     }
   };
+  const { Title } = Typography;
   return (
     <Card bordered={false}>
-      <div className="card">
-        <div className="image">
-          <Image width={100} src={image} />
+      <div className="profile-card">
+        <div className="profile-image">
+          <Image src={image} />
         </div>
         <div className="content">
           <div className="name">
-            <h2>{firstName}</h2>
-            <h2>{lastName}</h2>
+            <Title level={3}>{`${firstName} ${lastName}`}</Title>
             <Rate
               allowHalf
               defaultValue={totalReviews}
@@ -71,8 +70,8 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
               className="rate"
             />
           </div>
-          <p>{location.city}</p>
-          {t('servicesOffer')}
+          <span>{location.city}</span>
+          <Title level={5}> {t('servicesOffer')}</Title>
           <p className="services">
             {mainService.name}
             {services
@@ -85,13 +84,13 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
           <p>{description}</p>
         </div>
         <div className="contact">
-          <p>{email}</p>
-          <p>{phone}</p>
+          <Title level={5}>{email}</Title>
+          <Title level={5}>{phone}</Title>
           <div className="social">
             <a href={instagramLink}>
               {' '}
               <FontAwesomeIcon
-                style={{ color: '#AA38A5' }}
+                style={{ color: '#E1306C' }}
                 icon={faInstagram}
                 size="2x"
               />
@@ -108,29 +107,29 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
 
           <div className="footer">
             <a href={`https://wa.me/${whatsapp}`}>
-              <span>
+              <p className="whatsapp-btn">
                 <FontAwesomeIcon
                   icon={faWhatsapp}
                   size="2x"
-                  style={{ color: '#56A309' }}
+                  style={{ color: '#FFF' }}
                 />
                 {' '}
-                {t('contactMe')}
-              </span>
+                <div className="button-titles">{t('contactMe')}</div>
+              </p>
             </a>
-            <span>
+            <span className="rate">
               <Button
-                type="text"
+                type="primary"
                 onClick={() => {
                   setVisible(true);
                 }}
               >
-                <div>
-                  <FontAwesomeIcon
-                    icon={faStar}
-                    size="lg"
-                    style={{ color: '#FADB14' }}
-                  />
+                <FontAwesomeIcon
+                  icon={faStar}
+                  size="lg"
+                  style={{ color: '#fff' }}
+                />
+                <div className="rate-text">
                   {t('review')}
                 </div>
               </Button>

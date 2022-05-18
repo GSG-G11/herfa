@@ -55,7 +55,7 @@ function PersonalForm({ next, setFirstForm, firstForm }: any) {
             name="first_name"
             rules={[{ required: true, message: t('required-firstName') }]}
           >
-            <Input />
+            <Input placeholder={t('')} />
           </Form.Item>
           <Form.Item
             label={t('Last Name')}
