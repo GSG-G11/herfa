@@ -1,15 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Steps } from 'antd';
 import { PersonalForm, ServicesForm } from '../Components';
-import { UserContext } from '../Context/LoggedUserContext';
 
 const { Step } = Steps;
 
 function SignUp() {
-  const navigate = useNavigate();
-  const userInfo: any = useContext(UserContext);
   const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
   const [firstForm, setFirstForm] = useState({});
@@ -40,7 +36,7 @@ function SignUp() {
     },
   ];
 
-  return (userInfo?.user.providerID ? (<>{navigate(`/user/${userInfo?.user.providerID}`)}</>) : (
+  return (
     <div className="container">
       <h1>{t('crate-account')}</h1>
       <Steps current={current} size="small">
@@ -51,7 +47,6 @@ function SignUp() {
       <div className="steps-content">{steps[current].content}</div>
       <div className="steps-action" />
     </div>
-  )
   );
 }
 

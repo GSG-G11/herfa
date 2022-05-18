@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { LogInPage } from '../Components';
-import { UserContext } from '../Context/LoggedUserContext';
 
 function LogIn() {
-  const navigate = useNavigate();
-  const userInfo: any = useContext(UserContext);
-  return (userInfo?.user.providerID ? (<>{navigate(`/user/${userInfo?.user.providerID}`)}</>) : <LogInPage />);
+  return (<LogInPage />);
 }
 
 export default LogIn;
