@@ -17,15 +17,15 @@ import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
 import ReviewFormModal from '../ModalRating';
 import EditModal from '../EditUserData';
+import ImgUpload from '../ProfileImageUpload';
 
-function UserInfoCard({ userInfo }: UserInfoCardProps) {
+function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
   const {
     user: {
       id,
       first_name: firstName,
       last_name: lastName,
       services,
-      image,
       phone,
       email,
       description,
@@ -75,7 +75,8 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
     <Card bordered={false}>
       <div className="card">
         <div className="image">
-          <Image width={100} src={image} />
+          <Image width={150} src={image} />
+          <ImgUpload userId={id} setImage={setImage} />
         </div>
         <div className="content">
           <div className="name">
