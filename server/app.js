@@ -17,7 +17,7 @@ app.set('port', PORT || 3030);
 app.use(parse());
 app.use(cookieParser());
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(compression());
 // eslint-disable-next-line no-constant-condition, no-cond-assign

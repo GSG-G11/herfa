@@ -9,7 +9,7 @@ const Review = sequelize.define('reviews', {
     autoIncrement: true,
   },
   rate: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   content: {

@@ -17,6 +17,7 @@ const iff = (condition :any, then :any, otherwise :any) => (condition ? then : o
 function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<User>();
+  const [image, setImage] = useState('');
   const [worksData, setWorksData] = useState<any>({ });
   const [reviewsArray, setReviewsArray] = useState<TopTenReviews[]>([]);
   const [reviewsAvg, setReviewsAvg] = useState<number>(0);
@@ -53,7 +54,7 @@ function Profile() {
     setError(err.data.msg);
   };
   const getUserProfileDataParams: ProfileDataProps = {
-    setPage, setIsLoading, successCB: onSuccess, failedCB: onFailed, id: +id,
+    setPage, setIsLoading, setImage, successCB: onSuccess, failedCB: onFailed, id: +id,
   };
   const onGetWorkSuccess = (works: Works) => {
     setWorksData({ ...worksData, [page]: works });
@@ -114,11 +115,11 @@ function Profile() {
       {isLoading ? <SpinierComponent /> : iff(
         !error,
         <>
-          <div className="container">
-            <UserInfoCard
-              userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
-            />
-          </div>
+          <UserInfoCard
+            userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+            image={image}
+            setImage={setImage}
+          />
           {isAuth.isAuth && (
             <div className="show-add-work-modal">
               <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>

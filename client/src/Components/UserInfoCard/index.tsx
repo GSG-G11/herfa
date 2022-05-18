@@ -15,15 +15,15 @@ import './style.css';
 import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
 import ReviewFormModal from '../ModalRating';
+import ImgUpload from '../ProfileImageUpload';
 
-function UserInfoCard({ userInfo }: UserInfoCardProps) {
+function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
   const {
     user: {
       id,
       first_name: firstName,
       last_name: lastName,
       services,
-      image,
       phone,
       email,
       description,
@@ -56,9 +56,10 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
   const { Title } = Typography;
   return (
     <Card bordered={false}>
-      <div className="profile-card">
-        <div className="profile-image">
+      <div className="profile-card card">
+        <div className="profile-image image">
           <Image src={image} />
+          <ImgUpload userId={id} setImage={setImage} />
         </div>
         <div className="content">
           <div className="name">
