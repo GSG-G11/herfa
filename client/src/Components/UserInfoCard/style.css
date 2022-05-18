@@ -1,119 +1,116 @@
 
 .profile-card {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 2%;
-    /* margin-top: 2%; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 9px 0px 25px 10px rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  padding: 55px 0px;
+  min-width: 40vw
+
+}
+.card-description{
+  max-width: 90%;
+}
+.profile-card:hover{
+  transform: scale(1.1);
+}
+.card-info{
+  font-size: 15px;
+  font-weight: 500;
+  width: 40%;
 }
 .profile-image{
-    width: 20%;
-    position: relative;
+  width: 20%;
+  position: relative;
 }
 .upload-icon{
-    position: absolute;
-    z-index: 3;
-    bottom: 0;
-    
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  
 }
 .content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 40%;
-    padding: 0 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+  padding: 0 2%;
 }
 .contact{
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    font-size: 15px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px;
+  font-size: 15px;
 }
-.content .name{
-    display: flex;
+.name{
+  display: flex;
 }
-.content .name .rate{
-  padding-right: 4%;
-  padding-left: 4%;
-}
-.content .name span{
-    font-size: 15px;
-    font-weight: bold;
+.name .rate{
+  padding-right: 3%;
+  padding-left: 3%;
 }
 .services{
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .services .service{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
 }
-
 .contact .social{
-    display: flex;
-    justify-content: center;
-    padding: 5px 10px;
-    margin-top: 10px;
-}
-.contact .social a{
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: 0.3s;
+ padding-bottom: 10px;
 }
 .contact p{
-    font-size: 15px;
+  font-size: 15px;
 }
 .content .social{
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 .footer{
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .footer p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    padding: 4%;
-    min-width: 130px;
-    margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 4%;
+  min-width: 130px;
+  margin: 0px 10px;
 }
 .whatsapp-btn{
-    background-color: #6ae096;
-    color: white;
-    border-radius: 5%;
+  background-color: #6ae096;
+  color: white;
+  border-radius: 5%;
 }
 .button-titles{
-    padding-left: 5%;
-    padding-right: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .rate-text{
-    display: inline;
+  display: inline;
 }
 .rate .ant-btn-primary{
-    background: #FADB14;
-    border-color: #FADB14;
-    height: 43px;
+  background: #FADB14;
+  border-color: #FADB14;
+  height: 43px;
 }
 .work-card-container .ant-card-body{
-    padding: 0;
+  padding: 0;
 }
 @media screen and (min-width: 1440px) {
-    .profile-card {
-        margin-top: 5%;
-    }
+  .profile-card {
+      margin-top: 5%;
   }
+}

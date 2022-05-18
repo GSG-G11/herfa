@@ -1,15 +1,20 @@
 import React from 'react';
+import { Typography, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import NotFoundImage from '../assets/notFound.svg';
 
 function NotFound() {
+  const { Title, Text } = Typography;
+  const { t } = useTranslation();
   return (
-    <div className="cont">
+    <div className="container not-found-container">
       <div className="mainBox">
-        <div className="err">404</div>
+        <img src={NotFoundImage} alt="Not Found" />
       </div>
-      <div className="msg">{useTranslation().t('notFound')}</div>
-      <Link to="/" className="a"> Go To Home </Link>
+      <Title level={2}>{t('notFound')}</Title>
+      <Text className="not-found-description">{t('notFoundDescription')}</Text>
+      <Link to="/"> <Button type="primary">{t('goHome')}</Button></Link>
     </div>
   );
 }

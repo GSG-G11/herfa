@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import './style.css';
 import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
@@ -62,7 +63,7 @@ function UserInfoCard({
           <div className="image"><Image src={image} /></div>
           {isAuth && <ImgUpload userId={id} setImage={setImage} />}
         </div>
-        <div className="content">
+        <div className="card-info">
           <div className="name">
             <Title level={3}>{`${firstName} ${lastName}`}</Title>
             <Rate
@@ -72,22 +73,21 @@ function UserInfoCard({
               className="rate"
             />
           </div>
-          <span>{location.city}</span>
-          <Title level={5}> {t('servicesOffer')}</Title>
-          <p className="services">
-            {mainService.name}
-            {services
+          <p className="card-description">{description}</p>
+          <Link to="/search" state={{ locationSearch: location.id }}>{location.city}  -</Link>
+          <Link to="/search" state={{ serviceSearch: mainService.id }}> {mainService.name}</Link>
+
+          <br />
+          {services
               && services.map((service: OneService) => (
                 <span key={service.id} className="service">
-                  {service.name}
+                  {`${service.name} - `}
                 </span>
               ))}
-          </p>
-          <p>{description}</p>
         </div>
         <div className="contact">
-          <Title level={5}><a href={`mailto:${email}`}>{email}</a></Title>
-          <Title level={5}>{phone}</Title>
+          <p><a href={`mailto:${email}`}>{email}</a></p>
+          <p>{phone}</p>
           <div className="social">
             <a href={instagramLink}>
               {' '}
