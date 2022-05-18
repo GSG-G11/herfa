@@ -1,4 +1,5 @@
 .show-add-work-modal Button{
     height: 40px;
-    margin: 2% 10% 0 10%;
+    margin-top: 2%;
+    margin-bottom: 0% !important;
 }

@@ -7,7 +7,7 @@ import './style.css';
 function HomeReview({ data }: HomeReviewProps) {
   return (
     data?.length ? (
-      <div className="reviewsSection">
+      <div className="reviewsSection container">
         <div className="carouselContainer">
           <Carousel autoplay arrows className="reviewSlider">
             {data?.map(

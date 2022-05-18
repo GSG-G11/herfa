@@ -5,6 +5,7 @@
     align-items: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     padding: 2%;
+    /* margin-top: 2%; */
 }
 .profile-image{
     width: 20%;
@@ -111,3 +112,8 @@
 .work-card-container .ant-card-body{
     padding: 0;
 }
+@media screen and (min-width: 1440px) {
+    .profile-card {
+        margin-top: 5%;
+    }
+  }

@@ -56,7 +56,7 @@ function UserInfoCard({
   };
   const { Title } = Typography;
   return (
-    <Card>
+    <Card bordered={false}>
       <div className="profile-card">
         <div className="profile-image">
           <div className="image"><Image src={image} /></div>

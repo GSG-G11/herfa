@@ -124,7 +124,7 @@ function Profile() {
             />
           </div>
           {isAuth.isAuth && (
-            <div className="show-add-work-modal">
+            <div className="show-add-work-modal container">
               <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>
             </div>
           )}

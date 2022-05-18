@@ -1,6 +1,6 @@
 .work-card-container {
   display: flex;
-  margin: 0 10%;
+  margin: 4% 10%;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -32,4 +32,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 0;
+}
+@media screen and (min-width: 1440px) {
+  .work-card-container{
+    width: 980px;
+    margin: 3% auto;
+  }
 }
