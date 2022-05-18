@@ -36,18 +36,20 @@ function ImgUpload({ userId, setImage }: ImgUploadProps) {
     }
   };
   return (
-    <Upload
-      name="profile-image"
-      maxCount={1}
-      beforeUpload={() => false}
-      accept="image/png, image/jpeg"
-      onChange={handleChange}
-      showUploadList={false}
-    >
-      <Button>
-        <EditOutlined />
-      </Button>
-    </Upload>
+    <div className="upload-icon">
+      <Upload
+        name="profile-image"
+        maxCount={1}
+        beforeUpload={() => false}
+        accept="image/png, image/jpeg"
+        onChange={handleChange}
+        showUploadList={false}
+      >
+        <Button>
+          <EditOutlined />
+        </Button>
+      </Upload>
+    </div>
   );
 }
 

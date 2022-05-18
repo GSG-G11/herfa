@@ -9,7 +9,6 @@ import {
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-
 import { useTranslation } from 'react-i18next';
 import './style.css';
 import axios from 'axios';
@@ -17,7 +16,9 @@ import { OneService, UserInfoCardProps } from '../../utils';
 import ReviewFormModal from '../ModalRating';
 import ImgUpload from '../ProfileImageUpload';
 
-function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
+function UserInfoCard({
+  userInfo, image, setImage, isAuth,
+}: UserInfoCardProps) {
   const {
     user: {
       id,
@@ -55,11 +56,11 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
   };
   const { Title } = Typography;
   return (
-    <Card bordered={false}>
-      <div className="profile-card card">
-        <div className="profile-image image">
-          <Image src={image} />
-          <ImgUpload userId={id} setImage={setImage} />
+    <Card>
+      <div className="profile-card">
+        <div className="profile-image">
+          <div className="image"><Image src={image} /></div>
+          {isAuth && <ImgUpload userId={id} setImage={setImage} />}
         </div>
         <div className="content">
           <div className="name">
@@ -85,7 +86,7 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
           <p>{description}</p>
         </div>
         <div className="contact">
-          <Title level={5}>{email}</Title>
+          <Title level={5}><a href={`mailto:${email}`}>{email}</a></Title>
           <Title level={5}>{phone}</Title>
           <div className="social">
             <a href={instagramLink}>

@@ -115,11 +115,14 @@ function Profile() {
       {isLoading ? <SpinierComponent /> : iff(
         !error,
         <>
-          <UserInfoCard
-            userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
-            image={image}
-            setImage={setImage}
-          />
+          <div className="container work-card-container">
+            <UserInfoCard
+              userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+              image={image}
+              setImage={setImage}
+              isAuth={isAuth.isAuth}
+            />
+          </div>
           {isAuth.isAuth && (
             <div className="show-add-work-modal">
               <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>
