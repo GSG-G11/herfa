@@ -32,9 +32,3 @@
   border-radius: 5px;
   margin-top: 22px;
 }
-
-a:hover {
-  text-decoration: underline;
-  color: white;
-  background-color: #1273cf;
-}

@@ -31,6 +31,7 @@ import {
   WorkCardProps,
   LoginFormType,
   ProviderDataType,
+  usersObject,
 } from './types';
 
 export {
@@ -68,4 +69,5 @@ export type {
   WorkCardProps,
   LoginFormType,
   ProviderDataType,
+  usersObject,
 };

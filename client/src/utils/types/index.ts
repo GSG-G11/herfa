@@ -97,11 +97,17 @@ export interface serviceObject {
   name:string,
   id: number,
 }
+export interface usersObject {
+  first_name: string,
+  last_name: string,
+  id: number,
+}
 export interface HomeRequest {
   data: {
     location: locationObject[];
     services: serviceObject[];
     topTenReviews: TopTenReviews[];
+    users: usersObject[];
   };
 }
 export interface OneUserType {
@@ -120,6 +126,7 @@ export type Context = {
     location: locationObject[];
     services: serviceObject[];
     topTenReviews: TopTenReviews[];
+    users: usersObject[];
   },
   checks: {
     error: string;
