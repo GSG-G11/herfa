@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   FilterSection, UserCard, SpinierComponent, ErrorComponent,
 } from '../Components';
-import ServiceLocationContext from '../Context/ServiceLocationContext';
 import { UserData } from '../utils';
 
 function Search() {
@@ -22,16 +21,14 @@ function Search() {
   return (
     <div className="container">
       <div className="search-results-container">
-        <ServiceLocationContext>
-          <FilterSection
-            setUsers={setUsers}
-            setSearchError={setSearchError}
-            setIsLoading={setIsLoading}
-            setResultCount={setResultCount}
-            page={page}
-            setPage={setPage}
-          />
-        </ServiceLocationContext>
+        <FilterSection
+          setUsers={setUsers}
+          setSearchError={setSearchError}
+          setIsLoading={setIsLoading}
+          setResultCount={setResultCount}
+          page={page}
+          setPage={setPage}
+        />
         <div className="user-cards-container">
           <Title level={3} className="result-counter">{`${t('result-search')} ${resultCount}` }</Title>
           {isLoading ? <SpinierComponent /> : iff(
