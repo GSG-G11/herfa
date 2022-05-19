@@ -79,7 +79,9 @@ export interface OneService {
   updatedAt: string;
 }
 export interface UserInfoCardProps {
-  userInfo: any
+  userInfo: any,
+  image: string,
+  setImage: (image:string) => void,
 }
 
 export type TopTenReviews = {
@@ -193,6 +195,7 @@ export type WorkListProps = {
 export type ProfileDataProps = {
   setPage: (page: number) => void;
   setIsLoading: (isLoading: boolean) => void;
+  setImage: (image: string) => void;
   successCB: (
     user:User,
     works: Works, reviews:TopTenReviews[], totalReviews:number, count: number) => void;
