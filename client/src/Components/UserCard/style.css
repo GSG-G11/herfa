@@ -30,6 +30,7 @@
     align-items:flex-start;
     padding: 0 30px;
     justify-content: space-between;
+    margin-top: 8%;
 }
 .user-cards-container{
     width: 100%;

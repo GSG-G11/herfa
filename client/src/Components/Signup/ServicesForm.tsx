@@ -144,7 +144,7 @@ function ServicesForm({
           >
             {services.map((item: serviceObject) => (
               <Option key={item.name} value={item.id}>
-                {item.name}
+                {t(item.name)}
               </Option>
             ))}
           </Select>
@@ -169,7 +169,7 @@ function ServicesForm({
           >
             {subServices.map((item: serviceObject) => (
               <Option key={item.name} value={item.id}>
-                {item.name}
+                {t(item.name)}
               </Option>
             ))}
           </Select>
@@ -186,7 +186,7 @@ function ServicesForm({
             optionFilterProp="children"
           >
             {location.map(
-              (item) => <Option value={item.id} key={item.city}>{item.city}</Option>,
+              (item) => <Option value={item.id} key={item.city}>{t(item.city)}</Option>,
             )}
           </Select>
         </Form.Item>
@@ -196,14 +196,16 @@ function ServicesForm({
         >
           <Input />
         </Form.Item>
-        <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
-          {t('previous-button')}
-        </Button>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            {t('create-account-button')}
+        <div className="sing-up-buttons">
+          <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
+            {t('previous-button')}
           </Button>
-        </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              {t('create-account-button')}
+            </Button>
+          </Form.Item>
+        </div>
       </Form>
     </div>
   );

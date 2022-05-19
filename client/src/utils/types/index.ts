@@ -82,6 +82,7 @@ export interface UserInfoCardProps {
   userInfo: any,
   image: string,
   setImage: (image:string) => void,
+  isAuth: any,
 }
 
 export type TopTenReviews = {
