@@ -16,7 +16,7 @@ function ServicesForm({
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
   const [subService, setSubService] = useState<number[]>([]);
   const [error, setError] = useState('');
-  const [mainServiceId, setMainServiceId] = useState(0);
+  const [mainServiceId, setMainServiceId] = useState(secondForm.mainServiceId);
   const [hasFeedBack, setHasFeedBack] = useState(false);
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
@@ -112,6 +112,9 @@ function ServicesForm({
             allowClear
             onChange={(service: number) => {
               handelSelectMainService(service);
+              form.setFieldsValue({
+                subservice: [],
+              });
             }}
           >
             {services.map((item: serviceObject) => (
