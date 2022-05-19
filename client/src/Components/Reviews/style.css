@@ -32,3 +32,9 @@
   border-radius: 10px;
   text-align: center;
 }
+
+@media screen and (min-width: 1440px) {
+  .carouselContainer{
+    width: 100%;
+  }
+}

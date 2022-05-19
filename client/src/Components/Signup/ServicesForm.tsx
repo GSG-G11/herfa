@@ -196,14 +196,16 @@ function ServicesForm({
         >
           <Input />
         </Form.Item>
-        <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
-          {t('previous-button')}
-        </Button>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            {t('create-account-button')}
+        <div className="sing-up-buttons">
+          <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
+            {t('previous-button')}
           </Button>
-        </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              {t('create-account-button')}
+            </Button>
+          </Form.Item>
+        </div>
       </Form>
     </div>
   );

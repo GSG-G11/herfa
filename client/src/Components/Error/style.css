@@ -3,12 +3,20 @@
   justify-content: center;
   margin-top: 100px;
 }
-.cont {
+.not-found-container {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 80%;
-  margin: -50px auto;
+}
+.mainBox{
+  width: 30%;
+  margin-bottom: 2%;
+}
+.mainBox img{
+  width: 100%;
+}
+.not-found-description{
+  margin-bottom: 2%;
 }
 .err {
   color: #1890ff;
@@ -33,8 +41,8 @@
   margin-top: 22px;
 }
 
-a:hover {
-  text-decoration: underline;
-  color: white;
-  background-color: #1273cf;
-}
+/* a:hover {
+  /* text-decoration: underline; */
+  /* color: white; */
+  /* background-color: #1273cf; 
+} */

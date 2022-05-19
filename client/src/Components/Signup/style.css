@@ -1,3 +1,13 @@
+.sign-up-container{
+    margin-top: 2% !important;
+}
+.sign-up-steps{
+    margin-bottom: 1%;
+}
+.sign-up-steps .ant-steps-item:last-child{
+    flex: auto;
+}
+
 .personal-form{
     display: flex;
     flex-direction: column;
@@ -13,7 +23,9 @@
     align-items: center;
     width: 100%;
 }
-
+.sing-up-buttons{
+    display: flex;
+}
 .ant-form{
     width: 380px;
 }
