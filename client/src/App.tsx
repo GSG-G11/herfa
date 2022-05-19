@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Routes, Outlet, Route, BrowserRouter as Router, useNavigate,
+  Routes, Route, BrowserRouter as Router,
 } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import {
@@ -11,24 +11,12 @@ import {
   SignUp,
   LogIn,
   NotFound,
+  AuthLayout,
+  FooterLayout,
 } from './Pages';
 import './App.css';
 import 'antd/dist/antd.css';
-import ServiceLocationContext from './Context/ServiceLocationContext';
-import LoggedUserInfoProvider, { UserContext } from './Context/LoggedUserContext';
-import { Nav } from './Components';
-import Layout from './Pages/Layout';
-
-function AuthLayout({ lang, setLang }: any) {
-  const navigate = useNavigate();
-  const userInfo: any = useContext(UserContext);
-  return (
-    <>
-      <Nav language={lang} setLanguage={setLang} />
-      {userInfo?.user.providerID ? (<>{navigate(`/user/${userInfo?.user.providerID}`)}</>) : <Outlet />}
-    </>
-  );
-}
+import { ServiceLocationContext, LoggedUserInfoProvider } from './Context';
 
 function App() {
   const { i18n } = useTranslation();
@@ -46,7 +34,7 @@ function App() {
         <ConfigProvider direction={lang === 'ar' ? 'rtl' : 'ltr'}>
           <Router>
             <Routes>
-              <Route path="/" element={<Layout language={lang} setLanguage={setLang} />}>
+              <Route path="/" element={<FooterLayout language={lang} setLanguage={setLang} />}>
                 <Route index element={<Home />} />
                 <Route path="/user/:id" element={<Profile />} />
                 <Route path="/search" element={<Search />} />

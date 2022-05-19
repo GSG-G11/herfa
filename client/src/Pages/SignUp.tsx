@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Steps, Form, message } from 'antd';
 import { PersonalForm, ServicesForm } from '../Components';
-import { UserContext } from '../Context/LoggedUserContext';
+import { UserContext } from '../Context';
 
 const { Step } = Steps;
 
