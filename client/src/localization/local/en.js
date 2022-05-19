@@ -122,6 +122,8 @@ const en = {
   'log-in-password': 'Bad Example: 12345678',
   'log-out': 'Logged out successfully !',
   'result-search': 'Search Result :',
+  'edit-profile': 'Edit Profile',
+  'edit-button': 'Edit',
 };
 
 export default en;

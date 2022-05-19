@@ -122,6 +122,8 @@ const ar = {
   'log-in-password': 'مثال سيئ: 12345678',
   'log-out': 'لقد تم تسجيل خروجك بنجاح!',
   'result-search': 'نتائج البحث :',
+  'edit-profile': 'تعديل الملف الشخصي',
+  'edit-button': 'تعديل',
 };
 
 export default ar;
