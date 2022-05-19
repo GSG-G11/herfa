@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import {
   UserInfoCard, SpinierComponent, WorkList, Reviews, ErrorComponent, WorkModal,
 } from '../Components';
@@ -29,7 +30,7 @@ function Profile() {
   const [isClickedAddWork, setIsClickedAddWork] = useState(false);
   const { t } = useTranslation();
   const { id = 1 } = useParams();
-  const userInfo: any = useContext(UserContext);
+  const { user: userInfo }: any = useContext(UserContext);
   const handlePageChange = (PageNnm: number) => {
     setPage(PageNnm);
   };
@@ -110,18 +111,21 @@ function Profile() {
     isAuth: userInfo?.providerID === +id,
   };
   return (
-    <div className="container">
+    <div>
       {isLoading ? <SpinierComponent /> : iff(
         !error,
         <>
-          <UserInfoCard
-            userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
-            image={image}
-            setImage={setImage}
-          />
+          <div className="container work-card-container">
+            <UserInfoCard
+              userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+              image={image}
+              setImage={setImage}
+              isAuth={isAuth.isAuth}
+            />
+          </div>
           {isAuth.isAuth && (
-            <div className="show-add-work-modal">
-              <Button type="primary" onClick={() => setIsClickedAddWork(true)}>{t('add-button')}</Button>
+            <div className="show-add-work-modal container">
+              <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>
             </div>
           )}
           <WorkModal
