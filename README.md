@@ -55,7 +55,7 @@ I can signup to add my work, and my contact details So clients can reach me out.
 - [Typescript with react](https://www.typescriptlang.org/docs/handbook/react.html)
 - [Express.js](https://expressjs.com/) 
 - [React.js](https://reactjs.org/)
-- [Sequelize Postegres](https://sequelize.org/docs/v6/getting-started/)
+- [Sequelize Postgres](https://sequelize.org/docs/v6/getting-started/)
 - [Ant Design ](https://ant.design/)
 - [i18](https://react.i18next.com/) 
 - [S3](https://aws.amazon.com/s3/)
@@ -72,14 +72,14 @@ Install packages:
 ```javascript=
 $ git clone https://github.com/GSG-G11/herfa.git
 $ cd herfa
-$ npm run i // to install server side pakages
+$ npm run i // to install server side packages
 $ npm run install-client // to install client side packages 
 ```
 
 Setup database:
 ```
-// how to create db localy pgcli 
-pgcli \i linke of the file herfa\server\database\config.sql
+// how to create db locally pgcli 
+pgcli \i link of the file herfa\server\database\config.sql
 $ npm run db:seed // to insert fake data    
 ```
 Open your favorite IDE(VScode)
