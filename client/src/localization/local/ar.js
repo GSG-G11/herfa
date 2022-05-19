@@ -31,7 +31,7 @@ const ar = {
   'what-they-say-about-us': 'ماذا قالوا عنًا !',
   'user does not exist': 'المستخدم غير موجود',
   'home-search-location': 'ابحث حسب الموقع',
-  'home-search-word': 'ابحث',
+  'home-search-word': ' ابحث حسب الاسم ',
   'home-search-specific-location': 'مثال : بيت حانون',
   'home-welcome-search': 'ابحث عن الحرفي الأنسب لانجاز كل ما تحتاج.',
   city: 'اختر المدينة',
@@ -181,6 +181,8 @@ const ar = {
   'بيع الاقمشة': 'بيع الأقمشة',
   الخياطة: 'الخياطة',
   'تفصيل الملابس': 'تفصيل الملابس',
+  'edit-profile': 'تعديل الملف الشخصي',
+  'edit-button': 'تعديل',
 };
 
 export default ar;

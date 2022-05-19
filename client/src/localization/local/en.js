@@ -180,6 +180,8 @@ const en = {
   'بيع الاقمشة': 'Fabrics Selling',
   الخياطة: 'Sewing',
   'تفصيل الملابس': 'Clothes Tailoring',
+  'edit-profile': 'Edit Profile',
+  'edit-button': 'Edit',
 };
 
 export default en;
