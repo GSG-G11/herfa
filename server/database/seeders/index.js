@@ -5,6 +5,8 @@ const services = require('./services');
 const subServices = require('./subService');
 const { sequelize } = require('../config');
 const locations = require('./locations');
+const servicesUser = require('./servicesUser');
+
 const {
   Location, MainServices, SubServices, Review, Work, User,
 } = require('../models');
@@ -44,13 +46,14 @@ const build = async () => {
         return dbReview.id;
       }),
     ]);
+    await sequelize.models.services_user.bulkCreate(servicesUser);
     console.log('DB insert successfully');
   } catch (err) {
     console.log(err.message, 'error when insert fake data');
   }
   if (process.env.NODE_ENV !== 'test') process.exit(0);
 };
-
+console.log(sequelize.models.services_user);
 if (process.env.NODE_ENV !== 'test') build();
 
 module.exports = { build };

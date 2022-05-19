@@ -9,7 +9,7 @@ const users = [
     locationId: 1,
     image:
       'https://cdn-icons-png.flaticon.com/512/2422/2422105.png',
-    description: ' أنا أحمد محمد أمتلك الكثير من الخبرة في هذا العمل وأحب أن أعمل به ومنذ صغيري وأنا أعمل في هذه الصنعة',
+    description: ' أنا أحمد محمد أمتلك الكثير من الخبرة في هذا العمل وأحب أن أعمل به ومنذ صغري وأنا أعمل في هذه الصنعة',
     facebook_link: 'https://www.facebook.com/profile.php?id=100011094496210',
     instagram_link: 'https://www.instagram.com/salehmarouf/?hl=en',
     mainServiceId: 1,

@@ -10,6 +10,7 @@ const addWork = async (request, response, next) => {
       ...request.body, id: request.providerID,
     });
     const { Location } = await uploadImage(image, id);
+    console.log(Location);
     if (!Location) throw customError('problem with uploading the image', 500);
     const data = await Work.create({
       title,
