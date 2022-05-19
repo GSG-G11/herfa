@@ -16,7 +16,6 @@ function SignUp() {
   const next = () => {
     setCurrent(current + 1);
   };
-  console.log(secondForm);
   const steps = [
     {
       title: t('personal-information'),
