@@ -8,7 +8,8 @@ import logoEn from '../../assets/logo_en.png';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
 import { serviceObject } from '../../utils';
 
-function Footer(language: any) {
+function Footer({ language }: any) {
+  console.log(language);
   const { t } = useTranslation();
   const { data: { services } } = useContext(ServiceLocation);
 

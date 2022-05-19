@@ -71,14 +71,14 @@ function UserInfoCard({ userInfo }: UserInfoCardProps) {
               className="rate"
             />
           </div>
-          <p>{location.city}</p>
+          <p>{t(location.city)}</p>
           {t('servicesOffer')}
           <p className="services">
-            {mainService.name}
+            {t(mainService.name)}
             {services
               && services.map((service: OneService) => (
                 <span key={service.id} className="service">
-                  {service.name}
+                  {t(service.name)}
                 </span>
               ))}
           </p>

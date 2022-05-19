@@ -16,13 +16,14 @@ import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
 import LoggedUserInfoProvider from './Context/LoggedUserContext';
-import { Nav } from './Components';
+import { Nav, Footer } from './Components';
 import Layout from './Pages/Layout';
 
 function AuthLayout({ lang, setLang }: any) {
   return (
     <>
       <Nav language={lang} setLanguage={setLang} />
+      <Footer language={lang} />
       <Outlet />
     </>
   );
