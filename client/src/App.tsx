@@ -15,7 +15,7 @@ import {
 import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
-import { Nav, Footer } from './Components';
+import { Nav } from './Components';
 import LoggedUserInfoProvider, { UserContext } from './Context/LoggedUserContext';
 import Layout from './Pages/Layout';
 
@@ -25,8 +25,6 @@ function AuthLayout({ lang, setLang }: any) {
   return (
     <>
       <Nav language={lang} setLanguage={setLang} />
-      <Footer language={lang} />
-      <Outlet />
       {userInfo?.user.providerID ? (<>{navigate(`/user/${userInfo?.user.providerID}`)}</>) : <Outlet />}
     </>
   );
@@ -40,6 +38,7 @@ function App() {
     i18n.changeLanguage(lang);
     document.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
+    document.title = lang === 'en' ? 'Herfa' : 'حرفة';
   }, [lang]);
 
   return (
