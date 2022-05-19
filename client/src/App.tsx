@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Routes, Outlet, Route, BrowserRouter as Router,
+  Routes, Outlet, Route, BrowserRouter as Router, useNavigate,
 } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import {
@@ -15,15 +15,17 @@ import {
 import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
-import LoggedUserInfoProvider from './Context/LoggedUserContext';
+import LoggedUserInfoProvider, { UserContext } from './Context/LoggedUserContext';
 import { Nav } from './Components';
 import Layout from './Pages/Layout';
 
 function AuthLayout({ lang, setLang }: any) {
+  const navigate = useNavigate();
+  const userInfo: any = useContext(UserContext);
   return (
     <>
       <Nav language={lang} setLanguage={setLang} />
-      <Outlet />
+      {userInfo?.user.providerID ? (<>{navigate(`/user/${userInfo?.user.providerID}`)}</>) : <Outlet />}
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Divider } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
   MainServices,
   Reviews,
@@ -12,6 +13,7 @@ import {
 import { ServiceLocation } from '../Context/ServiceLocationContext';
 
 function Home() {
+  const { t } = useTranslation();
   const {
     checks: { error, isLoading, errorExist },
     data: { topTenReviews },
@@ -35,6 +37,9 @@ function Home() {
               </div>
               <JoinUs />
               <div className="container">
+                <h2 className="headline-text">
+                  {t('what-they-say-about-us')}
+                </h2>
                 <Reviews data={topTenReviews} />
               </div>
             </>

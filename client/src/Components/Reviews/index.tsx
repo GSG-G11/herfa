@@ -1,18 +1,13 @@
 import React from 'react';
 import { Carousel } from 'antd';
-import { useTranslation } from 'react-i18next';
 import ReviewCard from './ReviewCard';
 import { TopTenReviews, HomeReviewProps } from '../../utils';
 import './style.css';
 
 function HomeReview({ data }: HomeReviewProps) {
-  const { t } = useTranslation();
   return (
     data?.length ? (
-      <div className="reviewsSection">
-        <h2 className="headline-text">
-          {t('what-they-say-about-us')}
-        </h2>
+      <div className="reviewsSection container">
         <div className="carouselContainer">
           <Carousel autoplay arrows className="reviewSlider">
             {data?.map(

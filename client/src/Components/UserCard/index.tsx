@@ -6,6 +6,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import './style.css';
 import { UserData } from '../../utils';
+import profileImage from '../../assets/profile.svg';
 
 function UserCard({ user }: { user: UserData }) {
   const { Title } = Typography;
@@ -26,7 +27,7 @@ function UserCard({ user }: { user: UserData }) {
       <div className="search-user-card">
         <div className="search-user-card-image">
           <Image
-            src={image}
+            src={image || profileImage}
           />
         </div>
         <div className="search-user-card-body">

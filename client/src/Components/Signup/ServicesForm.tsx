@@ -171,18 +171,20 @@ function ServicesForm({
         >
           <Input />
         </Form.Item>
-        {prev && (
-        <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
-          {t('previous-button')}
-        </Button>
-        )}
-        {!isModal && (
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            {t('create-account-button')}
+        <div className="sing-up-buttons">
+          {prev && (
+          <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
+            {t('previous-button')}
           </Button>
-        </Form.Item>
-        )}
+          )}
+          {!isModal && (
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              {t('create-account-button')}
+            </Button>
+          </Form.Item>
+          )}
+        </div>
       </Form>
     </div>
   );

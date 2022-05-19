@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
-  Card, Image, Rate, Button, message,
+  Card, Image, Rate, Button, message, Typography,
 } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,8 +9,8 @@ import {
   faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import './style.css';
 import axios from 'axios';
 import { OneService, UserInfoCardProps } from '../../utils';
@@ -19,7 +18,12 @@ import ReviewFormModal from '../ModalRating';
 import EditModal from '../EditUserData';
 import ImgUpload from '../ProfileImageUpload';
 
-function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
+function UserInfoCard({
+  userInfo,
+  image,
+  setImage,
+  isAuth,
+}: UserInfoCardProps) {
   const {
     user: {
       id,
@@ -37,7 +41,6 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
     },
     totalReviews,
     addReview,
-    isAuth,
   } = userInfo;
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
@@ -49,7 +52,7 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
       const response = await axios.post('/api/v1/reviews', formData);
       addReview(response.data.data);
       message.success(t('review-message'), 5);
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.response.status === 400) {
         message.error(t('review-exists'), 5);
       } else if (error.response.status === 500) {
@@ -57,13 +60,13 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
       }
     }
   };
-  const subservice = userInfo.user.services.map((el : any) => el.id);
+  const subservice = userInfo.user.services.map((el: any) => el.id);
 
   const onEditCreate = async (values: any) => {
     try {
       await axios.patch(`/api/v1/provider/${id}`, values);
       message.success(t('edit-message'), 5);
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.response.status === 400) {
         message.error(t('edit-error'), 5);
       } else if (error.response.status === 500) {
@@ -71,17 +74,19 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
       }
     }
   };
+  const { Title } = Typography;
   return (
     <Card bordered={false}>
-      <div className="card">
-        <div className="image">
-          <Image width={150} src={image} />
-          <ImgUpload userId={id} setImage={setImage} />
+      <div className="profile-card">
+        <div className="profile-image">
+          <div className="image">
+            <Image src={image} />
+          </div>
+          {isAuth && <ImgUpload userId={id} setImage={setImage} />}
         </div>
-        <div className="content">
+        <div className="card-info">
           <div className="name">
-            <h2>{firstName}</h2>
-            <h2>{lastName}</h2>
+            <Title level={3}>{`${firstName} ${lastName}`}</Title>
             <Rate
               allowHalf
               defaultValue={totalReviews}
@@ -89,27 +94,33 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
               className="rate"
             />
           </div>
-          <p>{location.city}</p>
-          {t('servicesOffer')}
-          <p className="services">
+          <p className="card-description">{description}</p>
+          <Link to="/search" state={{ locationSearch: location.id }}>
+            {location.city} -
+          </Link>
+          <Link to="/search" state={{ serviceSearch: mainService.id }}>
+            {' '}
             {mainService.name}
-            {services
-              && services.map((service: OneService) => (
-                <span key={service.id} className="service">
-                  {service.name}
-                </span>
-              ))}
-          </p>
-          <p>{description}</p>
+          </Link>
+
+          <br />
+          {services
+            && services.map((service: OneService) => (
+              <span key={service.id} className="service">
+                {`${service.name} - `}
+              </span>
+            ))}
         </div>
         <div className="contact">
-          <p>{email}</p>
+          <p>
+            <a href={`mailto:${email}`}>{email}</a>
+          </p>
           <p>{phone}</p>
           <div className="social">
             <a href={instagramLink}>
               {' '}
               <FontAwesomeIcon
-                style={{ color: '#AA38A5' }}
+                style={{ color: '#E1306C' }}
                 icon={faInstagram}
                 size="2x"
               />
@@ -123,50 +134,49 @@ function UserInfoCard({ userInfo, image, setImage }: UserInfoCardProps) {
               />
             </a>
           </div>
-
           <div className="footer">
-            {isAuth.isAuth ? (
+            {isAuth ? (
               <Button
-                type="text"
+                type="primary"
                 onClick={() => {
                   setEditModalVisible(true);
                 }}
               >
+                {' '}
                 {t('edit-profile')}
-
               </Button>
             ) : (
               <>
                 <a href={`https://wa.me/${whatsapp}`}>
-                  <span>
+                  <p className="whatsapp-btn">
                     <FontAwesomeIcon
                       icon={faWhatsapp}
                       size="2x"
-                      style={{ color: '#56A309' }}
+                      style={{ color: '#FFF' }}
                     />
-                    {t('contactMe')}
-                  </span>
+                    {' '}
+                    <div className="button-titles">{t('contactMe')}</div>
+                  </p>
                 </a>
-                <span>
+                <span className="rate">
                   <Button
-                    type="text"
+                    type="primary"
                     onClick={() => {
                       setVisible(true);
                     }}
                   >
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faStar}
-                        size="lg"
-                        style={{ color: '#FADB14' }}
-                      />
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      size="lg"
+                      style={{ color: '#fff' }}
+                    />
+                    <div className="rate-text">
                       {t('review')}
                     </div>
                   </Button>
                 </span>
               </>
-            ) }
-
+            )}
             <ReviewFormModal
               visible={visible}
               onCreate={onCreate}
