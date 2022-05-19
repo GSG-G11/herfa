@@ -23,7 +23,7 @@ function SearchButton() {
         optionFilterProp="children"
       >
         {location.map(
-          (item) => <Option value={item.id} key={item.city}>{item.city}</Option>,
+          (item) => <Option value={item.id} key={item.city}>{t(item.city)}</Option>,
         )}
       </Select>
       <Button size="large" type="primary" icon={<SearchOutlined />}>
