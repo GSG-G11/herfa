@@ -101,7 +101,7 @@ function FilterSection(
           onSelect={(userId: number) => navigate(`/user/${userId}`)}
         >
           {users.map(
-            (item) => <Option value={item.id} key={item.first_name}>{`${item.first_name} ${item.last_name}`}</Option>,
+            (item) => <Option value={item.id} key={item.id}>{`${item.first_name} ${item.last_name}`}</Option>,
           )}
         </Select>
         <span className="filter-input-text">{t('search-by-main-service')}</span>

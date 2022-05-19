@@ -29,7 +29,7 @@ function WelcomeSearch() {
             onSelect={(userId: number) => navigate(`/user/${userId}`)}
           >
             {users.map(
-              (item) => <Option value={item.id} key={item.first_name}>{`${item.first_name} ${item.last_name}`}</Option>,
+              (item) => <Option value={item.id} key={item.id}>{`${item.first_name} ${item.last_name}`}</Option>,
             )}
           </Select>
           <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
