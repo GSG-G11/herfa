@@ -31,7 +31,7 @@ const ar = {
   'what-they-say-about-us': 'ماذا قالوا عنًا !',
   'user does not exist': 'المستخدم غير موجود',
   'home-search-location': 'ابحث حسب الموقع',
-  'home-search-word': ' ابحث حسب الاسم ',
+  'home-search-word': 'ابحث',
   'home-search-specific-location': 'مثال : بيت حانون',
   'home-welcome-search': 'ابحث عن الحرفي الأنسب لانجاز كل ما تحتاج.',
   city: 'اختر المدينة',
