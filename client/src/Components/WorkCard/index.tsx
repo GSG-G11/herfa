@@ -53,7 +53,6 @@ function WorkCard({
     <>
       <Card
         className="work-card"
-        hoverable
         actions={isAuth.isAuth ? [
           <Popconfirm
             title={t('delete-message-1')}

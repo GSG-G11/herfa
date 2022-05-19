@@ -37,9 +37,9 @@ function SignUp() {
   ];
 
   return (
-    <div className="container">
+    <div className="container sign-up-container">
       <h1>{t('crate-account')}</h1>
-      <Steps current={current} size="small">
+      <Steps current={current} size="small" className="sign-up-steps">
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
