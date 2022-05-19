@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 import {
@@ -7,48 +6,21 @@ import {
 } from 'antd';
 import axios from 'axios';
 import { ServiceLocation } from '../../Context/ServiceLocationContext';
-import { UserContext } from '../../Context/LoggedUserContext';
 import { serviceObject, request } from '../../utils';
 
 function ServicesForm({
-  firstForm, prev, setSecondForm, secondForm,
+  prev, setSecondForm, secondForm, isModal, form, onFinish,
 }:any) {
-  const [form] = Form.useForm();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const Location: any = useLocation();
-  const { setUser }: any = useContext(UserContext);
+
   const [subServices, setSubServices] = useState<serviceObject[]>([]);
   const [subService, setSubService] = useState<number[]>([]);
   const [error, setError] = useState('');
-  const [mainServiceId, setMainServiceId] = useState(0);
+  const [mainServiceId, setMainServiceId] = useState(secondForm.mainServiceId);
   const [hasFeedBack, setHasFeedBack] = useState(false);
   const { Option } = Select;
   const { data: { location, services } } = useContext(ServiceLocation);
 
-  const onFinish = async (values:React.ChangeEvent<HTMLInputElement>) => {
-    const finalData = { ...firstForm, ...values };
-
-    try {
-      const data = await axios.post('/api/v1/signup', finalData);
-      if (data) {
-        const { id, providerName } = data.data.data;
-        const newLink = `/user/${id}`;
-        setUser({ providerName, providerID: id });
-        navigate(Location.state?.from || newLink);
-      }
-    } catch (err:any) {
-      if (err.response) {
-        if (err.response.status === 500) {
-          message.warning(t('error-message'));
-        } else if (err.response.status === 400) {
-          message.warning(err.response.data.msg);
-        }
-      } else {
-        message.warning(t('error-message'));
-      }
-    }
-  };
   const checkphone = async (e:React.ChangeEvent<HTMLInputElement>) => {
     setError('');
     setHasFeedBack(true);
@@ -140,6 +112,9 @@ function ServicesForm({
             allowClear
             onChange={(service: number) => {
               handelSelectMainService(service);
+              form.setFieldsValue({
+                subservice: [],
+              });
             }}
           >
             {services.map((item: serviceObject) => (
@@ -197,14 +172,18 @@ function ServicesForm({
           <Input />
         </Form.Item>
         <div className="sing-up-buttons">
+          {prev && (
           <Button style={{ margin: '0 3px' }} onClick={() => { setSecondForm(form.getFieldsValue()); prev(); }}>
             {t('previous-button')}
           </Button>
+          )}
+          {!isModal && (
           <Form.Item>
             <Button type="primary" htmlType="submit">
               {t('create-account-button')}
             </Button>
           </Form.Item>
+          )}
         </div>
       </Form>
     </div>
