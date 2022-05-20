@@ -36,14 +36,18 @@ function WorkList({
         <ErrorComponent errorMessage={error} />,
       )}
 
-      <div className="pagination">
-        <Pagination
-          defaultCurrent={page}
-          onChange={handlePageChange}
-          total={resultCount}
-          defaultPageSize={5}
-        />
-      </div>
+      {worksData?.length
+        ? (
+          <div className="pagination">
+            <Pagination
+              defaultCurrent={page}
+              onChange={handlePageChange}
+              total={resultCount}
+              defaultPageSize={5}
+            />
+          </div>
+        )
+        : ''}
     </div>
   );
 }

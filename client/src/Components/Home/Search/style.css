@@ -11,6 +11,9 @@
   width: 40%;
   padding-left: 8%;
 }
-.select-location-home-page{
-  width: 200px;
+.name-search-home-page{
+  width: 40%;
+}
+.inputs-search-by-name{
+  width: 50%;
 }

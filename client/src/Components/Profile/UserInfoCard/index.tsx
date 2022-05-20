@@ -155,7 +155,7 @@ function UserInfoCard({
                       style={{ color: '#FFF' }}
                     />
                     {' '}
-                    <div className="button-titles">{t('contactMe')}</div>
+                    <span className="button-titles">{t('contactMe')}</span>
                   </p>
                 </a>
                 <span className="rate">
