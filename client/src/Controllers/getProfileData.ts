@@ -5,7 +5,6 @@ import {
   ProfileDataProps,
   ProviderDataType,
 } from '../utils';
-import profileImage from '../assets/profile.svg';
 
 const getUserProfileData = async (
   {
@@ -27,7 +26,7 @@ const getUserProfileData = async (
       user, works, reviews, totalReviews, count,
     } : ProviderDataType = data;
     if (user.image === null) {
-      setImage(profileImage);
+      setImage('/images/profile.svg');
     } else { setImage(user.image); }
     successCB(user, works, reviews, totalReviews, count);
   } catch (responseError: any) {

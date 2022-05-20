@@ -1,0 +1,50 @@
+.basic-container-welcome-home-page{
+  display: flex;
+}
+.welcome-search-home-right{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.divider-welcome-home-page{
+  min-width: 50px !important;
+  width: 50%;
+}
+.welcome-search-home-left{
+  width: 50%;
+}
+.welcome-search-home-left img{
+  width: 100%;
+}
+.welcome-search-home-right h2{
+  width: 50% ;
+}
+.search-location-home{
+  width: 40% !important;
+}
+@media screen and (max-width: 600px) {
+  .basic-container-welcome-home-page{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .welcome-search-home-right h2{
+    margin-top: 10%;
+    width: 150% ;
+  }
+  .divider-welcome-home-page{
+    width: 100%;
+  }
+  .search-craftsman-name{
+    width: 100% !important;
+  }
+  .inputs-group-home-page{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+}

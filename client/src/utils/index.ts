@@ -31,6 +31,13 @@ import {
   WorkCardProps,
   LoginFormType,
   ProviderDataType,
+  usersObject,
+  loginProps,
+  cardProps,
+  serviceProps,
+  FormProps,
+  ImgUploadProps,
+  WorkModalProps,
 } from './types';
 
 export {
@@ -68,4 +75,11 @@ export type {
   WorkCardProps,
   LoginFormType,
   ProviderDataType,
+  usersObject,
+  loginProps,
+  cardProps,
+  serviceProps,
+  FormProps,
+  ImgUploadProps,
+  WorkModalProps,
 };

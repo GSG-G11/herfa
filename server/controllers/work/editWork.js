@@ -33,7 +33,7 @@ const editWork = async (req, res, next) => {
     res.json({ msg: 'work updated successfully', data });
     if (workImg.url !== image) {
       const key = image.split('https://herfa.s3.eu-west-2.amazonaws.com/')[1];
-      await deleteImage(key);
+      if (key) { await deleteImage(key); }
     }
   } catch (error) {
     if (error.name === 'ValidationError') {

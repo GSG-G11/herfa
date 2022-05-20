@@ -98,11 +98,17 @@ export interface serviceObject {
   name:string,
   id: number,
 }
+export interface usersObject {
+  first_name: string,
+  last_name: string,
+  id: number,
+}
 export interface HomeRequest {
   data: {
     location: locationObject[];
     services: serviceObject[];
     topTenReviews: TopTenReviews[];
+    users: usersObject[];
   };
 }
 export interface OneUserType {
@@ -121,6 +127,7 @@ export type Context = {
     location: locationObject[];
     services: serviceObject[];
     topTenReviews: TopTenReviews[];
+    users: usersObject[];
   },
   checks: {
     error: string;
@@ -251,4 +258,37 @@ export type ProviderDataType = {
   reviews: TopTenReviews[],
   totalReviews: number,
   count: number,
+}
+export interface loginProps {
+  values: LoginFormType,
+}
+export interface cardProps {
+  review: TopTenReviews
+}
+export interface serviceProps {
+  service: string,
+  id: number,
+}
+export interface Values {
+  userId:number,
+  rate: number;
+  content: string;
+  phone:number;
+}
+export interface FormProps {
+  visible: boolean;
+  onCreate: (values: Values) => void;
+  onCancel: () => void;
+  userId:number;
+}
+export interface ImgUploadProps {
+  userId:number,
+  setImage:(image:string)=>void,
+}
+export interface WorkModalProps {
+  visible: boolean,
+  handelVisible: (data: boolean) => void,
+  modalText: string,
+  handelFinisher: (data: object) => any,
+  addSuccessWork: (work: any) => void
 }
