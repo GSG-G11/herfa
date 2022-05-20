@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Empty, Pagination, Typography } from 'antd';
+import { Empty, Pagination } from 'antd';
 import { useTranslation } from 'react-i18next';
 import {
   FilterSection, UserCard, SpinierComponent, ErrorComponent,
@@ -8,7 +8,6 @@ import { UserData } from '../utils';
 
 function Search() {
   const [users, setUsers] = useState<UserData[]>([]);
-  const { Title } = Typography;
   const [searchError, setSearchError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -30,7 +29,6 @@ function Search() {
           setPage={setPage}
         />
         <div className="user-cards-container">
-          <Title level={3} className="result-counter">{`${t('result-search')} ${resultCount}` }</Title>
           {isLoading ? <SpinierComponent /> : iff(
             !searchError,
             users.length ? (
@@ -41,12 +39,14 @@ function Search() {
             <ErrorComponent errorMessage={searchError} />,
           )}
           <div className="pagination">
-            <Pagination
-              defaultCurrent={1}
-              onChange={handlePageChange}
-              total={resultCount}
-              defaultPageSize={5}
-            />
+            {users.length ? (
+              <Pagination
+                defaultCurrent={1}
+                onChange={handlePageChange}
+                total={resultCount}
+                defaultPageSize={5}
+              />
+            ) : ''}
           </div>
         </div>
       </div>
