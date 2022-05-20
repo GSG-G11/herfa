@@ -25,9 +25,6 @@
 .search-location-home{
   width: 40% !important;
 }
-.sign-up{
-  margin-top: 5%;
-}
 @media screen and (max-width: 600px) {
   .basic-container-welcome-home-page{
     display: flex;

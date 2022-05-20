@@ -3,7 +3,7 @@ import {
   Menu, Layout, Button, Dropdown, Image, MenuProps, message,
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserContext } from '../../../Context';
 import { NavBarProps, request } from '../../../utils';
@@ -52,8 +52,13 @@ function Nav({ language, setLanguage }: NavBarProps) {
       }) => { if (key === '/') handelLogOut(); navigate(key); }}
     />
   );
-
-  let authItems:{} = <Link to="/login"><Button type="primary">{ t('login') }</Button></Link>;
+  const { pathname } = useLocation();
+  let authItems:{} = (
+    <>
+      <Link to="/login" state={{ from: pathname }}><Button type="primary" className="lang-btn">{ t('login') }</Button></Link>
+      <Link to="/signup" state={{ from: pathname }}><Button type="primary">{ t('Sign Up') }</Button></Link>
+    </>
+  );
   if (userData.providerID) {
     authItems = (
       <Dropdown.Button

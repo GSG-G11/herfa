@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Select, Input, Button, Divider,
+  Select, Input, Divider,
 } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 import { locationObject } from '../../../utils';
 import { ServiceLocation } from '../../../Context';
@@ -32,11 +32,6 @@ function WelcomeSearch() {
             ))}
           </Select>
         </Input.Group>
-        <Button size="middle" type="primary" className="sign-up">
-          <Link to="/signup">
-            <span className="search-link">{t('Sign Up')}</span>
-          </Link>
-        </Button>
       </div>
       <div className="welcome-search-home-left">
         <img src="/images/welcome-page.svg" alt="construction worker work together" />
