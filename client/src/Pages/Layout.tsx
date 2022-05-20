@@ -8,7 +8,7 @@ function Layout({ language, setLanguage }: NavBarProps) {
     <div>
       <Nav language={language} setLanguage={setLanguage} />
       <Outlet />
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 }

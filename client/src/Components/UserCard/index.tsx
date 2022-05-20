@@ -37,11 +37,11 @@ function UserCard({ user }: { user: UserData }) {
               <Rate allowHalf defaultValue={avgRating} disabled className="rate" />
             </div>
             <div className="div-80-2 search-user-card-contact">
-              <p>{location?.city}</p>
+              <p>{t(location?.city)}</p>
               <p>{phone}</p>
             </div>
             <Title level={5}>{t('servicesOffer')}</Title>
-            <p>{mainServices.name}</p>
+            <p>{t(mainServices.name)}</p>
             <p className="search-user-card-services" />
             <p>{description}</p>
           </div>

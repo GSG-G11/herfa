@@ -114,7 +114,7 @@ function FilterSection(
         >
           {services.map((item: serviceObject) => (
             <Option key={item.name} value={item.id}>
-              {item.name}
+              {t(item.name)}
             </Option>
           ))}
         </Select>
@@ -131,7 +131,7 @@ function FilterSection(
         >
           {subServices.map((item: serviceObject) => (
             <Option key={item.name} value={item.id}>
-              {item.name}
+              {t(item.name)}
             </Option>
           ))}
         </Select>
@@ -146,7 +146,7 @@ function FilterSection(
         >
           {location.map((item: locationObject) => (
             <Option key={item.city} value={item.id}>
-              {item.city}
+              {t(item.city)}
             </Option>
           ))}
         </Select>

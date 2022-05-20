@@ -15,8 +15,8 @@ import {
 import './App.css';
 import 'antd/dist/antd.css';
 import ServiceLocationContext from './Context/ServiceLocationContext';
-import LoggedUserInfoProvider, { UserContext } from './Context/LoggedUserContext';
 import { Nav } from './Components';
+import LoggedUserInfoProvider, { UserContext } from './Context/LoggedUserContext';
 import Layout from './Pages/Layout';
 
 function AuthLayout({ lang, setLang }: any) {
@@ -38,6 +38,7 @@ function App() {
     i18n.changeLanguage(lang);
     document.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
+    document.title = lang === 'en' ? 'Herfa' : 'حرفة';
   }, [lang]);
 
   return (

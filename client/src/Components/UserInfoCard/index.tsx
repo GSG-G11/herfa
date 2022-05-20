@@ -96,18 +96,18 @@ function UserInfoCard({
           </div>
           <p className="card-description">{description}</p>
           <Link to="/search" state={{ locationSearch: location.id }}>
-            {location.city} -
+            {t(location.city)} -
           </Link>
           <Link to="/search" state={{ serviceSearch: mainService.id }}>
             {' '}
-            {mainService.name}
+            {t(mainService.name)}
           </Link>
 
           <br />
           {services
             && services.map((service: OneService) => (
               <span key={service.id} className="service">
-                {`${service.name} - `}
+                {`${t(service.name)} - `}
               </span>
             ))}
         </div>
