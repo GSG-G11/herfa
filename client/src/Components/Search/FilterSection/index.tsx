@@ -85,7 +85,7 @@ function FilterSection(
   useEffect(() => {
     if (mainServiceId || search?.serviceSearch) getSubServicesData();
   }, [mainServiceId, search?.serviceSearch]);
-
+  console.log(search);
   return (
     <div className="filter-container">
       {error && <ErrorComponent errorMessage={error} />}

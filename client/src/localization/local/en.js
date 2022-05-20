@@ -86,7 +86,7 @@ const en = {
   Password: 'Password',
   'Confirm Password': 'Confirm Password',
   'Phone Number': 'Phone Number',
-  'Sign Up': 'Sign Up',
+  'Sign Up': 'Sign Up As A Pro',
   Register: 'Register',
   'crate-account': 'Create an account',
   Next: 'Next',

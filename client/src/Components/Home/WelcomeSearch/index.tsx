@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Select, Input, Button, Divider,
@@ -10,9 +10,8 @@ import { ServiceLocation } from '../../../Context';
 
 function WelcomeSearch() {
   const { t } = useTranslation();
-  const [locationSearch, setLocationSearch] = useState();
   const { Option } = Select;
-  const { data: { location, users } } = useContext(ServiceLocation);
+  const { data: { location } } = useContext(ServiceLocation);
   const navigate = useNavigate();
   return (
     <div className="basic-container-welcome-home-page">
@@ -21,30 +20,23 @@ function WelcomeSearch() {
         <Divider className="divider-welcome-home-page" />
         <Input.Group compact className="inputs-group-home-page">
           <Select
+            className="search-location-home"
+            placeholder={t('city')}
             size="middle"
-            showSearch
-            placeholder={t('home-search-word')}
-            className="search-craftsman-name"
-            optionFilterProp="children"
-            onSelect={(userId: number) => navigate(`/user/${userId}`)}
+            onSelect={(citySearched: any) => navigate('/search', { state: { locationSearch: citySearched } })}
           >
-            {users.map(
-              (item) => <Option value={item.id} key={item.id}>{`${item.first_name} ${item.last_name}`}</Option>,
-            )}
-          </Select>
-          <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
             {location.map((item: locationObject) => (
               <Option key={item.city} value={item.id}>
                 {t(item.city)}
               </Option>
             ))}
           </Select>
-          <Button size="middle" type="primary">
-            <Link to="/search" state={{ locationSearch }}>
-              <span className="search-link">{t('home-search-word')}</span>
-            </Link>
-          </Button>
         </Input.Group>
+        <Button size="middle" type="primary" className="sign-up">
+          <Link to="/signup">
+            <span className="search-link">{t('Sign Up')}</span>
+          </Link>
+        </Button>
       </div>
       <div className="welcome-search-home-left">
         <img src="/images/welcome-page.svg" alt="construction worker work together" />

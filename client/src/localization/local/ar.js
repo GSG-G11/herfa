@@ -88,7 +88,7 @@ const ar = {
   City: 'المدينة',
   Country: 'الدولة',
   'Zip Code': 'الرمز البريدي',
-  'Sign Up': 'سجل',
+  'Sign Up': 'سجل ك حِرَفي ',
   Register: 'تسجيل',
   'crate-account': 'إنشاء حساب',
   Next: 'التالي',
