@@ -23,7 +23,7 @@ const en = {
   'login-signup-text': 'don\'t have an account?',
   'login-to-signup': 'Sign Up',
   'login-button': 'Submit',
-  'no-data': 'No data',
+  'no-data': 'No Works to preview',
   'failed-login': 'incorrect Email or Password ..',
   'required-email': 'Please input your email!',
   'required-password': 'Please input your password!',

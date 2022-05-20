@@ -47,7 +47,7 @@ const ar = {
   'login-signup-text': 'إذا كنت لا تمتلك حساباً؟قم',
   'login-to-signup': 'بالتسجيل',
   'login-button': 'تسجيل دخول',
-  'no-data': 'لا يوجد بيانات',
+  'no-data': 'لا يوجد أعمال لعرضها',
   'failed-login': 'بريد إلكتروني أو كلمة مرور خاطئة ..',
   'required-email': 'الرجاء إدخال البريد الإلكتروني!',
   'required-password': 'الرجاء إدخال كلمة المرور!',
