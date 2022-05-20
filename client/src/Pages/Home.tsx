@@ -10,7 +10,7 @@ import {
   SpinierComponent,
   ErrorComponent,
 } from '../Components';
-import { ServiceLocation } from '../Context/ServiceLocationContext';
+import { ServiceLocation } from '../Context';
 
 function Home() {
   const { t } = useTranslation();
@@ -19,34 +19,25 @@ function Home() {
     data: { topTenReviews },
   } = useContext(ServiceLocation);
 
-  const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
+  if (isLoading) return <SpinierComponent />;
+  if (errorExist) return <ErrorComponent errorMessage={error} />;
   return (
-    <div>
-      {
-        errorExist ? <ErrorComponent errorMessage={error} /> : iff(
-          isLoading,
-          <SpinierComponent />,
-          (
-            <>
-              <div className="container">
-                <WelcomeSearch />
-                <Divider />
-                <MainServices />
-                <Divider />
-                <SearchByLocation />
-              </div>
-              <JoinUs />
-              <div className="container">
-                <h2 className="headline-text">
-                  {t('what-they-say-about-us')}
-                </h2>
-                <Reviews data={topTenReviews} />
-              </div>
-            </>
-          ),
-        )
-      }
-    </div>
+    <>
+      <div className="container">
+        <WelcomeSearch />
+        <Divider />
+        <MainServices />
+        <Divider />
+        <SearchByLocation />
+      </div>
+      <JoinUs />
+      <div className="container">
+        <h2 className="headline-text">
+          {t('what-they-say-about-us')}
+        </h2>
+        <Reviews data={topTenReviews} />
+      </div>
+    </>
   );
 }
 

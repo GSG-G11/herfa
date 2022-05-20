@@ -4,6 +4,7 @@ import NotFound from './NotFound';
 import Profile from './Profile';
 import Search from './Search';
 import SignUp from './SignUp';
+import { AuthLayout, FooterLayout } from './Layout';
 
 export {
   Home,
@@ -12,4 +13,6 @@ export {
   SignUp,
   LogIn,
   NotFound,
+  AuthLayout,
+  FooterLayout,
 };

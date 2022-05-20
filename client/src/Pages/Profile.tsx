@@ -9,10 +9,8 @@ import {
 import {
   Works, User, TopTenReviews, ProfileDataProps, WorksProps, request,
 } from '../utils';
-import { UserContext } from '../Context/LoggedUserContext';
+import { UserContext } from '../Context';
 import { getUserProfileData, getWorksData } from '../Controllers';
-
-const iff = (condition :any, then :any, otherwise :any) => (condition ? then : otherwise);
 
 function Profile() {
   const navigate = useNavigate();
@@ -110,47 +108,44 @@ function Profile() {
   const isAuth = {
     isAuth: userInfo?.providerID === +id,
   };
+
+  if (isLoading) return <SpinierComponent />;
+  if (error) return <ErrorComponent errorMessage={error} />;
   return (
-    <div>
-      {isLoading ? <SpinierComponent /> : iff(
-        !error,
-        <>
-          <div className="container work-card-container">
-            <UserInfoCard
-              userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
-              image={image}
-              setImage={setImage}
-              isAuth={isAuth.isAuth}
-            />
-          </div>
-          {isAuth.isAuth && (
-            <div className="show-add-work-modal container">
-              <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>
-            </div>
-          )}
-          <WorkModal
-            visible={isClickedAddWork}
-            handelVisible={setIsClickedAddWork}
-            modalText={t('add-button')}
-            handelFinisher={addWork}
-            addSuccessWork={addSuccessWork}
-          />
-          <WorkList
-            worksData={worksData[page]}
-            page={page}
-            handlePageChange={handlePageChange}
-            resultCount={resultCount}
-            isAuth={isAuth}
-            isLoading={workLoading}
-            error={workError}
-            updateWorks={updateWorks}
-            deletedWork={deletedWork}
-          />
-          <Reviews data={reviewsArray} />
-        </>,
-        <ErrorComponent errorMessage={error} />,
+    <>
+      <div className="container work-card-container">
+        <UserInfoCard
+          userInfo={{ user: userData, totalReviews: reviewsAvg, addReview }}
+          image={image}
+          setImage={setImage}
+          isAuth={isAuth.isAuth}
+        />
+      </div>
+      {isAuth.isAuth && (
+        <div className="show-add-work-modal container">
+          <Button type="primary" onClick={() => setIsClickedAddWork(true)} icon={<PlusOutlined />}>{t('add-button')}</Button>
+        </div>
       )}
-    </div>
+      <WorkModal
+        visible={isClickedAddWork}
+        handelVisible={setIsClickedAddWork}
+        modalText={t('add-button')}
+        handelFinisher={addWork}
+        addSuccessWork={addSuccessWork}
+      />
+      <WorkList
+        worksData={worksData[page]}
+        page={page}
+        handlePageChange={handlePageChange}
+        resultCount={resultCount}
+        isAuth={isAuth}
+        isLoading={workLoading}
+        error={workError}
+        updateWorks={updateWorks}
+        deletedWork={deletedWork}
+      />
+      <Reviews data={reviewsArray} />
+    </>
   );
 }
 
