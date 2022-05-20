@@ -81,7 +81,7 @@ function Nav({ language, setLanguage }: NavBarProps) {
             }) => navigate(key)}
           />
           <Button className="lang-btn" onClick={() => setLanguage(i18n.language === 'ar' ? 'en' : 'ar')}>
-            {language === 'ar' ? 'En' : 'Ar'}
+            {language === 'ar' ? 'En' : 'العربية'}
           </Button>
           {authItems}
         </Header>

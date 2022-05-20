@@ -119,7 +119,7 @@ function ServicesForm({
           >
             {services.map((item: serviceObject) => (
               <Option key={item.name} value={item.id}>
-                {item.name}
+                {t(item.name)}
               </Option>
             ))}
           </Select>
@@ -144,7 +144,7 @@ function ServicesForm({
           >
             {subServices.map((item: serviceObject) => (
               <Option key={item.name} value={item.id}>
-                {item.name}
+                {t(item.name)}
               </Option>
             ))}
           </Select>
@@ -161,7 +161,7 @@ function ServicesForm({
             optionFilterProp="children"
           >
             {location.map(
-              (item) => <Option value={item.id} key={item.city}>{item.city}</Option>,
+              (item) => <Option value={item.id} key={item.city}>{t(item.city)}</Option>,
             )}
           </Select>
         </Form.Item>

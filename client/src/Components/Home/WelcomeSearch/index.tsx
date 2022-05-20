@@ -35,7 +35,7 @@ function WelcomeSearch() {
           <Select placeholder={t('city')} size="middle" onSelect={(citySearched: any) => setLocationSearch(citySearched)}>
             {location.map((item: locationObject) => (
               <Option key={item.city} value={item.id}>
-                {item.city}
+                {t(item.city)}
               </Option>
             ))}
           </Select>

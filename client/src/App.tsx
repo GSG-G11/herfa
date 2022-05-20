@@ -26,6 +26,7 @@ function App() {
     i18n.changeLanguage(lang);
     document.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
+    document.title = lang === 'en' ? 'Herfa' : 'حرفة';
   }, [lang]);
 
   return (
