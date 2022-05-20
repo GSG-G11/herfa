@@ -91,7 +91,7 @@ describe('Search result  http://localhost:3030/api/v1/provider/?q= ', () => {
       .end((err, res) => {
         if (err) done(err);
         expect(res.statusCode).toBe(200);
-        expect(res.body.count).toBe(1);
+        expect(res.body.count).toBe(2);
         done();
       });
   });

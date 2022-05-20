@@ -11,7 +11,7 @@ describe('Test POST api/v1/login', () => {
     request(app)
       .post('/api/v1/login')
       .expect(200)
-      .send({email: 'abdallah897107@gmail.com', password: '12345678'})
+      .send({email: 'ahmedMoh@hotmail.com', password: '12345678'})
       .end((error, response) => {
         if (error) done(error);
         expect(response.statusCode).toBe(200);
